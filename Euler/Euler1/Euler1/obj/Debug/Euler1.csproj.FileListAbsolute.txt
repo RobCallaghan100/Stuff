@@ -1,0 +1,6 @@
+C:\PlayingAround\OddsAndSods\Euler\Euler1\Euler1\bin\Debug\Euler1.exe.config
+C:\PlayingAround\OddsAndSods\Euler\Euler1\Euler1\bin\Debug\Euler1.exe
+C:\PlayingAround\OddsAndSods\Euler\Euler1\Euler1\bin\Debug\Euler1.pdb
+C:\PlayingAround\OddsAndSods\Euler\Euler1\Euler1\obj\Debug\Euler1.csprojResolveAssemblyReference.cache
+C:\PlayingAround\OddsAndSods\Euler\Euler1\Euler1\obj\Debug\Euler1.exe
+C:\PlayingAround\OddsAndSods\Euler\Euler1\Euler1\obj\Debug\Euler1.pdb
