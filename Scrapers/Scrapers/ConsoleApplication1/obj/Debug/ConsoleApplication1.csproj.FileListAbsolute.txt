@@ -1,0 +1,8 @@
+C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\ConsoleApplication1\bin\Debug\Extractor.dll
+C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\ConsoleApplication1\bin\Debug\Extractor.pdb
+C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

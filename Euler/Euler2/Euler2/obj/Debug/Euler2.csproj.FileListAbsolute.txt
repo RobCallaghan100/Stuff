@@ -1,0 +1,6 @@
+C:\PlayingAround\Github\Stuff\Euler\Euler2\Euler2\bin\Debug\Euler2.exe.config
+C:\PlayingAround\Github\Stuff\Euler\Euler2\Euler2\obj\Debug\Euler2.exe
+C:\PlayingAround\Github\Stuff\Euler\Euler2\Euler2\obj\Debug\Euler2.pdb
+C:\PlayingAround\Github\Stuff\Euler\Euler2\Euler2\bin\Debug\Euler2.exe
+C:\PlayingAround\Github\Stuff\Euler\Euler2\Euler2\bin\Debug\Euler2.pdb
+C:\PlayingAround\Github\Stuff\Euler\Euler2\Euler2\obj\Debug\Euler2.csprojResolveAssemblyReference.cache
