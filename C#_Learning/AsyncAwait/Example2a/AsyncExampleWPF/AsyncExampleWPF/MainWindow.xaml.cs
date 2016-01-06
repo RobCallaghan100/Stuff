@@ -18,6 +18,7 @@ namespace AsyncExampleWPF
     using System.Collections;
     using System.IO;
     using System.Net;
+    using System.Net.Http;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -45,10 +46,11 @@ namespace AsyncExampleWPF
             var urlList = SetUpURLList();
 
             var total = 0;
+            var client = new HttpClient() { MaxResponseContentBufferSize = 1000000 };
 
             foreach (var url in urlList)
             {
-                var urlContents = await GetURLContentsAsync(url);
+                var urlContents = await client.GetByteArrayAsync(url);
 
                 DisplayResults(url, urlContents);
 
@@ -85,6 +87,8 @@ namespace AsyncExampleWPF
 
             return content.ToArray();
         }
+
+
 
         private List<string> SetUpURLList()
         {
