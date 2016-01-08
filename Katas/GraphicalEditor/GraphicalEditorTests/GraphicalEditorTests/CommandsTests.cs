@@ -7,12 +7,25 @@
     [TestFixture]
     public class CommandsTests
     {
+        private Mock<IImage> _mockImage;
+
+        [SetUp]
+        public void Setup()
+        {
+            _mockImage = new Mock<IImage>();
+            
+        }
+
+        [TearDown]
+        public void Teardown()
+        {
+            _mockImage = null;
+        }
+
         [Test]
         public void ShouldExitWhenXPressed()
         {
-            var mockImage = new Mock<IImage>();
-            var command = new Command(mockImage.Object);
-
+            var command = new Command(_mockImage.Object);
             command.Input("X");
 
             Assert.That(command.Image, Is.Null);
@@ -21,13 +34,12 @@
         [Test]
         public void ShouldCallCreateOnImageObjectWhenPassedIMN()
         {
-            var mockImage = new Mock<IImage>();
-            mockImage.Setup(i => i.Create(It.IsAny<int>(), It.IsAny<int>()));
-            var command = new Command(mockImage.Object);
+            _mockImage.Setup(i => i.Create(It.IsAny<int>(), It.IsAny<int>()));
+            var command = new Command(_mockImage.Object);
 
             command.Input("I 1 1");
 
-            mockImage.Verify(i => i.Create(It.IsAny<int>(), It.IsAny<int>()), Times.Once);
+            _mockImage.Verify(i => i.Create(It.IsAny<int>(), It.IsAny<int>()), Times.Once);
         }
 
         // TODO: add validator class to check that inputs are in correct format
