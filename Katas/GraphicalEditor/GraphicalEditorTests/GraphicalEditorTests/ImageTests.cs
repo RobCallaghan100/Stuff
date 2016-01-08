@@ -21,7 +21,8 @@
 
         [TestCase(0, 1)]
         [TestCase(-1, 1)]
-        public void ShouldRaiseExceptionIfMIsNegativeOrZero(int m, int n)
+        [TestCase(251, 1)]
+        public void ShouldRaiseExceptionIfMIsNegativeOrZeroOrOver250(int m, int n)
         {
             var image = new Image();
 
@@ -32,7 +33,8 @@
 
         [TestCase(1, 0)]
         [TestCase(1, -1)]
-        public void ShouldRaiseExceptionIfNIsNegativeOrZero(int m, int n)
+        [TestCase(1, 251)]
+        public void ShouldRaiseExceptionIfNIsNegativeOrZeroOrOver250(int m, int n)
         {
             var image = new Image();
 
