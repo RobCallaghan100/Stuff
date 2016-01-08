@@ -7,17 +7,17 @@
     [TestFixture]
     public class ImageTests
     {   
-        //[TestCase(1, 1)]
-        //[TestCase(250, 250)]
-        //public void ShouldSetSizeOfMAndNWhenCreateMethodCalledWithMAndN(int m, int n)
-        //{
-        //    var image = new Image();
+        [TestCase(1, 1)]
+        [TestCase(250, 250)]
+        public void ShouldSetSizeOfMAndNWhenCreateMethodCalledWithMAndN(int m, int n)
+        {
+            var image = new Image();
 
-        //    image.Create(m, n);
+            image.Create(m, n);
 
-        //    Assert.That(image.M, Is.EqualTo(m));
-        //    Assert.That(image.N, Is.EqualTo(n));
-        //}
+            Assert.That(image.M, Is.EqualTo(m));
+            Assert.That(image.N, Is.EqualTo(n));
+        }
 
         [TestCase(0, 1)]
         [TestCase(-1, 1)]
