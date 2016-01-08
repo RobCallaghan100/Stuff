@@ -11,7 +11,7 @@
 
         public void Input(string line)
         {
-            if (line == "X")
+            if (line == "M")
             {
                 _image = null;
             }

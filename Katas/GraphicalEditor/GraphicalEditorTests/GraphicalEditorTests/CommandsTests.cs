@@ -26,7 +26,7 @@
         public void ShouldExitWhenXPressed()
         {
             var command = new Command(_mockImage.Object);
-            command.Input("X");
+            command.Input("M");
 
             Assert.That(command.Image, Is.Null);
         }
