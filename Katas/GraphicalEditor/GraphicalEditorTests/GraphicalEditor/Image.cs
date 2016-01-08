@@ -12,6 +12,16 @@ namespace GraphicalEditor
 
         public void Create(int m, int n)
         {
+            if (m < 1)
+            {
+                throw new ArgumentOutOfRangeException("m", "m should be between 1 to 250");
+            }
+
+            if (n < 1)
+            {
+                throw new ArgumentOutOfRangeException("n", "n should be between 1 to 250");
+            }
+
             _m = m;
             _n = n;
         }
