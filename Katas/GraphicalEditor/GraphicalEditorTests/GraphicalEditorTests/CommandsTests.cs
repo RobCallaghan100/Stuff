@@ -1,5 +1,6 @@
 ﻿namespace GraphicalEditorTests
 {
+    using GraphicalEditor;
     using Moq;
     using NUnit.Framework;
 
@@ -18,7 +19,7 @@
         }
 
         [Test]
-        public void ShouldCallCreateOnImageObjectWhenPassedI_1_1()
+        public void ShouldCallCreateOnImageObjectWhenPassedIMN()
         {
             var mockImage = new Mock<IImage>();
             mockImage.Setup(i => i.Create(It.IsAny<int>(), It.IsAny<int>()));
@@ -30,10 +31,5 @@
         }
 
         // TODO: add validator class to check that inputs are in correct format
-    }
-
-    public interface IImage 
-    {
-        void Create(int m, int n);
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace GraphicalEditorTests
+﻿namespace GraphicalEditor
 {
-    internal class Command
+    public class Command
     {
         private IImage _image;
 
