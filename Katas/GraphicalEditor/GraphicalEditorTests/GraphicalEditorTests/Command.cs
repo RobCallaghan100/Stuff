@@ -15,6 +15,11 @@
             {
                 _image = null;
             }
+
+            if (line == "I 1 1")
+            {
+                _image.Create(1, 1);
+            }
         }
 
         public IImage Image

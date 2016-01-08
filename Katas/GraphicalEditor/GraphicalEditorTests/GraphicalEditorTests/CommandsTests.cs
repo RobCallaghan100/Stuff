@@ -16,9 +16,24 @@
 
             Assert.That(command.Image, Is.Null);
         }
+
+        [Test]
+        public void ShouldCallCreateOnImageObjectWhenPassedI_1_1()
+        {
+            var mockImage = new Mock<IImage>();
+            mockImage.Setup(i => i.Create(It.IsAny<int>(), It.IsAny<int>()));
+            var command = new Command(mockImage.Object);
+
+            command.Input("I 1 1");
+
+            mockImage.Verify(i => i.Create(It.IsAny<int>(), It.IsAny<int>()), Times.Once);
+        }
+
+        // TODO: add validator class to check that inputs are in correct format
     }
 
-    public interface IImage
+    public interface IImage 
     {
+        void Create(int m, int n);
     }
 }
