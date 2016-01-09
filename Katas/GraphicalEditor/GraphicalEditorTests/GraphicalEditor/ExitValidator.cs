@@ -14,7 +14,7 @@
                 return false;
             }
 
-            return true;
+            return false;
         }
 
         private static bool IsX(string[] arguments)
