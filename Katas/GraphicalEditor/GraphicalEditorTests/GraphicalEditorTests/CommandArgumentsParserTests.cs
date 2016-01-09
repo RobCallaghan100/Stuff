@@ -41,10 +41,12 @@
             Assert.That(_commandArgumentParser.CommandType, Is.EqualTo(CommandType.Exit));
         }
 
-        [Test]
-        public void ShouldRaiseExceptionIfNotOnlyGivenX()
+        [TestCase("x 1")]
+        [TestCase("x d")]
+        [TestCase("x 11 12")]
+        public void ShouldRaiseExceptionIfNotOnlyGivenX(string line)
         {
-            var exception = Assert.Throws<ArgumentException>(() => _commandArgumentParser.Parse("x 1"));
+            var exception = Assert.Throws<ArgumentException>(() => _commandArgumentParser.Parse(line));
 
             Assert.That(exception.Message, Is.EqualTo("Exit command is only expecting 1 argument eg 'X'"));
         }
