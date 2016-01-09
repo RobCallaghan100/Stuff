@@ -38,14 +38,14 @@
             Assert.That(_commandArgumentParser.CommandType, Is.EqualTo(CommandType.Exit));
         }
 
-        [Test]
-        public void ShouldShowCommandTypeAsCreateWhenGivenIAndGetMAndNValues()
+        [TestCase("I 1 1", CommandType.Create, 1, 1)]
+        public void ShouldShowCommandTypeAsCreateWhenGivenIAndGetMAndNValues(string line, CommandType expectedCommandType, int expectedM, int expectedN)
         {
-            _commandArgumentParser.Parse("I 1 1");
+            _commandArgumentParser.Parse(line);
 
-            Assert.That(_commandArgumentParser.CommandType, Is.EqualTo(CommandType.Create));    
-            Assert.That(_commandArgumentParser.M, Is.EqualTo(1));
-            Assert.That(_commandArgumentParser.N, Is.EqualTo(1));
+            Assert.That(_commandArgumentParser.CommandType, Is.EqualTo(expectedCommandType));
+            Assert.That(_commandArgumentParser.M, Is.EqualTo(expectedM));
+            Assert.That(_commandArgumentParser.N, Is.EqualTo(expectedN));
         }
     }
 }
