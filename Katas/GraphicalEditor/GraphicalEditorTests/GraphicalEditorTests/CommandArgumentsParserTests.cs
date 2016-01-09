@@ -39,6 +39,7 @@
         }
 
         [TestCase("I 1 1", CommandType.Create, 1, 1)]
+        [TestCase("I 250 250", CommandType.Create, 250, 250)]
         public void ShouldShowCommandTypeAsCreateWhenGivenIAndGetMAndNValues(string line, CommandType expectedCommandType, int expectedM, int expectedN)
         {
             _commandArgumentParser.Parse(line);
