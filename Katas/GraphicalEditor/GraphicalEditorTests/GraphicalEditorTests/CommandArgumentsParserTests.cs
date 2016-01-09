@@ -1,5 +1,6 @@
 ﻿namespace GraphicalEditorTests
 {
+    using System;
     using GraphicalEditor;
     using NUnit.Framework;
 
@@ -43,10 +44,9 @@
         [Test]
         public void ShouldRaiseExceptionIfNotOnlyGivenX()
         {
+            var exception = Assert.Throws<ArgumentException>(() => _commandArgumentParser.Parse("x 1"));
 
-//            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.Create(m, n));
-//
-//            Assert.That(exception.Message, Is.EqualTo("m should be between 1 to 250\r\nParameter name: m"));
+            Assert.That(exception.Message, Is.EqualTo("Exit command is only expecting 1 argument eg 'X'"));
         }
 
         [TestCase("I 1 1", CommandType.Create, 1, 1)]

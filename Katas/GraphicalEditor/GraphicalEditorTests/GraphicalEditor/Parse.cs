@@ -28,6 +28,11 @@
                     break;
 
                 case "X":
+                    if (splitLine.Length != 1)
+                    {
+                        throw new ArgumentException("Exit command is only expecting 1 argument eg 'X'");
+                    }
+
                     _commandType = GraphicalEditor.CommandType.Exit;
                     break;
 
