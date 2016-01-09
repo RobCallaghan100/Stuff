@@ -53,7 +53,6 @@
                     {
                         throw new ArgumentException("Create command is expecting M and N arguments to be between 1 and 250 eg 'I 4 5'");
                     }
-
                     _m = m;
                     _n = n;
                     break;
