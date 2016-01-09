@@ -28,7 +28,7 @@
                     break;
 
                 case "X":
-                    if (splitLine.Length != 1)
+                    if (!IsValid(splitLine))
                     {
                         throw new ArgumentException("Exit command is only expecting 1 argument eg 'X'");
                     }
@@ -57,6 +57,11 @@
                     _n = n;
                     break;
             }
+        }
+
+        private static bool IsValid(string[] splitLine)
+        {
+            return splitLine.Length == 1;
         }
 
         public CommandType CommandType

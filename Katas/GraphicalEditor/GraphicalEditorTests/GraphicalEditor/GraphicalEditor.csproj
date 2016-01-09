@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command.cs" />
-    <Compile Include="Parse.cs" />
+    <Compile Include="ExitValidator.cs" />
+    <Compile Include="IValidator.cs" />
+    <Compile Include="CommandArgumentParser.cs" />
     <Compile Include="CommandType.cs" />
     <Compile Include="ICommandArgumentParser.cs" />
     <Compile Include="IImage.cs" />
