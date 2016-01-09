@@ -20,10 +20,11 @@
             _commandArgumentParser = null;
         }
 
-        [Test]
-        public void ShouldShowCommandTypeAsNoneIfGivenEmptyString()
+        [TestCase("")]
+        [TestCase(" ")]
+        public void ShouldShowCommandTypeAsNoneIfGivenEmptyString(string line)
         {
-            _commandArgumentParser.Parse("");
+            _commandArgumentParser.Parse(line);
 
             Assert.That(_commandArgumentParser.CommandType, Is.EqualTo(CommandType.None));
         }
