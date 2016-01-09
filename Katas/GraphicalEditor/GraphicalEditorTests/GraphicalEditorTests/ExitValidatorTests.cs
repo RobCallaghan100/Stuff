@@ -7,6 +7,8 @@
     public class ExitValidatorTests
     {
         [TestCase("X")]
+        [TestCase("x")]
+        [TestCase(" x ")]
         public void ShouldReturnTrueIfOnlyArgumentIsX(string line)
         {
             var spltLine = line.Split(' ');
