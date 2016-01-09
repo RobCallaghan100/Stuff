@@ -1,6 +1,7 @@
 ﻿namespace GraphicalEditorTests
 {
     using GraphicalEditor;
+    using GraphicalEditor.Interfaces;
     using Moq;
     using NUnit.Framework;
 

@@ -1,5 +1,7 @@
 ﻿namespace GraphicalEditor
 {
+    using Interfaces;
+
     public class ExitValidator : IValidator
     {
         public bool IsValid(string[] arguments)

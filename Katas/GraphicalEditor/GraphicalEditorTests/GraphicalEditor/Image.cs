@@ -2,6 +2,8 @@
 
 namespace GraphicalEditor
 {
+    using Interfaces;
+
     public class Image : IImage
     {
         private int _m;

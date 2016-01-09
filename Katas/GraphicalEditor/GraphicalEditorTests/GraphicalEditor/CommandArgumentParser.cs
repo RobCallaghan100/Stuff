@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Runtime.InteropServices;
+    using Interfaces;
 
     public class CommandArgumentParser : ICommandArgumentParser
     {

@@ -1,4 +1,4 @@
-namespace GraphicalEditor
+namespace GraphicalEditor.Interfaces
 {
     public interface IImage 
     {

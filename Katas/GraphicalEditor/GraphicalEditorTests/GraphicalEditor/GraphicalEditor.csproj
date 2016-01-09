@@ -42,11 +42,11 @@
   <ItemGroup>
     <Compile Include="Command.cs" />
     <Compile Include="ExitValidator.cs" />
-    <Compile Include="IValidator.cs" />
+    <Compile Include="Interfaces\IValidator.cs" />
     <Compile Include="CommandArgumentParser.cs" />
     <Compile Include="CommandType.cs" />
-    <Compile Include="ICommandArgumentParser.cs" />
-    <Compile Include="IImage.cs" />
+    <Compile Include="Interfaces\ICommandArgumentParser.cs" />
+    <Compile Include="Interfaces\IImage.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

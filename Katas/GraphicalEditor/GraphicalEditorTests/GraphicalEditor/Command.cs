@@ -1,6 +1,7 @@
 ﻿namespace GraphicalEditor
 {
     using System;
+    using Interfaces;
 
     public class Command
     {
