@@ -3,6 +3,7 @@
     public enum CommandType
     {
         Exit,
-        None
+        None,
+        Create
     }
 }

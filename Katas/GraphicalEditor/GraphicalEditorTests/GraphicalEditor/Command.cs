@@ -21,29 +21,21 @@
 
         public void Input(string line)
         {
-            // create a command arguments object? eg x.command = "I", x.arguments[] = {1,1}??
-            line = line.ToUpper().Trim();
-            var splitLine = line.Split(' ');
-            if (splitLine.Length == 0)
+            _commandArgumentParser.Parse(line);
+
+            if (_commandArgumentParser.CommandType == CommandType.None)
             {
                 throw new ArgumentException("CommandType input has no arguments");
             }
 
-            var command = splitLine[0];
-
-            if (command == "X")
+            if (_commandArgumentParser.CommandType == CommandType.Exit)
             {
                 _image = null;
             }
 
-            if (command == "I")
+            if (_commandArgumentParser.CommandType == CommandType.Create)
             {
-                int m;
-                int n;
-                Int32.TryParse(splitLine[1], out m);
-                Int32.TryParse(splitLine[2], out n);
-
-                _image.Create(m, n);
+                _image.Create(_commandArgumentParser.M, _commandArgumentParser.N);
             }
         }
 

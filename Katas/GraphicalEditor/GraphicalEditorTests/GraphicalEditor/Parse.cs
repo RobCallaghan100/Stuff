@@ -1,10 +1,14 @@
 ﻿namespace GraphicalEditor
 {
+    using System;
     using System.Linq;
+    using System.Runtime.InteropServices;
 
     public class CommandArgumentParser : ICommandArgumentParser
     {
         private CommandType _commandType;
+        private int _m;
+        private int _n;
 
         public void Parse(string line)
         {
@@ -21,12 +25,22 @@
                 case "X":
                     _commandType = GraphicalEditor.CommandType.Exit;
                     break;
+
+                case "I":
+                    _commandType = GraphicalEditor.CommandType.Create;
+
+                    _m = Int32.Parse(splitLine[1]);
+                    _n = Int32.Parse(splitLine[2]);
+                    break;
             }
         }
 
-        public CommandType CommandType()
+        public CommandType CommandType
         {
-            return _commandType;
+            get { return _commandType; }
         }
+
+        public int M { get { return _m;  } }
+        public int N { get { return _n;  } }
     }
 }

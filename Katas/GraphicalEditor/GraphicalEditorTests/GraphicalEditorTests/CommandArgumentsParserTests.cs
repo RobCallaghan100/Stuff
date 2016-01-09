@@ -35,9 +35,17 @@
         [TestCase("x ")]
         public void ShouldShowCommandTypeAsExitWhenGivenX(string line)
         {
-            
-
             Assert.That(_commandArgumentParser.CommandType, Is.EqualTo(CommandType.Exit));
+        }
+
+        [Test]
+        public void ShouldShowCommandTypeAsCreateWhenGivenIAndGetMAndNValues()
+        {
+            _commandArgumentParser.Parse("I 1 1");
+
+            Assert.That(_commandArgumentParser.CommandType, Is.EqualTo(CommandType.Create));    
+            Assert.That(_commandArgumentParser.M, Is.EqualTo(1));
+            Assert.That(_commandArgumentParser.N, Is.EqualTo(1));
         }
     }
 }
