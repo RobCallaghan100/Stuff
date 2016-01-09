@@ -20,6 +20,7 @@
         }
 
         [TestCase("Y")]
+        [TestCase("5")]
         public void ShouldReturnFalseIfOnlyArgumentIsNotX(string line)
         {
             var spltLine = line.Split(' ');

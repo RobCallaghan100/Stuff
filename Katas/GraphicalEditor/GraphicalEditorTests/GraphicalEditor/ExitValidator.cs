@@ -4,9 +4,9 @@
     {
         public bool IsValid(string[] arguments)
         {
-            if (arguments.Length == 1)
+            if (IsOnlyOneArgument(arguments))
             {
-                if (arguments[0].ToUpper().Trim() == "X")
+                if (IsX(arguments))
                 {
                     return true;
                 }
@@ -15,6 +15,16 @@
             }
 
             return true;
+        }
+
+        private static bool IsX(string[] arguments)
+        {
+            return arguments[0].ToUpper().Trim() == "X";
+        }
+
+        private static bool IsOnlyOneArgument(string[] arguments)
+        {
+            return arguments.Length == 1;
         }
     }
 }
