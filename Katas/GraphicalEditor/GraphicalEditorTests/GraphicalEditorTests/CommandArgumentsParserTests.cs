@@ -3,6 +3,7 @@
     using System;
     using GraphicalEditor;
     using GraphicalEditor.Interfaces;
+    using GraphicalEditor.Validators;
     using Moq;
     using NUnit.Framework;
 
@@ -40,6 +41,7 @@
         [TestCase("x ")]
         public void ShouldShowCommandTypeAsExitWhenGivenX(string line)
         {
+            _mockValidatorFactory.Setup(vf => vf.GetValidator(It.IsAny<CommandType>())).Returns(new ExitValidator());
             _commandArgumentParser.Parse(line);
 
             Assert.That(_commandArgumentParser.CommandType, Is.EqualTo(CommandType.Exit));
@@ -50,6 +52,7 @@
         [TestCase("x 11 12")]
         public void ShouldRaiseExceptionIfNotOnlyGivenX(string line)
         {
+            _mockValidatorFactory.Setup(vf => vf.GetValidator(It.IsAny<CommandType>())).Returns(new ExitValidator());
             var exception = Assert.Throws<ArgumentException>(() => _commandArgumentParser.Parse(line));
 
             Assert.That(exception.Message, Is.EqualTo("Exit command is only expecting 1 argument eg 'X'"));

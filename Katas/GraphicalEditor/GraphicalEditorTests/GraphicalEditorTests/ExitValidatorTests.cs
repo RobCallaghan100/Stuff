@@ -12,7 +12,7 @@
         [TestCase(" x ")]
         public void ShouldReturnTrueIfOnlyArgumentIsX(string line)
         {
-            var spltLine = line.Split(' ');
+            var spltLine = line.Trim().Split(' ');
             var validator = new ExitValidator();
 
             var result = validator.IsValid(spltLine);
