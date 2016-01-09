@@ -39,8 +39,15 @@
                 case "I":
                     _commandType = GraphicalEditor.CommandType.Create;
 
-                    _m = Int32.Parse(splitLine[1]);
-                    _n = Int32.Parse(splitLine[2]);
+                    int m = 0;
+                    int n = 0;
+                    Int32.TryParse(splitLine[1], out m);
+                    Int32.TryParse(splitLine[2], out n);
+
+                    if (m < 1 || m > 250)
+                    {
+                        throw new ArgumentException("Create command is expecting M and N arguments to be between 1 and 250 eg 'I 4 5'");
+                    }
                     break;
             }
         }

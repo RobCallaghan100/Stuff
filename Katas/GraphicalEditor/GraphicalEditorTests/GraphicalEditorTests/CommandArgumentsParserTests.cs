@@ -52,7 +52,7 @@
         }
 
         [TestCase("I 1 1", CommandType.Create, 1, 1)]
-        [TestCase("I 250 250", CommandType.Create, 250, 250)]
+        [TestCase("i 250 250", CommandType.Create, 250, 250)]
         public void ShouldShowCommandTypeAsCreateWhenGivenIAndGetMAndNValues(string line, CommandType expectedCommandType, int expectedM, int expectedN)
         {
             _commandArgumentParser.Parse(line);
@@ -61,6 +61,17 @@
             Assert.That(_commandArgumentParser.M, Is.EqualTo(expectedM));
             Assert.That(_commandArgumentParser.N, Is.EqualTo(expectedN));
         }
+
+        [TestCase("I 0 1")]
+        public void ShouldRaiseExceptionWhenTryingToCreateImageWhenIMNOutOfBounds(string line)
+        {
+            var exception = Assert.Throws<ArgumentException>(() => _commandArgumentParser.Parse(line));
+
+            Assert.That(exception.Message, Is.EqualTo("Create command is expecting M and N arguments to be between 1 and 250 eg 'I 4 5'"));
+        }
+        // TODO: check that number of arguments passed is 3
+        // TODO: check that arguments are I int int
+
 
         // TODO: pass in rubbish that is not in our commands, such as "Q x h" etc
     }
