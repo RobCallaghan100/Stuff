@@ -35,7 +35,18 @@
         [TestCase("x ")]
         public void ShouldShowCommandTypeAsExitWhenGivenX(string line)
         {
+            _commandArgumentParser.Parse(line);
+
             Assert.That(_commandArgumentParser.CommandType, Is.EqualTo(CommandType.Exit));
+        }
+
+        [Test]
+        public void ShouldRaiseExceptionIfNotOnlyGivenX()
+        {
+
+//            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.Create(m, n));
+//
+//            Assert.That(exception.Message, Is.EqualTo("m should be between 1 to 250\r\nParameter name: m"));
         }
 
         [TestCase("I 1 1", CommandType.Create, 1, 1)]
@@ -48,5 +59,7 @@
             Assert.That(_commandArgumentParser.M, Is.EqualTo(expectedM));
             Assert.That(_commandArgumentParser.N, Is.EqualTo(expectedN));
         }
+
+        // TODO: pass in rubbish that is not in our commands, such as "Q x h" etc
     }
 }

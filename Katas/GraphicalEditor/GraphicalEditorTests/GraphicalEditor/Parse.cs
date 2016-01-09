@@ -10,6 +10,11 @@
         private int _m;
         private int _n;
 
+        public CommandArgumentParser()
+        {
+            _commandType = CommandType.None;
+        }
+
         public void Parse(string line)
         {
             var splitLine = line.Trim().ToUpper().Split(' ');
