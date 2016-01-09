@@ -23,7 +23,7 @@
             var splitLine = line.Split(' ');
             if (splitLine.Length == 0)
             {
-                throw new ArgumentException("Command input has no arguments");
+                throw new ArgumentException("CommandType input has no arguments");
             }
 
             var command = splitLine[0];
