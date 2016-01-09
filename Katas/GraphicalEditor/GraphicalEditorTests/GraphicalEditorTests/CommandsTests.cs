@@ -26,22 +26,24 @@
         public void ShouldExitWhenXPressed()
         {
             var command = new Command(_mockImage.Object);
-            command.Input("M");
+            command.Input("X");
 
             Assert.That(command.Image, Is.Null);
         }
 
-        [Test]
-        public void ShouldCallCreateOnImageObjectWhenPassedIMN()
+        [TestCase("I 1 1", 1, 1)]
+        [TestCase("I 250 250", 250, 250)]
+        public void ShouldCallCreateOnImageObjectWhenPassedIMN(string input, int m, int n)
         {
             _mockImage.Setup(i => i.Create(It.IsAny<int>(), It.IsAny<int>()));
             var command = new Command(_mockImage.Object);
 
-            command.Input("I 1 1");
+            command.Input(input);
 
-            _mockImage.Verify(i => i.Create(It.IsAny<int>(), It.IsAny<int>()), Times.Once);
+            _mockImage.Verify(i => i.Create(m, n), Times.Once);
         }
 
+        // TODO: pass in empty string and  string with only spaces
         // TODO: add validator class to check that inputs are in correct format
     }
 }

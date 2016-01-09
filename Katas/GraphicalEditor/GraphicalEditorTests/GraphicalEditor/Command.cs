@@ -1,5 +1,7 @@
 ﻿namespace GraphicalEditor
 {
+    using System;
+
     public class Command
     {
         private IImage _image;
@@ -9,16 +11,36 @@
             _image = image;
         }
 
+        public Command()
+        {
+            _image = new Image();
+        }
+
         public void Input(string line)
         {
-            if (line == "M")
+            // create a command arguments object? eg x.command = "I", x.arguments[] = {1,1}??
+            line = line.ToUpper().Trim();
+            var splitLine = line.Split(' ');
+            if (splitLine.Length == 0)
+            {
+                throw new ArgumentException("Command input has no arguments");
+            }
+
+            var command = splitLine[0];
+
+            if (command == "X")
             {
                 _image = null;
             }
 
-            if (line == "I 1 1")
+            if (command == "I")
             {
-                _image.Create(1, 1);
+                int m;
+                int n;
+                Int32.TryParse(splitLine[1], out m);
+                Int32.TryParse(splitLine[2], out n);
+
+                _image.Create(m, n);
             }
         }
 
