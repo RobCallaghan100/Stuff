@@ -1,12 +1,13 @@
 ﻿namespace GraphicalEditor
 {
     using Interfaces;
+    using Validators;
 
     public class ValidatorFactory : IValidatorFactory
     {
         public IValidator GetValidator(CommandType commandType)
         {
-            throw new System.NotImplementedException();
+            return new ExitValidator();
         }
     }
 }
