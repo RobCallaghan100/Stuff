@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandArgumentsParserTests.cs" />
     <Compile Include="CommandsTests.cs" />
     <Compile Include="ImageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
