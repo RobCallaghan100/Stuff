@@ -63,6 +63,9 @@
         }
 
         [TestCase("I 0 1")]
+        [TestCase("I 251 1")]
+        [TestCase("i 1 0")]
+        [TestCase("I 1 251")]
         public void ShouldRaiseExceptionWhenTryingToCreateImageWhenIMNOutOfBounds(string line)
         {
             var exception = Assert.Throws<ArgumentException>(() => _commandArgumentParser.Parse(line));
