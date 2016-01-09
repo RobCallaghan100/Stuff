@@ -1,0 +1,114 @@
+﻿using static System.Int32;
+
+namespace GraphicalEditor
+{
+    using System;
+    using Interfaces;
+
+    public class CommandArgumentParser : ICommandArgumentParser
+    {
+        private readonly IValidator _validator;
+        private CommandType _commandType;
+        private int _m;
+        private int _n;
+
+        public CommandArgumentParser(IValidator validator)
+        {
+            _validator = validator;
+            _commandType = CommandType.None;
+        }
+
+        public CommandArgumentParser()
+        {
+        }
+
+        private IValidator GetValidator(CommandType commandType)
+        {
+            if (_validator == null)
+            {
+                return ValidatorFactory.GetValidator(commandType);
+            }
+
+            return _validator;
+        }
+
+        public void Parse(string line)
+        {
+            var splitLine = line.Trim().ToUpper().Split(' ');
+            var command = splitLine[0];
+
+            switch (command)
+            {
+                case "":
+                    _commandType = CommandType.None;
+                    break;
+
+                case "X":
+                    if (!IsValid(CommandType.Exit, splitLine))
+                    {
+                        throw new ArgumentException("Exit command is only expecting 1 argument eg 'X'");
+                    }
+
+                    _commandType = CommandType.Exit;
+                    break;
+
+                case "I":
+<<<<<<< f1cfeb08a84fb441b9f911b3f60e05b3dde5a291
+                    if (!IsValid(CommandType.Create, splitLine))
+=======
+                    _commandType = CommandType.Create;
+
+                    int m;
+                    int n;
+                    Int32.TryParse(splitLine[1], out m);
+                    Int32.TryParse(splitLine[2], out n);
+
+                    if (m < 1 || m > 250)
+>>>>>>> Some tidying up
+                    {
+                        throw new ArgumentException("Create command is expecting arguments in following format eg 'I 2 3'");
+                    }
+
+                    _m = GetValue(splitLine[1]);
+                    _n = GetValue(splitLine[2]);
+
+                    _commandType = CommandType.Create;
+                    break;
+
+                case "S":
+                    if (!IsValid(CommandType.Show, splitLine))
+                    {
+                        throw new ArgumentException("Show command is expecting arguments in following format eg 'S'");
+                    }
+
+                    _commandType = CommandType.Show;
+                    break;
+            }
+        }
+
+<<<<<<< f1cfeb08a84fb441b9f911b3f60e05b3dde5a291
+        private bool IsValid(CommandType commandType, string[] splitLine)
+        {
+            return GetValidator(commandType).IsValid(splitLine);
+        }
+
+
+        private static int GetValue(string arg)
+        {
+            int value;
+            TryParse(arg, out value);
+
+            return value;
+        }
+
+=======
+>>>>>>> Some tidying up
+        public CommandType CommandType
+        {
+            get { return _commandType; }
+        }
+
+        public int M { get { return _m;  } }
+        public int N { get { return _n;  } }
+    }
+}
