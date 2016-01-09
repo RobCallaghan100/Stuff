@@ -1,25 +1,26 @@
 ﻿namespace GraphicalEditor
 {
     using System;
-    using System.Linq;
-    using System.Runtime.InteropServices;
     using Interfaces;
 
     public class CommandArgumentParser : ICommandArgumentParser
     {
+        private readonly IValidatorFactory _validatorFactory;
         private CommandType _commandType;
         private int _m;
         private int _n;
 
-        public CommandArgumentParser()
+        public CommandArgumentParser(IValidatorFactory validatorFactory)
         {
+            _validatorFactory = validatorFactory;
             _commandType = CommandType.None;
         }
 
         public void Parse(string line)
         {
-            var splitLine = line.Trim().ToUpper().Split(' ');
+            IValidator validator;
 
+            var splitLine = line.Trim().ToUpper().Split(' ');
             var command = splitLine[0];
 
             switch (command)
@@ -29,7 +30,9 @@
                     break;
 
                 case "X":
-                    if (!IsValid(splitLine))
+                    validator = _validatorFactory.GetValidator(CommandType.Exit);
+
+                    if (!validator.IsValid(splitLine))
                     {
                         throw new ArgumentException("Exit command is only expecting 1 argument eg 'X'");
                     }

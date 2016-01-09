@@ -17,7 +17,9 @@
         public Command()
         {
             _image = new Image();
-            _commandArgumentParser = new CommandArgumentParser();
+
+            var validatorFactory = new ValidatorFactory();
+            _commandArgumentParser = new CommandArgumentParser(validatorFactory);
         }
 
         public void Input(string line)

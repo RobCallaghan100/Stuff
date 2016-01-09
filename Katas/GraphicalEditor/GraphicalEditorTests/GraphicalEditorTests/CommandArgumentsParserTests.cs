@@ -2,17 +2,21 @@
 {
     using System;
     using GraphicalEditor;
+    using GraphicalEditor.Interfaces;
+    using Moq;
     using NUnit.Framework;
 
     [TestFixture]
     public class CommandArgumentsParserTests    
     {
         private CommandArgumentParser _commandArgumentParser;
+        private Mock<IValidatorFactory> _mockValidatorFactory;
 
         [SetUp]
         public void Setup()
         {
-            _commandArgumentParser = new CommandArgumentParser();
+            _mockValidatorFactory = new Mock<IValidatorFactory>();
+            _commandArgumentParser = new CommandArgumentParser(_mockValidatorFactory.Object);
         }
 
         [TearDown]
