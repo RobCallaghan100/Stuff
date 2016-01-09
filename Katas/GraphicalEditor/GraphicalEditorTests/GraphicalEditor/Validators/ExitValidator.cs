@@ -1,4 +1,4 @@
-﻿namespace GraphicalEditor
+﻿namespace GraphicalEditor.Validators
 {
     using Interfaces;
 

@@ -1,6 +1,7 @@
 ﻿namespace GraphicalEditorTests
 {
     using GraphicalEditor;
+    using GraphicalEditor.Validators;
     using NUnit.Framework;
 
     [TestFixture]

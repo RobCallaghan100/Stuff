@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command.cs" />
-    <Compile Include="ExitValidator.cs" />
+    <Compile Include="Validators\ExitValidator.cs" />
     <Compile Include="Interfaces\IValidator.cs" />
     <Compile Include="CommandArgumentParser.cs" />
     <Compile Include="CommandType.cs" />
