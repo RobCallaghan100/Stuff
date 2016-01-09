@@ -2,11 +2,11 @@
 {
     using System.Linq;
 
-    public class CommandArgumentParser
+    public class CommandArgumentParser : ICommandArgumentParser
     {
         private CommandType _commandType;
 
-        public CommandArgumentParser(string line)
+        public void Parse(string line)
         {
             var splitLine = line.Trim().ToUpper().Split(' ');
 

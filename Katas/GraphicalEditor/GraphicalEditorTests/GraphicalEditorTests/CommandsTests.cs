@@ -8,24 +8,26 @@
     public class CommandsTests
     {
         private Mock<IImage> _mockImage;
+        private Mock<ICommandArgumentParser> _mockCommandArgumentParserMock;
 
         [SetUp]
         public void Setup()
         {
             _mockImage = new Mock<IImage>();
-            
+            _mockCommandArgumentParserMock = new Mock<ICommandArgumentParser>();
         }
 
         [TearDown]
         public void Teardown()
         {
             _mockImage = null;
+            _mockCommandArgumentParserMock = null;
         }
 
         [Test]
         public void ShouldExitWhenXPressed()
         {
-            var command = new Command(_mockImage.Object);
+            var command = new Command(_mockImage.Object, _mockCommandArgumentParserMock.Object);
             command.Input("X");
 
             Assert.That(command.Image, Is.Null);
@@ -36,7 +38,7 @@
         public void ShouldCallCreateOnImageObjectWhenPassedIMN(string input, int m, int n)
         {
             _mockImage.Setup(i => i.Create(It.IsAny<int>(), It.IsAny<int>()));
-            var command = new Command(_mockImage.Object);
+            var command = new Command(_mockImage.Object, _mockCommandArgumentParserMock.Object);
 
             command.Input(input);
 

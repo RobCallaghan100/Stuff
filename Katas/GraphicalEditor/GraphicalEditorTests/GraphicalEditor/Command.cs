@@ -5,15 +5,18 @@
     public class Command
     {
         private IImage _image;
+        private ICommandArgumentParser _commandArgumentParser;
 
-        public Command(IImage image)
+        public Command(IImage image, ICommandArgumentParser commandArgumentParser)
         {
             _image = image;
+            _commandArgumentParser = commandArgumentParser;
         }
 
         public Command()
         {
             _image = new Image();
+            _commandArgumentParser = new CommandArgumentParser();
         }
 
         public void Input(string line)

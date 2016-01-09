@@ -41,8 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command.cs" />
-    <Compile Include="CommandArgumentParser.cs" />
+    <Compile Include="Parse.cs" />
     <Compile Include="CommandType.cs" />
+    <Compile Include="ICommandArgumentParser.cs" />
     <Compile Include="IImage.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

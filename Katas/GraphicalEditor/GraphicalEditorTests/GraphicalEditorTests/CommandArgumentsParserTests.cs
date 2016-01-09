@@ -6,12 +6,26 @@
     [TestFixture]
     public class CommandArgumentsParserTests    
     {
+        private CommandArgumentParser _commandArgumentParser;
+
+        [SetUp]
+        public void Setup()
+        {
+            _commandArgumentParser = new CommandArgumentParser();
+        }
+
+        [TearDown]
+        public void Teardown()
+        {
+            _commandArgumentParser = null;
+        }
+
         [Test]
         public void ShouldShowCommandTypeAsNoneIfGivenEmptyString()
         {
-            var commandArgumentParser = new CommandArgumentParser("");
+            _commandArgumentParser.Parse("");
 
-            Assert.That(commandArgumentParser.CommandType, Is.EqualTo(CommandType.None));
+            Assert.That(_commandArgumentParser.CommandType, Is.EqualTo(CommandType.None));
         }
 
         [TestCase("X")]
@@ -20,9 +34,9 @@
         [TestCase("x ")]
         public void ShouldShowCommandTypeAsExitWhenGivenX(string line)
         {
-            var commandArgumentParser = new CommandArgumentParser(line);
+            
 
-            Assert.That(commandArgumentParser.CommandType, Is.EqualTo(CommandType.Exit));
+            Assert.That(_commandArgumentParser.CommandType, Is.EqualTo(CommandType.Exit));
         }
     }
 }
