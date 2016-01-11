@@ -50,7 +50,8 @@
   <ItemGroup>
     <Compile Include="CommandArgumentsParserTests.cs" />
     <Compile Include="CommandsTests.cs" />
-    <Compile Include="ExitValidatorTests.cs" />
+    <Compile Include="Validators\CreateValidatorTests.cs" />
+    <Compile Include="Validators\ExitValidatorTests.cs" />
     <Compile Include="ImageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidatoryFactoryTests.cs" />

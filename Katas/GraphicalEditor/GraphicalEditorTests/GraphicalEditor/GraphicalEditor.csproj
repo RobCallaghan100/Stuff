@@ -43,6 +43,7 @@
     <Compile Include="Command.cs" />
     <Compile Include="Interfaces\IValidatorFactory.cs" />
     <Compile Include="ValidatorFactory.cs" />
+    <Compile Include="Validators\CreateValidator.cs" />
     <Compile Include="Validators\ExitValidator.cs" />
     <Compile Include="Interfaces\IValidator.cs" />
     <Compile Include="CommandArgumentParser.cs" />

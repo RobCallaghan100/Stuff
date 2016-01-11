@@ -1,9 +1,8 @@
-﻿namespace GraphicalEditorTests
-{
-    using GraphicalEditor;
-    using GraphicalEditor.Validators;
-    using NUnit.Framework;
+﻿using GraphicalEditor.Validators;
+using NUnit.Framework;
 
+namespace GraphicalEditorTests.Validators
+{
     [TestFixture]
     public class ExitValidatorTests
     {
