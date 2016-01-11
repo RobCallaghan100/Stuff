@@ -47,17 +47,21 @@
                     {
                         throw new ArgumentException("Create command is expecting arguments in following format eg 'I 2 3'");
                     }
-                    // TODO: tidy up
-                    int m = 0;
-                    int n = 0;
-                    Int32.TryParse(splitLine[1], out m);
-                    Int32.TryParse(splitLine[2], out n);
 
-                    _m = m;
-                    _n = n;
+                    _m = GetValue(splitLine[1]);
+                    _n = GetValue(splitLine[2]);
+
                     _commandType = GraphicalEditor.CommandType.Create;
                     break;
             }
+        }
+
+        private static int GetValue(string arg)
+        {
+            int value = 0;
+            Int32.TryParse(arg, out value);
+
+            return value;
         }
 
         public CommandType CommandType
