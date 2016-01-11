@@ -74,10 +74,11 @@ namespace GraphicalEditorTests.Validators
             Assert.That(result, Is.False);
         }
 
-        [Test]
-        public void ShouldReturnTrueIfPassedIMN()
+        [TestCase("1", "1")]
+        [TestCase("250", "250")]
+        public void ShouldReturnTrueIfPassedIMN(string m, string n)
         {
-            var result = _createValidator.IsValid(new[] { "I", "1", "2" });
+            var result = _createValidator.IsValid(new[] { "I", m, n });
 
             Assert.That(result, Is.True);
         }
