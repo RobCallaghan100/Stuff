@@ -57,8 +57,6 @@ namespace GraphicalEditorTests.Validators
         }
 
         /*
-        check that I is first arg
-        
         check that args 2 and 3 are between 1 and 250
         check true if I 1 2 and a couple of other examples
         */

@@ -7,22 +7,22 @@ namespace GraphicalEditor.Validators
     {
         public bool IsValid(string[] args)
         {
-            if (IsThreeArguments(args))
+            if (IsExactlyThreeArguments(args))
             {
                 return false;
             }
 
-            if (!IsFirstParameterAnI(args))
+            if (!IsFirstArgumentAnI(args))
             {
                 return false;
             }
 
-            if (!IsSecondParameterAnInt(args[1]))
+            if (!IsSecondArgumentAnInt(args[1]))
             {
                 return false;
             }
 
-            if (!IsThirdParameterAnInt(args[2]))
+            if (!IsThirdArgumentAnInt(args[2]))
             {
                 return false;
             }
@@ -30,12 +30,12 @@ namespace GraphicalEditor.Validators
             return true;
         }
 
-        private static bool IsFirstParameterAnI(string[] args)
+        private static bool IsFirstArgumentAnI(string[] args)
         {
             return args[0].ToUpper().Trim() == "I";
         }
 
-        private static bool IsSecondParameterAnInt(string arg)
+        private static bool IsSecondArgumentAnInt(string arg)
         {
             int m = 0;
             TryParse(arg, out m);
@@ -48,7 +48,7 @@ namespace GraphicalEditor.Validators
             return true;
         }
 
-        private static bool IsThirdParameterAnInt(string arg)
+        private static bool IsThirdArgumentAnInt(string arg)
         {
             int n = 0;
             TryParse(arg, out n);
@@ -61,7 +61,7 @@ namespace GraphicalEditor.Validators
             return true;
         }
 
-        private static bool IsThreeArguments(string[] args)
+        private static bool IsExactlyThreeArguments(string[] args)
         {
             return args.Length != 3;
         }
