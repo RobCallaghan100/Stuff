@@ -74,8 +74,15 @@ namespace GraphicalEditorTests.Validators
             Assert.That(result, Is.False);
         }
 
+        [Test]
+        public void ShouldReturnTrueIfPassedIMN()
+        {
+            var result = _createValidator.IsValid(new[] { "I", "1", "2" });
+
+            Assert.That(result, Is.True);
+        }
+
         /*
-        check that args 2 and 3 are between 1 and 250
         check true if I 1 2 and a couple of other examples
         */
 
