@@ -62,6 +62,7 @@
         [TestCase("i 250 250", CommandType.Create, 250, 250)]
         public void ShouldShowCommandTypeAsCreateWhenGivenIAndGetMAndNValues(string line, CommandType expectedCommandType, int expectedM, int expectedN)
         {
+            _mockValidatorFactory.Setup(vf => vf.GetValidator(It.IsAny<CommandType>())).Returns(new CreateValidator());
             _commandArgumentParser.Parse(line);
 
             Assert.That(_commandArgumentParser.CommandType, Is.EqualTo(expectedCommandType));
@@ -75,10 +76,12 @@
         [TestCase("I 1 251")]
         public void ShouldRaiseExceptionWhenTryingToCreateImageWhenIMNOutOfBounds(string line)
         {
+            _mockValidatorFactory.Setup(vf => vf.GetValidator(It.IsAny<CommandType>())).Returns(new CreateValidator());
             var exception = Assert.Throws<ArgumentException>(() => _commandArgumentParser.Parse(line));
 
-            Assert.That(exception.Message, Is.EqualTo("Create command is expecting M and N arguments to be between 1 and 250 eg 'I 4 5'"));
+            Assert.That(exception.Message, Is.EqualTo("Create command is expecting arguments in following format eg 'I 2 3'"));
         }
+
         // TODO: check that number of arguments passed is 3
         // TODO: check that arguments are I int int
 

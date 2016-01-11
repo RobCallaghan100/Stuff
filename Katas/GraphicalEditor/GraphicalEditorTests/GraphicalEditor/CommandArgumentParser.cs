@@ -41,31 +41,23 @@
                     break;
 
                 case "I":
-                    _commandType = GraphicalEditor.CommandType.Create;
+                    validator = _validatorFactory.GetValidator(CommandType.Create);
 
+                    if (!validator.IsValid(splitLine))
+                    {
+                        throw new ArgumentException("Create command is expecting arguments in following format eg 'I 2 3'");
+                    }
+                    // TODO: tidy up
                     int m = 0;
                     int n = 0;
                     Int32.TryParse(splitLine[1], out m);
                     Int32.TryParse(splitLine[2], out n);
 
-                    if (m < 1 || m > 250)
-                    {
-                        throw new ArgumentException("Create command is expecting M and N arguments to be between 1 and 250 eg 'I 4 5'");
-                    }
-
-                    if (n < 1 || n > 250)
-                    {
-                        throw new ArgumentException("Create command is expecting M and N arguments to be between 1 and 250 eg 'I 4 5'");
-                    }
                     _m = m;
                     _n = n;
+                    _commandType = GraphicalEditor.CommandType.Create;
                     break;
             }
-        }
-
-        private static bool IsValid(string[] splitLine)
-        {
-            return splitLine.Length == 1;
         }
 
         public CommandType CommandType
