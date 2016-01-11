@@ -1,5 +1,5 @@
-﻿using System;
-using GraphicalEditor.Interfaces;
+﻿using GraphicalEditor.Interfaces;
+using static System.Int32;
 
 namespace GraphicalEditor.Validators
 {
@@ -12,7 +12,12 @@ namespace GraphicalEditor.Validators
                 return false;
             }
 
-            if (!IsMAnInt(args[1]))
+            if (!IsSecondParameterAnInt(args[1]))
+            {
+                return false;
+            }
+
+            if (!IsThirdParameterAnInt(args[2]))
             {
                 return false;
             }
@@ -20,12 +25,25 @@ namespace GraphicalEditor.Validators
             return true;
         }
 
-        private static bool IsMAnInt(string arg)
+        private static bool IsSecondParameterAnInt(string arg)
         {
             int m = 0;
-            Int32.TryParse(arg, out m);
+            TryParse(arg, out m);
 
             if (m == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private static bool IsThirdParameterAnInt(string arg)
+        {
+            int n = 0;
+            TryParse(arg, out n);
+
+            if (n == 0)
             {
                 return false;
             }

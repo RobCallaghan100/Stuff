@@ -39,6 +39,14 @@ namespace GraphicalEditorTests.Validators
             Assert.That(result, Is.False);
         }
 
+        [Test]
+        public void ShouldReturnFalseIfThirdArgumentIsNotAnInt()
+        {
+            var result = _createValidator.IsValid(new[] { "I", "1", "Q" });
+
+            Assert.That(result, Is.False);
+        }
+
         /*
         check that I is first arg
         check that args 2 and 3 are ints
