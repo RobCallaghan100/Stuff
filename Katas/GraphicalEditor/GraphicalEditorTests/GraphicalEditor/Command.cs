@@ -26,19 +26,18 @@
         {
             _commandArgumentParser.Parse(line);
 
-            if (_commandArgumentParser.CommandType == CommandType.None)
+            switch (_commandArgumentParser.CommandType)
             {
-                throw new ArgumentException("CommandType input has no arguments");
-            }
+                case CommandType.Exit:
+                    _image = null;
+                    break;
 
-            if (_commandArgumentParser.CommandType == CommandType.Exit)
-            {
-                _image = null;
-            }
+                case CommandType.Create:
+                    _image.Create(_commandArgumentParser.M, _commandArgumentParser.N);
+                    break;
 
-            if (_commandArgumentParser.CommandType == CommandType.Create)
-            {
-                _image.Create(_commandArgumentParser.M, _commandArgumentParser.N);
+                default:
+                    throw new ArgumentException("CommandType input has no arguments");
             }
         }
 
