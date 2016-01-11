@@ -12,6 +12,11 @@ namespace GraphicalEditor.Validators
                 return false;
             }
 
+            if (args[0].ToUpper().Trim() != "I")
+            {
+                return false;
+            }
+
             if (!IsSecondParameterAnInt(args[1]))
             {
                 return false;

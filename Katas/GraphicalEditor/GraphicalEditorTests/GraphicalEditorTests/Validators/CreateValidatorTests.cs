@@ -31,6 +31,15 @@ namespace GraphicalEditorTests.Validators
             Assert.That(result, Is.EqualTo(expectedResult));
         }
 
+        [TestCase("L")]
+        [TestCase("N")]
+        public void ShouldReturnFalseIfFirstParameterIsNotI(string firstArg)
+        {
+            var result = _createValidator.IsValid(new[] { firstArg, "1", "2" });
+
+            Assert.That(result, Is.False);
+        }
+
         [Test]
         public void ShouldReturnFalseIfSecondArgumentIsNotAnInt()
         {
@@ -49,7 +58,7 @@ namespace GraphicalEditorTests.Validators
 
         /*
         check that I is first arg
-        check that args 2 and 3 are ints
+        
         check that args 2 and 3 are between 1 and 250
         check true if I 1 2 and a couple of other examples
         */
