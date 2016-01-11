@@ -1,4 +1,6 @@
-﻿namespace GraphicalEditor
+﻿using static System.Int32;
+
+namespace GraphicalEditor
 {
     using System;
     using Interfaces;
@@ -26,7 +28,7 @@
             switch (command)
             {
                 case "":
-                    _commandType = GraphicalEditor.CommandType.None;
+                    _commandType = CommandType.None;
                     break;
 
                 case "X":
@@ -37,7 +39,7 @@
                         throw new ArgumentException("Exit command is only expecting 1 argument eg 'X'");
                     }
 
-                    _commandType = GraphicalEditor.CommandType.Exit;
+                    _commandType = CommandType.Exit;
                     break;
 
                 case "I":
@@ -51,15 +53,15 @@
                     _m = GetValue(splitLine[1]);
                     _n = GetValue(splitLine[2]);
 
-                    _commandType = GraphicalEditor.CommandType.Create;
+                    _commandType = CommandType.Create;
                     break;
             }
         }
 
         private static int GetValue(string arg)
         {
-            int value = 0;
-            Int32.TryParse(arg, out value);
+            int value;
+            TryParse(arg, out value);
 
             return value;
         }
