@@ -12,8 +12,18 @@ namespace GraphicalEditor.Validators
                 return false;
             }
 
+            if (!IsMAnInt(args[1]))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private static bool IsMAnInt(string arg)
+        {
             int m = 0;
-            Int32.TryParse(args[1], out m);
+            Int32.TryParse(arg, out m);
 
             if (m == 0)
             {
