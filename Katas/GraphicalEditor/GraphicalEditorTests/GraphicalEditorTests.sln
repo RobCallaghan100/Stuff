@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicalEditorTests", "Gra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicalEditor", "GraphicalEditor\GraphicalEditor.csproj", "{DD05D55A-C307-4F99-A80A-E34416C4CF5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{430D085D-77A3-4AF2-AA84-B04EAAAD6697}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DD05D55A-C307-4F99-A80A-E34416C4CF5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD05D55A-C307-4F99-A80A-E34416C4CF5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD05D55A-C307-4F99-A80A-E34416C4CF5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{430D085D-77A3-4AF2-AA84-B04EAAAD6697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{430D085D-77A3-4AF2-AA84-B04EAAAD6697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{430D085D-77A3-4AF2-AA84-B04EAAAD6697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{430D085D-77A3-4AF2-AA84-B04EAAAD6697}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
