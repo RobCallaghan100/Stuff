@@ -56,6 +56,15 @@ namespace GraphicalEditorTests.Validators
             Assert.That(result, Is.False);
         }
 
+        [TestCase("0")]
+        [TestCase("251")]
+        public void ShouldReturnFalseIfSecondArgumentIsNotBetween1And250(string arg)
+        {
+            var result = _createValidator.IsValid(new[] { "I", arg, "1" });
+
+            Assert.That(result, Is.False);
+        }
+
         /*
         check that args 2 and 3 are between 1 and 250
         check true if I 1 2 and a couple of other examples

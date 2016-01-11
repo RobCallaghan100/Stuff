@@ -17,6 +17,11 @@ namespace GraphicalEditor.Validators
                 return false;
             }
 
+            if (!IsSecondArgumentInRange(args))
+            {
+                return false;
+            }
+
             if (!IsSecondArgumentAnInt(args[1]))
             {
                 return false;
@@ -27,6 +32,19 @@ namespace GraphicalEditor.Validators
                 return false;
             }
 
+            
+
+            return true;
+        }
+
+        private static bool IsSecondArgumentInRange(string[] args)
+        {
+            int m = 0;
+            TryParse(args[1], out m);
+            if (m < 1 || m > 250)
+            {
+                return false;
+            }
             return true;
         }
 
