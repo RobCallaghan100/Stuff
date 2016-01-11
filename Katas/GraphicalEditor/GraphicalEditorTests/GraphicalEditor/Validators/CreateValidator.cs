@@ -12,7 +12,7 @@ namespace GraphicalEditor.Validators
                 return false;
             }
 
-            if (args[0].ToUpper().Trim() != "I")
+            if (!IsFirstParameterAnI(args))
             {
                 return false;
             }
@@ -28,6 +28,11 @@ namespace GraphicalEditor.Validators
             }
 
             return true;
+        }
+
+        private static bool IsFirstParameterAnI(string[] args)
+        {
+            return args[0].ToUpper().Trim() == "I";
         }
 
         private static bool IsSecondParameterAnInt(string arg)
