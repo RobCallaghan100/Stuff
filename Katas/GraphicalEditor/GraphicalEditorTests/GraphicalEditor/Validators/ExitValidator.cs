@@ -4,11 +4,11 @@
 
     public class ExitValidator : IValidator
     {
-        public bool IsValid(string[] arguments)
+        public bool IsValid(string[] args)
         {
-            if (IsOnlyOneArgument(arguments))
+            if (IsOnlyOneArgument(args))
             {
-                if (IsX(arguments))
+                if (IsX(args))
                 {
                     return true;
                 }

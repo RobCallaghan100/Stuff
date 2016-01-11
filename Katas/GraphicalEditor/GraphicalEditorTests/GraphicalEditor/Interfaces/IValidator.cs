@@ -2,6 +2,6 @@
 {
     public interface IValidator
     {
-        bool IsValid(string[] arguments);
+        bool IsValid(string[] args);
     }
 }
