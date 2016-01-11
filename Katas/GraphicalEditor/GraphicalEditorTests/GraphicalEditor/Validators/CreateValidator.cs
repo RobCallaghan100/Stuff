@@ -17,34 +17,38 @@ namespace GraphicalEditor.Validators
                 return false;
             }
 
-            if (!IsSecondArgumentInRange(args))
+            if (!IsArgumentAnInt(args[1]))
             {
                 return false;
             }
 
-            if (!IsSecondArgumentAnInt(args[1]))
+            if (!IsArgumentAnInt(args[2]))
             {
                 return false;
             }
 
-            if (!IsThirdArgumentAnInt(args[2]))
+            if (!IsArgumentInRange(args[1]))
             {
                 return false;
             }
 
-            
+            if (!IsArgumentInRange(args[2]))
+            {
+                return false;
+            }
 
             return true;
         }
 
-        private static bool IsSecondArgumentInRange(string[] args)
+        private static bool IsArgumentInRange(string arg)
         {
             int m = 0;
-            TryParse(args[1], out m);
+            TryParse(arg, out m);
             if (m < 1 || m > 250)
             {
                 return false;
             }
+
             return true;
         }
 
@@ -53,25 +57,12 @@ namespace GraphicalEditor.Validators
             return args[0].ToUpper().Trim() == "I";
         }
 
-        private static bool IsSecondArgumentAnInt(string arg)
+        private static bool IsArgumentAnInt(string arg)
         {
-            int m = 0;
-            TryParse(arg, out m);
+            int value = 0;
+            TryParse(arg, out value);
 
-            if (m == 0)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        private static bool IsThirdArgumentAnInt(string arg)
-        {
-            int n = 0;
-            TryParse(arg, out n);
-
-            if (n == 0)
+            if (value == 0)
             {
                 return false;
             }
