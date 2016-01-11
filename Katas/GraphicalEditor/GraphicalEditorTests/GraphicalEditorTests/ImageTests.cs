@@ -43,7 +43,9 @@
             Assert.That(exception.Message, Is.EqualTo("n should be between 1 to 250\r\nParameter name: n"));
         }
 
-        // check that m and n are not out of range
-        // check for null values??
+        should show all pixels as white (O) On Create
+
+        // TODO: check that m and n are not out of range
+        // TODO: check for null values??
     }
 }
