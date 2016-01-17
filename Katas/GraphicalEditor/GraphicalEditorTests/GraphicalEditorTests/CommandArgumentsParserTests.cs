@@ -82,10 +82,7 @@
             Assert.That(exception.Message, Is.EqualTo("Create command is expecting arguments in following format eg 'I 2 3'"));
         }
 
-        // TODO: check that number of arguments passed is 3
-        // TODO: check that arguments are I int int
 
-
-        // TODO: pass in rubbish that is not in our commands, such as "Q x h" etc
+        // TODO: pass in rubbish that is not in our commands, such as "Q x h" etc - Check in Validator class
     }
 }
