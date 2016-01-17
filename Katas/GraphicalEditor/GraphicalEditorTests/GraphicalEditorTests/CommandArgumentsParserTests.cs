@@ -82,6 +82,13 @@
             Assert.That(exception.Message, Is.EqualTo("Create command is expecting arguments in following format eg 'I 2 3'"));
         }
 
+        [Test]
+        public void ShouldShowCommandTypeAsShowWhenPassedS()
+        {
+            _commandArgumentParser.Parse("S");
+
+            Assert.That(_commandArgumentParser.CommandType, Is.EqualTo(CommandType.Show));
+        }
 
         // TODO: pass in rubbish that is not in our commands, such as "Q x h" etc - Check in Validator class
     }
