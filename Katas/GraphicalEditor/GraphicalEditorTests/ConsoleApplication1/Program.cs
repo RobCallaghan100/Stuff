@@ -13,11 +13,17 @@ namespace ConsoleApplication1
             do
             {
                 line = Console.ReadLine();
-                command.Input(line);
+
+                try
+                {
+                    command.Input(line);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
 
             } while (line.ToUpper() != "X");
-
-            Console.ReadLine();
         }
     }
 }
