@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Text;
 
 namespace GraphicalEditor
 {
@@ -8,6 +10,8 @@ namespace GraphicalEditor
     {
         private int _m;
         private int _n;
+
+        private string[,] _image;
 
         public int M { get { return _m; } }
         public int N { get { return _n; } }
@@ -26,6 +30,35 @@ namespace GraphicalEditor
 
             _m = m;
             _n = n;
+
+            _image = new string[m, n];
+
+            for (int i = 0; i < _m; i++)
+            {
+                for (int j = 0; j < _n; j++)
+                {
+                    _image[i, j] = "O";
+                }
+            }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < _m; i++)
+            {
+                for (int j = 0; j < _n; j++)
+                {
+                    sb.Append(_image[i, j]);
+                }
+
+                if (i < (_m - 1))
+                {
+                    sb.AppendLine();
+                }
+            }
+
+            return sb.ToString();
         }
     }
 }

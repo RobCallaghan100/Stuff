@@ -6,17 +6,29 @@
 
     [TestFixture]
     public class ImageTests
-    {   
+    {
+        private Image _image;
+
+        [SetUp]
+        public void Setup()
+        {
+            _image = new Image();
+        }
+
+        [TearDown]
+        public void Teardown()
+        {
+            _image = null;
+        }
+
         [TestCase(1, 1)]
         [TestCase(250, 250)]
         public void ShouldSetSizeOfMAndNWhenCreateMethodCalledWithMAndN(int m, int n)
         {
-            var image = new Image();
+            _image.Create(m, n);
 
-            image.Create(m, n);
-
-            Assert.That(image.M, Is.EqualTo(m));
-            Assert.That(image.N, Is.EqualTo(n));
+            Assert.That(_image.M, Is.EqualTo(m));
+            Assert.That(_image.N, Is.EqualTo(n));
         }
 
         [TestCase(0, 1)]
@@ -24,9 +36,7 @@
         [TestCase(251, 1)]
         public void ShouldRaiseExceptionIfMIsNegativeOrZeroOrOver250(int m, int n)
         {
-            var image = new Image();
-
-            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.Create(m, n));
+            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => _image.Create(m, n));
 
             Assert.That(exception.Message, Is.EqualTo("m should be between 1 to 250\r\nParameter name: m"));
         }
@@ -36,14 +46,20 @@
         [TestCase(1, 251)]
         public void ShouldRaiseExceptionIfNIsNegativeOrZeroOrOver250(int m, int n)
         {
-            var image = new Image();
-
-            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.Create(m, n));
+            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => _image.Create(m, n));
 
             Assert.That(exception.Message, Is.EqualTo("n should be between 1 to 250\r\nParameter name: n"));
         }
 
-        should show all pixels as white (O) On Create
+        [TestCase(1, 1, "O")]
+        [TestCase(5, 5, "OOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO")]
+        public void ShouldShowAllPixelsAsWhiteOnCreate(int m, int n, string expectedResult)
+        {
+            _image.Create(m, n);
+
+            Assert.That(_image.ToString(), Is.EqualTo(expectedResult));
+        }
+//        should show all pixels as white (O) On Create
 
         // TODO: check that m and n are not out of range
         // TODO: check for null values??
