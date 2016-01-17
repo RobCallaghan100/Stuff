@@ -31,7 +31,7 @@ namespace GraphicalEditor
             _m = m;
             _n = n;
 
-            _image = new string[m, n];
+            _image = new string[n, m];
 
             SetsDefaultValue("O");
         }
@@ -43,9 +43,9 @@ namespace GraphicalEditor
 
         private void SetsDefaultValue(string value)
         {
-            for (int i = 0; i < _m; i++)
+            for (int i = 0; i < _n; i++)
             {
-                for (int j = 0; j < _n; j++)
+                for (int j = 0; j < _m; j++)
                 {
                     _image[i, j] = value;
                 }
@@ -55,9 +55,9 @@ namespace GraphicalEditor
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < _m; i++)
+            for (int i = 0; i < _n; i++)
             {
-                for (int j = 0; j < _n; j++)
+                for (int j = 0; j < _m; j++)
                 {
                     sb.Append(_image[i, j]);
                 }
@@ -73,7 +73,7 @@ namespace GraphicalEditor
 
         private bool IsLastRow(int rowNumber)
         {
-            return rowNumber == (_m - 1);
+            return rowNumber == (_n - 1);
         }
 
 

@@ -51,8 +51,8 @@
             Assert.That(exception.Message, Is.EqualTo("n should be between 1 to 250\r\nParameter name: n"));
         }
 
-        [TestCase(1, 1, "O")]
-        [TestCase(5, 5, "OOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO")]
+        [TestCase(1, 2, "O\r\nO")]
+        [TestCase(5, 6, "OOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO")]
         public void ShouldShowAllPixelsAsWhiteOnCreate(int m, int n, string expectedResult)
         {
             _image.Create(m, n);
