@@ -60,7 +60,6 @@
             Assert.That(_image.ToString(), Is.EqualTo(expectedResult));
         }
 
-        // TODO: check that m and n are not out of range
         // TODO: check for null values??
     }
 }
