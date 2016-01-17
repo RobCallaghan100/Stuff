@@ -49,13 +49,6 @@
             _mockImage.Verify(i => i.Create(m, n), Times.Once);
         }
 
-        public void TestTodo()
-        {
-            //TODO: should call Colour on Image object when passed LXYC
-            Assert.Fail();    
-        }
-
-
         // TODO: pass in empty string and  string with only spaces
         // TODO: add validator class to check that inputs are in correct format
     }
