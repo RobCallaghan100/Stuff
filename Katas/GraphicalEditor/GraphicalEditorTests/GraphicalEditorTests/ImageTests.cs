@@ -60,6 +60,16 @@
             Assert.That(_image.ToString(), Is.EqualTo(expectedResult));
         }
 
+        [Test]
+        public void ShouldShowImageWhenShowMethodCalled()
+        {
+            _image.Create(1,1);
+
+            var result = _image.Show();
+
+            Assert.That(result, Is.EqualTo("O"));
+        }
+
         // TODO: check for null values??
     }
 }

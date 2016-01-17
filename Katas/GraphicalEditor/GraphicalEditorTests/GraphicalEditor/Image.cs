@@ -36,9 +36,9 @@ namespace GraphicalEditor
             SetsDefaultValue("O");
         }
 
-        string IImage.Show()
+        public string Show()
         {
-            throw new NotImplementedException();
+            return ToString();
         }
 
         private void SetsDefaultValue(string value)
