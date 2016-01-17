@@ -44,7 +44,7 @@ namespace GraphicalEditor
                     break;
 
                 case "X":
-                    if (!GetValidator(CommandType.Exit).IsValid(splitLine))
+                    if (!IsValid(CommandType.Exit, splitLine))
                     {
                         throw new ArgumentException("Exit command is only expecting 1 argument eg 'X'");
                     }
@@ -53,7 +53,7 @@ namespace GraphicalEditor
                     break;
 
                 case "I":
-                    if (!GetValidator(CommandType.Create).IsValid(splitLine))
+                    if (!IsValid(CommandType.Create, splitLine))
                     {
                         throw new ArgumentException("Create command is expecting arguments in following format eg 'I 2 3'");
                     }
@@ -65,7 +65,7 @@ namespace GraphicalEditor
                     break;
 
                 case "S":
-                    if (!GetValidator(CommandType.Show).IsValid(splitLine))
+                    if (!IsValid(CommandType.Show, splitLine))
                     {
                         throw new ArgumentException("Show command is expecting arguments in following format eg 'S'");
                     }
@@ -75,6 +75,10 @@ namespace GraphicalEditor
             }
         }
 
+        private bool IsValid(CommandType commandType, string[] splitLine)
+        {
+            return GetValidator(commandType).IsValid(splitLine);
+        }
 
 
         private static int GetValue(string arg)
