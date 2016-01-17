@@ -59,7 +59,6 @@
 
             Assert.That(_image.ToString(), Is.EqualTo(expectedResult));
         }
-//        should show all pixels as white (O) On Create
 
         // TODO: check that m and n are not out of range
         // TODO: check for null values??

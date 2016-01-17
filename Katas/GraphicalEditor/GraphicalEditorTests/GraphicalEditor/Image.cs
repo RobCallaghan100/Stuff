@@ -33,11 +33,16 @@ namespace GraphicalEditor
 
             _image = new string[m, n];
 
+            SetsDefaultValue("O");
+        }
+
+        private void SetsDefaultValue(string value)
+        {
             for (int i = 0; i < _m; i++)
             {
                 for (int j = 0; j < _n; j++)
                 {
-                    _image[i, j] = "O";
+                    _image[i, j] = value;
                 }
             }
         }
@@ -52,13 +57,18 @@ namespace GraphicalEditor
                     sb.Append(_image[i, j]);
                 }
 
-                if (i < (_m - 1))
+                if (!IsLastRow(i))
                 {
                     sb.AppendLine();
                 }
             }
 
             return sb.ToString();
+        }
+
+        private bool IsLastRow(int rowNumber)
+        {
+            return rowNumber == (_m - 1);
         }
     }
 }
