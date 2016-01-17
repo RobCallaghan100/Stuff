@@ -65,6 +65,11 @@ namespace GraphicalEditor
                     break;
 
                 case "S":
+                    if (!GetValidator(CommandType.Show).IsValid(splitLine))
+                    {
+                        throw new ArgumentException("Show command is expecting arguments in following format eg 'S'");
+                    }
+
                     _commandType = CommandType.Show;
                     break;
             }

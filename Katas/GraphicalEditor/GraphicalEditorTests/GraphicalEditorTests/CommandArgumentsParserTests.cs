@@ -84,6 +84,7 @@ namespace GraphicalEditorTests
         [Test]
         public void ShouldShowCommandTypeAsShowWhenPassedS()
         {
+            _mockValidator.Setup(v => v.IsValid(It.IsAny<string[]>())).Returns(true);
             var commandArgumentParser = new CommandArgumentParser(_mockValidator.Object);
 
             commandArgumentParser.Parse("S");
@@ -98,7 +99,7 @@ namespace GraphicalEditorTests
             var commandArgumentParser = new CommandArgumentParser(_mockValidator.Object);
             var exception = Assert.Throws<ArgumentException>(() => commandArgumentParser.Parse(line));
 
-            Assert.That(exception.Message, Is.EqualTo("Create command is expecting arguments in following format eg 'I 2 3'"));
+            Assert.That(exception.Message, Is.EqualTo("Show command is expecting arguments in following format eg 'S'"));
         }
 
         // TODO: pass in rubbish that is not in our commands, such as "Q x h" etc - Check in Validator class
