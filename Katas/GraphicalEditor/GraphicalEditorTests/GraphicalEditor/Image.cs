@@ -36,6 +36,11 @@ namespace GraphicalEditor
             SetsDefaultValue("O");
         }
 
+        string IImage.Show()
+        {
+            throw new NotImplementedException();
+        }
+
         private void SetsDefaultValue(string value)
         {
             for (int i = 0; i < _m; i++)
@@ -70,5 +75,7 @@ namespace GraphicalEditor
         {
             return rowNumber == (_m - 1);
         }
+
+
     }
 }

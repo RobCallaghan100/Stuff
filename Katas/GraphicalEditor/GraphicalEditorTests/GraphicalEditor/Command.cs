@@ -36,6 +36,10 @@
                     _image.Create(_commandArgumentParser.M, _commandArgumentParser.N);
                     break;
 
+                case CommandType.Show:
+                    Console.WriteLine(_image.Show()); // TODO: Should Console object be injected in???
+                    break;
+
                 default:
                     throw new ArgumentException("CommandType input has no arguments");
             }

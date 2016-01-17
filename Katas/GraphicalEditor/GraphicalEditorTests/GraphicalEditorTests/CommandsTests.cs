@@ -38,7 +38,6 @@
         [TestCase("I 250 250", 250, 250)]
         public void ShouldCallCreateOnImageObjectWhenPassedIMN(string input, int m, int n)
         {
-            _mockImage.Setup(i => i.Create(It.IsAny<int>(), It.IsAny<int>()));
             _mockCommandArgumentParserMock.Setup(cap => cap.CommandType).Returns(CommandType.Create);
             _mockCommandArgumentParserMock.Setup(cap => cap.M).Returns(m);
             _mockCommandArgumentParserMock.Setup(cap => cap.N).Returns(n);
@@ -47,6 +46,17 @@
             command.Input(input);
 
             _mockImage.Verify(i => i.Create(m, n), Times.Once);
+        }
+
+        [Test]
+        public void ShouldCallShowOnImageObjectWhenPassedS()
+        {
+            _mockCommandArgumentParserMock.Setup(cap => cap.CommandType).Returns(CommandType.Show);
+            var command = new Command(_mockImage.Object, _mockCommandArgumentParserMock.Object);
+
+            command.Input("S");
+
+            _mockImage.Verify(i => i.Show(), Times.Once);
         }
 
         // TODO: pass in empty string and  string with only spaces
