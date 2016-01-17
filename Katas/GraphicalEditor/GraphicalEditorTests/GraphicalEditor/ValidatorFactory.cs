@@ -3,9 +3,9 @@
     using Interfaces;
     using Validators;
 
-    public class ValidatorFactory : IValidatorFactory
+    public static class ValidatorFactory
     {
-        public IValidator GetValidator(CommandType commandType)
+        public static IValidator GetValidator(CommandType commandType)
         {
             switch (commandType)
             {

@@ -18,13 +18,12 @@
         {
             _image = new Image();
 
-            var validatorFactory = new ValidatorFactory();
-            _commandArgumentParser = new CommandArgumentParser(validatorFactory);
+            _commandArgumentParser =new CommandArgumentParser();
         }
 
         public void Input(string line)
         {
-            _commandArgumentParser.Parse(line);
+            _commandArgumentParser.Parse(line); // TODO: put try catch around this bit ***************
 
             switch (_commandArgumentParser.CommandType)
             {

@@ -7,21 +7,33 @@ namespace GraphicalEditor
 
     public class CommandArgumentParser : ICommandArgumentParser
     {
-        private readonly IValidatorFactory _validatorFactory;
+        private readonly IValidator _validator;
         private CommandType _commandType;
         private int _m;
         private int _n;
 
-        public CommandArgumentParser(IValidatorFactory validatorFactory)
+        public CommandArgumentParser(IValidator validator)
         {
-            _validatorFactory = validatorFactory;
+            _validator = validator;
             _commandType = CommandType.None;
+        }
+
+        public CommandArgumentParser()
+        {
+        }
+
+        private IValidator GetValidator(CommandType commandType)
+        {
+            if (_validator == null)
+            {
+                return ValidatorFactory.GetValidator(commandType);
+            }
+
+            return _validator;
         }
 
         public void Parse(string line)
         {
-            IValidator validator;
-
             var splitLine = line.Trim().ToUpper().Split(' ');
             var command = splitLine[0];
 
@@ -32,9 +44,7 @@ namespace GraphicalEditor
                     break;
 
                 case "X":
-                    validator = _validatorFactory.GetValidator(CommandType.Exit);
-
-                    if (!validator.IsValid(splitLine))
+                    if (!GetValidator(CommandType.Exit).IsValid(splitLine))
                     {
                         throw new ArgumentException("Exit command is only expecting 1 argument eg 'X'");
                     }
@@ -43,9 +53,7 @@ namespace GraphicalEditor
                     break;
 
                 case "I":
-                    validator = _validatorFactory.GetValidator(CommandType.Create);
-
-                    if (!validator.IsValid(splitLine))
+                    if (!GetValidator(CommandType.Create).IsValid(splitLine))
                     {
                         throw new ArgumentException("Create command is expecting arguments in following format eg 'I 2 3'");
                     }
@@ -61,6 +69,8 @@ namespace GraphicalEditor
                     break;
             }
         }
+
+
 
         private static int GetValue(string arg)
         {

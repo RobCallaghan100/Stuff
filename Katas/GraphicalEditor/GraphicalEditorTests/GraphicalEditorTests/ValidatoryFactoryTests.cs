@@ -10,9 +10,7 @@
         [Test]
         public void ShouldReturnExitValidatorGivenCommandTypeExit()
         {
-            var validatorFactory = new ValidatorFactory();
-
-            var validator = validatorFactory.GetValidator(CommandType.Exit);
+            var validator = ValidatorFactory.GetValidator(CommandType.Exit);
 
             Assert.IsInstanceOf<ExitValidator>(validator);
         }
@@ -20,9 +18,7 @@
         [Test]
         public void ShouldReturnCreateValidatorGivenCommandTypeCreate()
         {
-            var validatorFactory = new ValidatorFactory();
-
-            var validator = validatorFactory.GetValidator(CommandType.Create);
+            var validator = ValidatorFactory.GetValidator(CommandType.Create);
 
             Assert.IsInstanceOf<CreateValidator>(validator);
         }
