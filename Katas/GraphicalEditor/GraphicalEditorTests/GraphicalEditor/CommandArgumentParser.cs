@@ -65,7 +65,7 @@ namespace GraphicalEditor
                     break;
 
                 case "S":
-                    _commandType=CommandType.Show;
+                    _commandType = CommandType.Show;
                     break;
             }
         }

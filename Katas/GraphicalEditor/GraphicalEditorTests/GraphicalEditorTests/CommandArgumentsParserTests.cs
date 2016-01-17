@@ -50,7 +50,7 @@ namespace GraphicalEditorTests
         }
 
         [Test()]
-        public void ShouldRaiseExceptionIfNotOnlyGivenX()
+        public void ShouldRaiseExceptionIfExitValidatorIsNotValid()
         {
             _mockValidator.Setup(v => v.IsValid(It.IsAny<string[]>())).Returns(false);
             var commandArgumentParser = new CommandArgumentParser(_mockValidator.Object);
@@ -72,10 +72,7 @@ namespace GraphicalEditorTests
         }
 
         [TestCase("I 0 1")]
-        [TestCase("I 251 1")]
-        [TestCase("i 1 0")]
-        [TestCase("I 1 251")]
-        public void ShouldRaiseExceptionWhenTryingToCreateImageWhenIMNOutOfBounds(string line)
+        public void ShouldRaiseExceptionIfCreateValidatorIsNotValid(string line)
         {
             _mockValidator.Setup(v => v.IsValid(It.IsAny<string[]>())).Returns(false);
             var commandArgumentParser = new CommandArgumentParser(_mockValidator.Object);
@@ -92,6 +89,16 @@ namespace GraphicalEditorTests
             commandArgumentParser.Parse("S");
 
             Assert.That(commandArgumentParser.CommandType, Is.EqualTo(CommandType.Show));
+        }
+
+        [TestCase("S 1")]
+        public void ShouldRaiseExceptionIfShowValidatorIsNotValid(string line)
+        {
+            _mockValidator.Setup(v => v.IsValid(It.IsAny<string[]>())).Returns(false);
+            var commandArgumentParser = new CommandArgumentParser(_mockValidator.Object);
+            var exception = Assert.Throws<ArgumentException>(() => commandArgumentParser.Parse(line));
+
+            Assert.That(exception.Message, Is.EqualTo("Create command is expecting arguments in following format eg 'I 2 3'"));
         }
 
         // TODO: pass in rubbish that is not in our commands, such as "Q x h" etc - Check in Validator class

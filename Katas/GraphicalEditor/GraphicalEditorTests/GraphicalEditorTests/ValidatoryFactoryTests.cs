@@ -23,6 +23,14 @@
             Assert.IsInstanceOf<CreateValidator>(validator);
         }
 
+        [Test]
+        public void ShouldReturnShowValidatorGivenCommandTypeShow()
+        {
+            var validator = ValidatorFactory.GetValidator(CommandType.Show);
+
+            Assert.IsInstanceOf<ShowValidator>(validator);
+        }
+
         // TODO: Add other factories to test as they are created
     }
 }

@@ -15,6 +15,9 @@
                 case CommandType.Create:
                     return new CreateValidator();
 
+                    case CommandType.Show:
+                        return new ShowValidator();
+
                 default:
                     return new ExitValidator();
             }
