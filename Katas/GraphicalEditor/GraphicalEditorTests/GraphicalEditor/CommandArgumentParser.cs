@@ -72,6 +72,15 @@ namespace GraphicalEditor
 
                     _commandType = CommandType.Show;
                     break;
+                        
+                case "L":
+                    if (!IsValid(CommandType.ColourPixel, splitLine))
+                    {
+                        throw new ArgumentException("ColourPixel command is expecting arguments in following format eg 'L 1 2 C'");
+                    }
+
+                    _commandType = CommandType.ColourPixel;
+                    break;
             }
         }
 

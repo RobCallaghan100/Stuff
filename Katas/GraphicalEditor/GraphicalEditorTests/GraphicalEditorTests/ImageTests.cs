@@ -70,6 +70,16 @@
             Assert.That(result, Is.EqualTo("O"));
         }
 
+        [Test]
+        public void ShouldColourPixelWhenColourPixelCalled()
+        {
+            _image.Create(1, 1);
+
+            _image.ColourPixel(1, 1, 'Y');
+
+            var result = _image.Show();
+            Assert.That(result, Is.EqualTo("Y"));
+        }
 
         // TODO: check for null values??
     }

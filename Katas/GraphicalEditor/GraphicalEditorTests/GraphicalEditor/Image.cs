@@ -48,7 +48,8 @@ namespace GraphicalEditor
 
         public void ColourPixel(int x, int y, char colour)
         {
-            throw new NotImplementedException();
+            // TODO: more validation??
+            _image[x - 1, y - 1] = colour.ToString();
         }
 
         private void SetsDefaultValue(string value)
@@ -85,7 +86,5 @@ namespace GraphicalEditor
         {
             return rowNumber == (_n - 1);
         }
-
-
     }
 }
