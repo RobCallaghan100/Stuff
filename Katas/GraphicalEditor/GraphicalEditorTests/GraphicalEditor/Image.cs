@@ -41,6 +41,11 @@ namespace GraphicalEditor
             return ToString();
         }
 
+        public void Clear()
+        {
+            throw new NotImplementedException();
+        }
+
         private void SetsDefaultValue(string value)
         {
             for (int i = 0; i < _n; i++)

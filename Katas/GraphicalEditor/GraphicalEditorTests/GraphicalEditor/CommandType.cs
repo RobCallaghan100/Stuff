@@ -5,6 +5,7 @@
         Exit,
         None,
         Create,
-        Show
+        Show,
+        Clear
     }
 }

@@ -39,6 +39,10 @@
                     Console.WriteLine(_image.Show()); // TODO: Should Console object be injected in???
                     break;
 
+                    case CommandType.Clear:
+                    _image.Clear();
+                    break;
+
                 default:
                     throw new ArgumentException("CommandType input has no arguments");
             }

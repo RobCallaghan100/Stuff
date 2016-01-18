@@ -59,7 +59,16 @@
             _mockImage.Verify(i => i.Show(), Times.Once);
         }
 
-        // TODO: Do test for clear
+        [Test]
+        public void ShouldCallClearOnImageObjectWhenPassedC()
+        {
+            _mockCommandArgumentParserMock.Setup(cap => cap.CommandType).Returns(CommandType.Clear);
+            var command = new Command(_mockImage.Object, _mockCommandArgumentParserMock.Object);
+
+            command.Input("C");
+
+            _mockImage.Verify(i => i.Clear(), Times.Once);
+        }
 
         // TODO: pass in empty string and  string with only spaces
         // TODO: add validator class to check that inputs are in correct format
