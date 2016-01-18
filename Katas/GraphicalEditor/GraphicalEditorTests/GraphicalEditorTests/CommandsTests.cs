@@ -76,7 +76,7 @@
             _mockCommandArgumentParserMock.Setup(cap => cap.CommandType).Returns(CommandType.ColourPixel);
             var command = new Command(_mockImage.Object, _mockCommandArgumentParserMock.Object);
 
-            command.Input("C");
+            command.Input("L");
 
             _mockImage.Verify(i => i.ColourPixel(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<char>()), Times.Once);
         }
