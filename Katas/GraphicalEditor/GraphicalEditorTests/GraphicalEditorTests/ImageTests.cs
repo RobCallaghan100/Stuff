@@ -70,15 +70,16 @@
             Assert.That(result, Is.EqualTo("O"));
         }
 
-        [Test]
-        public void ShouldColourPixelWhenColourPixelCalled()
+        [TestCase(1, 1, 'Y', "Y")]
+        [TestCase(5, 6, 'Y', "OOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOY")]
+        public void ShouldColourPixelWhenColourPixelCalled(int x, int y, char pixel, string output)
         {
-            _image.Create(1, 1);
+            _image.Create(x, y);
 
-            _image.ColourPixel(1, 1, 'Y');
+            _image.ColourPixel(x, y, pixel);
 
             var result = _image.Show();
-            Assert.That(result, Is.EqualTo("Y"));
+            Assert.That(result, Is.EqualTo(output));
         }
 
         // TODO: check for null values??

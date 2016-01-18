@@ -121,6 +121,8 @@ namespace GraphicalEditorTests
 
             Assert.That(exception.Message, Is.EqualTo("ColourPixel command is expecting arguments in following format eg 'L 1 2 C'"));
         }
+
+
         // TODO: pass in rubbish that is not in our commands, such as "Q x h" etc - Check in Validator class
     }
 }

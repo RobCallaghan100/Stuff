@@ -49,7 +49,7 @@ namespace GraphicalEditor
         public void ColourPixel(int x, int y, char colour)
         {
             // TODO: more validation??
-            _image[x - 1, y - 1] = colour.ToString();
+            _image[y - 1, x - 1] = colour.ToString();
         }
 
         private void SetsDefaultValue(string value)
