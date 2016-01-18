@@ -70,6 +70,17 @@
             _mockImage.Verify(i => i.Clear(), Times.Once);
         }
 
+        [Test]
+        public void ShouldCallColourPixelOnImageObjectWhenPassedL()
+        {
+            _mockCommandArgumentParserMock.Setup(cap => cap.CommandType).Returns(CommandType.ColourPixel);
+            var command = new Command(_mockImage.Object, _mockCommandArgumentParserMock.Object);
+
+            command.Input("C");
+
+            _mockImage.Verify(i => i.ColourPixel(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<char>()), Times.Once);
+        }
+
         // TODO: pass in empty string and  string with only spaces
         // TODO: add validator class to check that inputs are in correct format
     }

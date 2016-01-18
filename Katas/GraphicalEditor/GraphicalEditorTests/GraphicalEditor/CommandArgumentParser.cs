@@ -96,5 +96,8 @@ namespace GraphicalEditor
 
         public int M { get { return _m;  } }
         public int N { get { return _n;  } }
+        public int X { get; }
+        public int Y { get; }
+        public char Colour { get; }
     }
 }

@@ -46,6 +46,11 @@ namespace GraphicalEditor
             throw new NotImplementedException();
         }
 
+        public void ColourPixel(int x, int y, char colour)
+        {
+            throw new NotImplementedException();
+        }
+
         private void SetsDefaultValue(string value)
         {
             for (int i = 0; i < _n; i++)

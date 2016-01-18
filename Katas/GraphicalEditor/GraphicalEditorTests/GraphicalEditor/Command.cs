@@ -18,7 +18,7 @@
         {
             _image = new Image();
 
-            _commandArgumentParser =new CommandArgumentParser();
+            _commandArgumentParser = new CommandArgumentParser();
         }
 
         public void Input(string line)
@@ -39,8 +39,12 @@
                     Console.WriteLine(_image.Show()); // TODO: Should Console object be injected in???
                     break;
 
-                    case CommandType.Clear:
+                case CommandType.Clear:
                     _image.Clear();
+                    break;
+
+                case CommandType.ColourPixel:
+                    _image.ColourPixel(_commandArgumentParser.X, _commandArgumentParser.Y, _commandArgumentParser.Colour);
                     break;
 
                 default:

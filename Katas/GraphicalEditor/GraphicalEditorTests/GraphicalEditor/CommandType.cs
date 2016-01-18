@@ -6,6 +6,7 @@
         None,
         Create,
         Show,
-        Clear
+        Clear,
+        ColourPixel
     }
 }
