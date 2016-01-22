@@ -89,7 +89,6 @@ namespace GraphicalEditor
             return GetValidator(commandType).IsValid(splitLine);
         }
 
-
         private static int GetValue(string arg)
         {
             int value;
