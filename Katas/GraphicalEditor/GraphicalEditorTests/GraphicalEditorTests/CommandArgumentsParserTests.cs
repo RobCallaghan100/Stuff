@@ -2,7 +2,6 @@
 
 namespace GraphicalEditorTests
 {
-    using System.Linq.Expressions;
     using GraphicalEditor;
     using GraphicalEditor.Interfaces;
     using Moq;

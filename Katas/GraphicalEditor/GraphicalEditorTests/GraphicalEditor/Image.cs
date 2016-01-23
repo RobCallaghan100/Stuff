@@ -59,41 +59,54 @@ namespace GraphicalEditor
 
         public void ColourPixel(int x, int y, char colour)
         {
-            if (!_rangeValidator.IsInRange(1, M, x))
-            {
-                throw new ArgumentOutOfRangeException("x", "x should be between 1 and m");
-            }
-
-            if (!_rangeValidator.IsInRange(1, N, y))
-            {
-                throw new ArgumentOutOfRangeException("y", "y should be between 1 and n");
-            }
+            IsXInRange(x);
+            IsYInRange(y);
 
             _image[y - 1, x - 1] = colour.ToString();
         }
 
+        private void IsYInRange(int y)
+        {
+            if (!_rangeValidator.IsInRange(1, N, y))
+            {
+                throw new ArgumentOutOfRangeException("y", "y should be between 1 and n");
+            }
+        }
+
         public void VerticalSegment(int x, int y1, int y2, char colour)
         {
-            if (!_rangeValidator.IsInRange(1, M, x))
-            {
-                throw new ArgumentOutOfRangeException("x", "x should be between 1 and m");
-            }
-
-            if (!_rangeValidator.IsInRange(1, N, y1))
-            {
-                throw new ArgumentOutOfRangeException("y1", "y1 should be between 1 and n");
-            }
-
-            if (!_rangeValidator.IsInRange(1, N, y2))
-            {
-                throw new ArgumentOutOfRangeException("y2", "y2 should be between 1 and n");
-            }
+            IsXInRange(x);
+            IsY1InRange(y1);
+            IsY2InRange(y2);
 
             for (int i = y1; i <= y2; i++)
             {
                 _image[i-1, x-1] = colour.ToString();
             }
+        }
 
+        private void IsY2InRange(int y2)
+        {
+            if (!_rangeValidator.IsInRange(1, N, y2))
+            {
+                throw new ArgumentOutOfRangeException("y2", "y2 should be between 1 and n");
+            }
+        }
+
+        private void IsY1InRange(int y1)
+        {
+            if (!_rangeValidator.IsInRange(1, N, y1))
+            {
+                throw new ArgumentOutOfRangeException("y1", "y1 should be between 1 and n");
+            }
+        }
+
+        private void IsXInRange(int x)
+        {
+            if (!_rangeValidator.IsInRange(1, M, x))
+            {
+                throw new ArgumentOutOfRangeException("x", "x should be between 1 and m");
+            }
         }
 
         private void SetsDefaultValue(string value)
