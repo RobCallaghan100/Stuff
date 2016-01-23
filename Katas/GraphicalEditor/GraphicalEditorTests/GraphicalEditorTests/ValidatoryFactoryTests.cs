@@ -38,6 +38,14 @@
 
             Assert.IsInstanceOf<ColourPixelValidator>(validator);
         }
+            
+        [Test]
+        public void ShouldReturnClearValidatorGivenCommandTypeColourPixel()
+        {
+            var validator = ValidatorFactory.GetValidator(CommandType.Clear);
+
+            Assert.IsInstanceOf<ClearValidator>(validator);
+        }
 
         // TODO: Add other factories to test as they are created
     }

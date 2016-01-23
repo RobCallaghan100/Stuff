@@ -43,6 +43,7 @@
     <Compile Include="Command.cs" />
     <Compile Include="Interfaces\IRangeValidator.cs" />
     <Compile Include="ValidatorFactory.cs" />
+    <Compile Include="Validators\ClearValidator.cs" />
     <Compile Include="Validators\ColourPixelValidator.cs" />
     <Compile Include="Validators\CreateValidator.cs" />
     <Compile Include="Validators\ExitValidator.cs" />

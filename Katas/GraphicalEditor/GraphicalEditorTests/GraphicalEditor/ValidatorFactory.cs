@@ -1,5 +1,6 @@
 ﻿namespace GraphicalEditor
 {
+    using System;
     using Interfaces;
     using Validators;
 
@@ -21,8 +22,11 @@
                 case CommandType.ColourPixel:
                     return new ColourPixelValidator();
 
+                case CommandType.Clear:
+                    return new ClearValidator();
+
                 default:
-                    return new ExitValidator();
+                    throw new ArgumentException("Should have a command type");
             }
         }
     }
