@@ -98,22 +98,10 @@ namespace GraphicalEditorTests
             Assert.That(result, Is.EqualTo(output));
         }
 
-        [TestCase(0, 1, 'A')]
-        [TestCase(-1, 1, 'A')]
-        [TestCase(251, 1, 'A')]
-        public void ShouldRaiseExceptionIfXIsNegativeOrZeroOrOver250(int x, int y, char pixel)
-        {
-            _mockRangeValidator.SetupSequence(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(false).Returns(true);
-            var image = new Image(_mockRangeValidator.Object);
-            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.ColourPixel(x, y, pixel));
-
-            Assert.That(exception.Message, Is.EqualTo("x should be between 1 and m\r\nParameter name: x"));
-        }
-
         [TestCase(1, 0, 'A')]
         [TestCase(1, -1, 'A')]
         [TestCase(1, 251, 'A')]
-        public void ShouldRaiseExceptionIfYIsNegativeOrZeroOrOver250(int x, int y, char pixel)
+        public void ShouldRaiseExceptionIfIsInRangeReturnsFalseForYWhenCallingColourPixel(int x, int y, char pixel)
         {
             _mockRangeValidator.SetupSequence(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(true).Returns(false);
             var image = new Image(_mockRangeValidator.Object);
@@ -123,7 +111,7 @@ namespace GraphicalEditorTests
         }
 
         [Test]
-        public void ShouldRaiseExceptionIfIsInRangeReturnsFalseWhenCallingColourPixel()
+        public void ShouldRaiseExceptionIfIsInRangeReturnsFalseForXWhenCallingColourPixel()
         {
             _mockRangeValidator.Setup(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(false);
             var image = new Image(_mockRangeValidator.Object);
@@ -132,20 +120,6 @@ namespace GraphicalEditorTests
 
             Assert.That(exception.Message, Is.EqualTo("x should be between 1 and m\r\nParameter name: x"));
         }
-//
-//        [Test]
-//        public void ShouldRaiseExceptionIfIsInRangeReturnsFalseWhenCallingColourPixel()
-//        {
-//            _mockRangeValidator.Setup(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(false);
-//            var image = new Image(_mockRangeValidator.Object);
-//            var exception = Assert.Throws<ArgumentOutOfRangeException>(
-//                () => image.ColourPixel(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<char>()));
-//
-//            Assert.That(exception.Message, Is.EqualTo("x should be between 1 and m\r\nParameter name: x"));
-//        }
-
-        // TODO: check x is not greater than m
-        // TODO: check y is not greater than n
 
         // TODO: check for null values??
     }
