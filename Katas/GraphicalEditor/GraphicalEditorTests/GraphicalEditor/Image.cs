@@ -38,15 +38,6 @@ namespace GraphicalEditor
             {
                 throw new ArgumentOutOfRangeException("n", "n should be between 1 to 250");
             }
-            //            if (m < 1 || m > 250)
-            //            {
-            //                
-            //            }
-            //
-            //            if (n < 1 || n > 250)
-            //            {
-            //                throw new ArgumentOutOfRangeException("n", "n should be between 1 to 250");
-            //            }
 
             _m = m;
             _n = n;
@@ -68,14 +59,14 @@ namespace GraphicalEditor
 
         public void ColourPixel(int x, int y, char colour)
         {
-            if (x < 1 || x > 250)
+            if (!_rangeValidator.IsInRange(1, M, x))
             {
-                throw new ArgumentOutOfRangeException("x", "x should be between 1 and 250");
+                throw new ArgumentOutOfRangeException("x", "x should be between 1 and m");
             }
 
-            if (y < 1 || y > 250)
+            if (!_rangeValidator.IsInRange(1, N, y))
             {
-                throw new ArgumentOutOfRangeException("y", "y should be between 1 and 250");
+                throw new ArgumentOutOfRangeException("y", "y should be between 1 and n");
             }
 
             _image[y - 1, x - 1] = colour.ToString();

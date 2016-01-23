@@ -42,7 +42,7 @@ namespace GraphicalEditorTests
         [TestCase(251, 1)]
         public void ShouldRaiseExceptionIfMIsNotInRange(int m, int n)
         {
-            _mockRangeValidator.Setup(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+            _mockRangeValidator.Setup(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(false);
             var image = new Image(_mockRangeValidator.Object);
             var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.Create(m, n));
 
@@ -54,7 +54,7 @@ namespace GraphicalEditorTests
         [TestCase(1, 251)]
         public void ShouldRaiseExceptionIfNIsNegativeOrZeroOrOver250(int m, int n)
         {
-            _mockRangeValidator = new Mock<IRangeValidator>();
+            _mockRangeValidator.SetupSequence(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(true).Returns(false);
             var image = new Image(_mockRangeValidator.Object);
             var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.Create(m, n));
 
@@ -103,11 +103,11 @@ namespace GraphicalEditorTests
         [TestCase(251, 1, 'A')]
         public void ShouldRaiseExceptionIfXIsNegativeOrZeroOrOver250(int x, int y, char pixel)
         {
-            _mockRangeValidator.Setup(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+            _mockRangeValidator.SetupSequence(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(false).Returns(true);
             var image = new Image(_mockRangeValidator.Object);
             var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.ColourPixel(x, y, pixel));
 
-            Assert.That(exception.Message, Is.EqualTo("x should be between 1 and 250\r\nParameter name: x"));
+            Assert.That(exception.Message, Is.EqualTo("x should be between 1 and m\r\nParameter name: x"));
         }
 
         [TestCase(1, 0, 'A')]
@@ -115,15 +115,37 @@ namespace GraphicalEditorTests
         [TestCase(1, 251, 'A')]
         public void ShouldRaiseExceptionIfYIsNegativeOrZeroOrOver250(int x, int y, char pixel)
         {
-            _mockRangeValidator.Setup(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+            _mockRangeValidator.SetupSequence(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(true).Returns(false);
             var image = new Image(_mockRangeValidator.Object);
             var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.ColourPixel(x, y, pixel));
 
-            Assert.That(exception.Message, Is.EqualTo("y should be between 1 and 250\r\nParameter name: y"));
+            Assert.That(exception.Message, Is.EqualTo("y should be between 1 and n\r\nParameter name: y"));
         }
 
-       // TODO: check x is not greater than m
-       // TODO: check y is not greater than n
+        [Test]
+        public void ShouldRaiseExceptionIfIsInRangeReturnsFalseWhenCallingColourPixel()
+        {
+            _mockRangeValidator.Setup(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(false);
+            var image = new Image(_mockRangeValidator.Object);
+            var exception = Assert.Throws<ArgumentOutOfRangeException>(
+                () => image.ColourPixel(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<char>()));
+
+            Assert.That(exception.Message, Is.EqualTo("x should be between 1 and m\r\nParameter name: x"));
+        }
+//
+//        [Test]
+//        public void ShouldRaiseExceptionIfIsInRangeReturnsFalseWhenCallingColourPixel()
+//        {
+//            _mockRangeValidator.Setup(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(false);
+//            var image = new Image(_mockRangeValidator.Object);
+//            var exception = Assert.Throws<ArgumentOutOfRangeException>(
+//                () => image.ColourPixel(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<char>()));
+//
+//            Assert.That(exception.Message, Is.EqualTo("x should be between 1 and m\r\nParameter name: x"));
+//        }
+
+        // TODO: check x is not greater than m
+        // TODO: check y is not greater than n
 
         // TODO: check for null values??
     }
