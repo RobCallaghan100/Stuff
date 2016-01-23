@@ -35,6 +35,16 @@ namespace GraphicalEditorTests
             Assert.That(commandArgumentParser.CommandType, Is.EqualTo(CommandType.None));
         }
 
+        [TestCase("i1234")]
+        public void ShouldThrowExceptionIfCommandDoesNotExist(string line)
+        {
+//            _mockValidator.Setup(v => v.IsValid(It.IsAny<string[]>())).Returns(true);
+            var commandArgumentParser = new CommandArgumentParser(_mockValidator.Object);
+            var exception = Assert.Throws<ArgumentException>(() => commandArgumentParser.Parse(line));
+
+            Assert.That(exception.Message, Is.EqualTo(string.Format("{0} Does not exist as a command", line.ToUpper().Trim())));
+        }
+
         [TestCase("X")]
         [TestCase("x")]
         [TestCase(" x")]

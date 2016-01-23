@@ -97,6 +97,9 @@ namespace GraphicalEditor
 
                     _commandType = CommandType.Clear;
                     break;
+
+                default:
+                    throw new ArgumentException(string.Format("{0} Does not exist as a command", command));
             }
         }
 
