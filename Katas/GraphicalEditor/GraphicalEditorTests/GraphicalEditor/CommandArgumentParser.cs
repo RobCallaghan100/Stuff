@@ -100,6 +100,12 @@ namespace GraphicalEditor
                     _commandType = CommandType.Clear;
                     break;
 
+                case "V":
+                    // TODO: add in x,y1,y2 and colour
+                    // check if isvalid or not - then after this do validatortests - then after that do horizontal stuff (but that's next!)
+                    _commandType = CommandType.VerticalSegment;
+                    break;
+
                 default:
                     throw new ArgumentException(string.Format("{0} Does not exist as a command", command));
             }
