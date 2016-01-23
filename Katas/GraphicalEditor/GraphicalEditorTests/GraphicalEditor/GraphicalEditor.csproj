@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Command.cs" />
     <Compile Include="ValidatorFactory.cs" />
+    <Compile Include="Validators\ColourPixelValidator.cs" />
     <Compile Include="Validators\CreateValidator.cs" />
     <Compile Include="Validators\ExitValidator.cs" />
     <Compile Include="Interfaces\IValidator.cs" />

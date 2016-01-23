@@ -15,8 +15,11 @@
                 case CommandType.Create:
                     return new CreateValidator();
 
-                    case CommandType.Show:
-                        return new ShowValidator();
+                case CommandType.Show:
+                    return new ShowValidator();
+
+                case CommandType.ColourPixel:
+                    return new ColourPixelValidator();
 
                 default:
                     return new ExitValidator();
