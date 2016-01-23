@@ -84,6 +84,11 @@ namespace GraphicalEditor
                 throw new ArgumentOutOfRangeException("y1", "y1 should be between 1 and n");
             }
 
+            if (!_rangeValidator.IsInRange(1, N, y2))
+            {
+                throw new ArgumentOutOfRangeException("y2", "y2 should be between 1 and n");
+            }
+
             for (int i = y1; i <= y2; i++)
             {
                 _image[i-1, x-1] = colour.ToString();

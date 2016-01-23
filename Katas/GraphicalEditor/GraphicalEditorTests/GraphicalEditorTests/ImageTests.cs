@@ -174,6 +174,17 @@ namespace GraphicalEditorTests
             Assert.That(exception.Message, Is.EqualTo("y1 should be between 1 and n\r\nParameter name: y1"));
         }
 
+        [Test()]
+        public void ShouldRaiseExceptionIfInRangeReturnsFalseForY2()
+        {
+            _mockRangeValidator.SetupSequence(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>()))
+                .Returns(true).Returns(true).Returns(false);
+            var image = new Image(_mockRangeValidator.Object);
+            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.VerticalSegment(1, 1, 0, 'A'));
+
+            Assert.That(exception.Message, Is.EqualTo("y2 should be between 1 and n\r\nParameter name: y2"));
+        }
+
         //        [TestCase(1, 0, 'A')]
         //        [TestCase(1, -1, 'A')]
         //        [TestCase(1, 251, 'A')]
