@@ -7,6 +7,7 @@
         Create,
         Show,
         Clear,
-        ColourPixel
+        ColourPixel,
+        VerticalSegment
     }
 }

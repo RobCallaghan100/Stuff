@@ -47,6 +47,10 @@
                     _image.ColourPixel(_commandArgumentParser.X, _commandArgumentParser.Y, _commandArgumentParser.Colour);
                     break;
 
+                case CommandType.VerticalSegment:
+                    _image.VerticalSegment(_commandArgumentParser.X, _commandArgumentParser.Y1, _commandArgumentParser.Y2, _commandArgumentParser.Colour);
+                    break;
+
                 default:
                     throw new ArgumentException("CommandType input has no arguments");
             }

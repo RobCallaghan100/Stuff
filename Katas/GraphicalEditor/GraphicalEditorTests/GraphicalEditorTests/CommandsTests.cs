@@ -76,9 +76,19 @@
             _mockCommandArgumentParserMock.Setup(cap => cap.CommandType).Returns(CommandType.ColourPixel);
             var command = new Command(_mockImage.Object, _mockCommandArgumentParserMock.Object);
 
-            command.Input("L");
-
+            command.Input("L 1 2 A");
             _mockImage.Verify(i => i.ColourPixel(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<char>()), Times.Once);
+        }
+
+        [Test]
+        public void ShouldCallVerticalSegmentOnImageObjectWhenPassedV() 
+        {
+            _mockCommandArgumentParserMock.Setup(cap => cap.CommandType).Returns(CommandType.VerticalSegment);
+            var command = new Command(_mockImage.Object, _mockCommandArgumentParserMock.Object);
+
+            command.Input("V 1 2 3 A");
+
+            _mockImage.Verify(i => i.VerticalSegment(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<char>()), Times.Once);
         }
 
         // TODO: pass in empty string and  string with only spaces

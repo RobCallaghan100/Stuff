@@ -9,5 +9,7 @@ namespace GraphicalEditor.Interfaces
         int X { get; }
         int Y { get; }
         char Colour { get; }
+        int Y1 { get; }
+        int Y2 { get; }
     }
 }

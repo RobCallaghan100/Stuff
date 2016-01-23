@@ -12,7 +12,9 @@ namespace GraphicalEditor
         private int _m;
         private int _n;
         private int _x;
-        private int _y;
+        private int _y; 
+        private int _y1;
+        private int _y2;
         private char _colour;
 
         public CommandArgumentParser(IValidator validator)
@@ -146,5 +148,7 @@ namespace GraphicalEditor
         public int X { get { return _x; } }
         public int Y { get { return _y; } }
         public char Colour { get { return _colour; } }
+        public int Y1 { get { return _y1; } }
+        public int Y2 { get { return _y2; } }
     }
 }
