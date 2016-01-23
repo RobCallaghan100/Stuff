@@ -74,9 +74,11 @@ namespace GraphicalEditor
 
         public void VerticalSegment(int x, int y1, int y2, char colour)
         {
-            /*
-            "OAOOO\r\nOAOOO\r\nOAOOO\r\nOAOOO\r\nOAOOO\r\nOAOOO"
-            */
+            if (!_rangeValidator.IsInRange(1, M, x))
+            {
+                throw new ArgumentOutOfRangeException("x", "x should be between 1 and m");
+            }
+
             for (int i = y1; i <= y2; i++)
             {
                 _image[i-1, x-1] = colour.ToString();
