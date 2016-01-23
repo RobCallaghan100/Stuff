@@ -74,7 +74,14 @@ namespace GraphicalEditor
 
         public void VerticalSegment(int x, int y1, int y2, char colour)
         {
-            throw new NotImplementedException();
+            /*
+            "OAOOO\r\nOAOOO\r\nOAOOO\r\nOAOOO\r\nOAOOO\r\nOAOOO"
+            */
+            for (int i = y1; i <= y2; i++)
+            {
+                _image[i-1, x-1] = colour.ToString();
+            }
+
         }
 
         private void SetsDefaultValue(string value)

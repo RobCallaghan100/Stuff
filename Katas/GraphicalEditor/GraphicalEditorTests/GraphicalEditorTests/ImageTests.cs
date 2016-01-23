@@ -134,6 +134,43 @@ namespace GraphicalEditorTests
             Assert.That(image.Show(), Is.EqualTo("OOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO"));
         }
 
+        [TestCase(1, 1, 6, 'A', "AOOOO\r\nAOOOO\r\nAOOOO\r\nAOOOO\r\nAOOOO\r\nAOOOO")] 
+        [TestCase(5, 2, 5, 'C', "OOOOO\r\nOOOOC\r\nOOOOC\r\nOOOOC\r\nOOOOC\r\nOOOOO")] 
+        public void ShouldColourVerticalSegmentWhenVerticalSegmentCalled(int x, int y1, int y2, char colour, string output)
+        {
+            _mockRangeValidator.Setup(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+            var image = new Image(_mockRangeValidator.Object);
+            image.Create(5, 6);
+
+            image.VerticalSegment(x, y1, y2, colour);
+
+            var result = image.Show();  
+            Assert.That(result, Is.EqualTo(output));
+        }
+
+//        [TestCase(1, 0, 'A')]
+//        [TestCase(1, -1, 'A')]
+//        [TestCase(1, 251, 'A')]
+//        public void ShouldRaiseExceptionIfIsInRangeReturnsFalseForYWhenCallingColourPixel(int x, int y, char pixel)
+//        {
+//            _mockRangeValidator.SetupSequence(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(true).Returns(false);
+//            var image = new Image(_mockRangeValidator.Object);
+//            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.ColourPixel(x, y, pixel));
+//
+//            Assert.That(exception.Message, Is.EqualTo("y should be between 1 and n\r\nParameter name: y"));
+//        }
+
+//        [Test]
+//        public void ShouldRaiseExceptionIfIsInRangeReturnsFalseForXWhenCallingColourPixel()
+//        {
+//            _mockRangeValidator.SetupSequence(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(false).Returns(false);
+//            var image = new Image(_mockRangeValidator.Object);
+//            var exception = Assert.Throws<ArgumentOutOfRangeException>(
+//                () => image.ColourPixel(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<char>()));
+//
+//            Assert.That(exception.Message, Is.EqualTo("x should be between 1 and m\r\nParameter name: x"));
+//        }
+
         // TODO: check for null values??
     }
 }
