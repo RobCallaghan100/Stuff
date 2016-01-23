@@ -83,5 +83,14 @@
 
         // TODO: pass in empty string and  string with only spaces
         // TODO: add validator class to check that inputs are in correct format
+
+
+        //            TODO: Do test for clear
+        //            Order of tests:-
+        //                CommandsTest
+        //                ImageTest
+        //                CommandArgumentParserTest
+        //                ValidatorTests
+        //                ValidatoryFactoryTests
     }
 }
