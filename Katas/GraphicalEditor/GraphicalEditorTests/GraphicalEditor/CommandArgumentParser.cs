@@ -11,6 +11,9 @@ namespace GraphicalEditor
         private CommandType _commandType;
         private int _m;
         private int _n;
+        private int _x;
+        private int _y;
+        private char _colour;
 
         public CommandArgumentParser(IValidator validator)
         {
@@ -79,6 +82,10 @@ namespace GraphicalEditor
                         throw new ArgumentException("ColourPixel command is expecting arguments in following format eg 'L 1 2 C'");
                     }
 
+                    SetX(splitLine[1]);
+                    SetY(splitLine[2]);
+                    SetColour(splitLine[3]);
+
                     _commandType = CommandType.ColourPixel;
                     break;
 
@@ -91,6 +98,26 @@ namespace GraphicalEditor
                     _commandType = CommandType.Clear;
                     break;
             }
+        }
+
+        private void SetX(string value)
+        {
+            int x = 0;
+            TryParse(value, out x);
+
+            _x = x;
+        }
+        private void SetY(string value)
+        {
+            int y = 0;
+            TryParse(value, out y);
+
+            _y = y;
+        }
+
+        private void SetColour(string colour)
+        {
+            _colour = char.Parse(colour);
         }
 
         private bool IsValid(CommandType commandType, string[] splitLine)
@@ -113,8 +140,8 @@ namespace GraphicalEditor
 
         public int M { get { return _m;  } }
         public int N { get { return _n;  } }
-        public int X { get; }
-        public int Y { get; }
-        public char Colour { get; }
+        public int X { get { return _x; } }
+        public int Y { get { return _y; } }
+        public char Colour { get { return _colour; } }
     }
 }

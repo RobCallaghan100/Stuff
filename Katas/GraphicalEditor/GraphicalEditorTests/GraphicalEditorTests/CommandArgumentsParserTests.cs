@@ -2,6 +2,7 @@
 
 namespace GraphicalEditorTests
 {
+    using System.Linq.Expressions;
     using GraphicalEditor;
     using GraphicalEditor.Interfaces;
     using Moq;
@@ -101,15 +102,19 @@ namespace GraphicalEditorTests
             Assert.That(exception.Message, Is.EqualTo("Show command is expecting arguments in following format eg 'S'"));
         }
 
-        [Test]
-        public void ShouldShowCommandTypeAsColourPixelWhenPassedL()
+        [TestCase(1, 2, 'C', "L 1 2 C")]
+        [TestCase(5, 6, 'A', "L 5 6 A")]
+        public void ShouldSetX_Y_AndColourOnColourPixelWhenPassedLXYColour(int expectedX, int expectedY, char expectedColour, string line)
         {
             _mockValidator.Setup(v => v.IsValid(It.IsAny<string[]>())).Returns(true);
             var commandArgumentParser = new CommandArgumentParser(_mockValidator.Object);
 
-            commandArgumentParser.Parse("L");
+            commandArgumentParser.Parse(line);
 
             Assert.That(commandArgumentParser.CommandType, Is.EqualTo(CommandType.ColourPixel));
+            Assert.That(commandArgumentParser.X, Is.EqualTo(expectedX));
+            Assert.That(commandArgumentParser.Y, Is.EqualTo(expectedY));
+            Assert.That(commandArgumentParser.Colour, Is.EqualTo(expectedColour));
         }
 
         [TestCase("L 1 2 C")]
