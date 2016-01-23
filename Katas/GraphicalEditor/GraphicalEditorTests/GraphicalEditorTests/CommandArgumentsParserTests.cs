@@ -122,6 +122,28 @@ namespace GraphicalEditorTests
             Assert.That(exception.Message, Is.EqualTo("ColourPixel command is expecting arguments in following format eg 'L 1 2 C'"));
         }
 
+        [Test]
+        public void ShouldShowCommandTypeWhenPassedC()
+        {
+            _mockValidator.Setup(v => v.IsValid(It.IsAny<string[]>())).Returns(true);
+            var commandArgumentParser = new CommandArgumentParser(_mockValidator.Object);
+
+            commandArgumentParser.Parse("C");
+
+            Assert.That(commandArgumentParser.CommandType, Is.EqualTo(CommandType.Clear));
+        }
+
+        [TestCase("C")]
+        [TestCase("C ")]
+        [TestCase(" c")]
+        public void ShouldRaiseExceptionIfClearValidatorIsNotValid(string line)
+        {
+            _mockValidator.Setup(v => v.IsValid(It.IsAny<string[]>())).Returns(false);
+            var commandArgumentParser = new CommandArgumentParser(_mockValidator.Object);
+            var exception = Assert.Throws<ArgumentException>(() => commandArgumentParser.Parse(line));
+
+            Assert.That(exception.Message, Is.EqualTo("Clear command is expecting arguments in following format eg 'C'"));
+        }
 
         // TODO: pass in rubbish that is not in our commands, such as "Q x h" etc - Check in Validator class
     }

@@ -81,6 +81,15 @@ namespace GraphicalEditor
 
                     _commandType = CommandType.ColourPixel;
                     break;
+
+                case "C":
+                    if (!IsValid(CommandType.Clear, splitLine))
+                    {
+                        throw new ArgumentException("Clear command is expecting arguments in following format eg 'C'");
+                    }
+
+                    _commandType = CommandType.Clear;
+                    break;
             }
         }
 
