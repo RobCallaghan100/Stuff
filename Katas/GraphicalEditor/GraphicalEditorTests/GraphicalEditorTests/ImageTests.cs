@@ -152,15 +152,26 @@ namespace GraphicalEditorTests
         // check that y1is in range 
         // check that y2 is in range
 
-        [TestCase(0)]
-        public void ShouldRaiseExceptionIfInRangeReturnsFalseForX(int x)
+        [Test()]
+        public void ShouldRaiseExceptionIfInRangeReturnsFalseForX()
         {
             _mockRangeValidator.SetupSequence(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>()))
                 .Returns(false);
             var image = new Image(_mockRangeValidator.Object);
-            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.VerticalSegment(x, 5, 6, 'A'));
+            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.VerticalSegment(0, 5, 6, 'A'));
 
             Assert.That(exception.Message, Is.EqualTo("x should be between 1 and m\r\nParameter name: x"));
+        }
+
+        [Test()]
+        public void ShouldRaiseExceptionIfInRangeReturnsFalseForY1()
+        {
+            _mockRangeValidator.SetupSequence(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>()))
+                .Returns(true).Returns(false);
+            var image = new Image(_mockRangeValidator.Object);
+            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.VerticalSegment(1, 0, 6, 'A'));
+
+            Assert.That(exception.Message, Is.EqualTo("y1 should be between 1 and n\r\nParameter name: y1"));
         }
 
         //        [TestCase(1, 0, 'A')]
