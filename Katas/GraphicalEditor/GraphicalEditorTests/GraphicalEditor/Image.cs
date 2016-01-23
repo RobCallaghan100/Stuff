@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Text;
 
 namespace GraphicalEditor
@@ -43,12 +42,21 @@ namespace GraphicalEditor
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(); // TODO: implement this
         }
 
         public void ColourPixel(int x, int y, char colour)
         {
-            // TODO: more validation??
+            if (x < 1 || x > 250)
+            {
+                throw new ArgumentOutOfRangeException("x", "x should be between 1 and 250");
+            }
+
+            if (y < 1 || y > 250)
+            {
+                throw new ArgumentOutOfRangeException("y", "y should be between 1 and 250");
+            }
+
             _image[y - 1, x - 1] = colour.ToString();
         }
 

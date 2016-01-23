@@ -70,8 +70,8 @@
             Assert.That(result, Is.EqualTo("O"));
         }
 
-        [TestCase(1, 1, 'Y', "Y")]
-        [TestCase(5, 6, 'Y', "OOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOY")]
+        [TestCase(1, 1, 'A', "A")]
+        [TestCase(5, 6, 'A', "OOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOA")]
         public void ShouldColourPixelWhenColourPixelCalled(int x, int y, char pixel, string output)
         {
             _image.Create(x, y);
@@ -80,6 +80,26 @@
 
             var result = _image.Show();
             Assert.That(result, Is.EqualTo(output));
+        }
+
+        [TestCase(0, 1, 'A')]
+        [TestCase(-1, 1, 'A')]
+        [TestCase(251, 1, 'A')]
+        public void ShouldRaiseExceptionIfXIsNegativeOrZeroOrOver250(int x, int y, char pixel)
+        {
+            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => _image.ColourPixel(x, y, pixel));
+
+            Assert.That(exception.Message, Is.EqualTo("x should be between 1 and 250\r\nParameter name: x"));
+        }
+
+        [TestCase(1, 0, 'A')]
+        [TestCase(1, -1, 'A')]
+        [TestCase(1, 251, 'A')]
+        public void ShouldRaiseExceptionIfYIsNegativeOrZeroOrOver250(int x, int y, char pixel)
+        {
+            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => _image.ColourPixel(x, y, pixel));
+
+            Assert.That(exception.Message, Is.EqualTo("y should be between 1 and 250\r\nParameter name: y"));
         }
 
         // TODO: check for null values??
