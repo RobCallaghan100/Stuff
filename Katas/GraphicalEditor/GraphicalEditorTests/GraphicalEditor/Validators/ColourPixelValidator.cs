@@ -1,5 +1,4 @@
 ﻿using GraphicalEditor.Interfaces;
-using static System.Int32;
 
 namespace GraphicalEditor.Validators
 {
@@ -34,7 +33,7 @@ namespace GraphicalEditor.Validators
                 return false;
             }
 
-            if (!IsArgumentInRange(args[2]))
+            if (!IsArgumentInRange(args[2]))    
             {
                 return false;
             }

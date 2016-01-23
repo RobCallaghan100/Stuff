@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using GraphicalEditor.Validators;
 
 namespace GraphicalEditor
 {
@@ -7,10 +8,21 @@ namespace GraphicalEditor
 
     public class Image : IImage
     {
+        private readonly IRangeValidator _rangeValidator;
         private int _m;
         private int _n;
 
         private string[,] _image;
+
+        public Image(IRangeValidator rangeValidator)
+        {
+            _rangeValidator = rangeValidator;
+        }
+            
+        public Image()
+        {
+            _rangeValidator = new RangeValidator();
+        }
 
         public int M { get { return _m; } }
         public int N { get { return _n; } }

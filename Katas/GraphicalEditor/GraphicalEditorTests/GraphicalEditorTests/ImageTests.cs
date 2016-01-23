@@ -1,4 +1,7 @@
-﻿namespace GraphicalEditorTests
+﻿using GraphicalEditor.Interfaces;
+using Moq;
+
+namespace GraphicalEditorTests
 {
     using System;
     using GraphicalEditor;
@@ -25,10 +28,14 @@
         [TestCase(250, 250)]
         public void ShouldSetSizeOfMAndNWhenCreateMethodCalledWithMAndN(int m, int n)
         {
-            _image.Create(m, n);
+            var mockRangeValidator = new Mock<IRangeValidator>();
+            mockRangeValidator.Setup(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+            var image = new Image(mockRangeValidator.Object);
 
-            Assert.That(_image.M, Is.EqualTo(m));
-            Assert.That(_image.N, Is.EqualTo(n));
+            image.Create(m, n);
+
+            Assert.That(image.M, Is.EqualTo(m));
+            Assert.That(image.N, Is.EqualTo(n));
         }
 
         [TestCase(0, 1)]
@@ -36,6 +43,8 @@
         [TestCase(251, 1)]
         public void ShouldRaiseExceptionIfMIsNegativeOrZeroOrOver250(int m, int n)
         {
+            var mockRangeValidator = new Mock<IRangeValidator>();
+            mockRangeValidator.Setup(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(false);
             var exception = Assert.Throws<ArgumentOutOfRangeException>(() => _image.Create(m, n));
 
             Assert.That(exception.Message, Is.EqualTo("m should be between 1 to 250\r\nParameter name: m"));
@@ -101,6 +110,9 @@
 
             Assert.That(exception.Message, Is.EqualTo("y should be between 1 and 250\r\nParameter name: y"));
         }
+
+       // TODO: check x is not greater than m
+       // TODO: check y is not greater than n
 
         // TODO: check for null values??
     }
