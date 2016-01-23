@@ -54,7 +54,7 @@ namespace GraphicalEditor
 
         public void Clear()
         {
-            throw new NotImplementedException(); // TODO: implement this
+            SetsDefaultValue("O");
         }
 
         public void ColourPixel(int x, int y, char colour)
