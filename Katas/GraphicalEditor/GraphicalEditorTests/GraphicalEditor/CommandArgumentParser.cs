@@ -121,7 +121,7 @@ namespace GraphicalEditor
                     break;
 
                 default:
-                    throw new ArgumentException(string.Format("{0} Does not exist as a command", command));
+                    throw new ArgumentException($"{command} Does not exist as a command");
             }
         }
 
@@ -150,7 +150,7 @@ namespace GraphicalEditor
 
         private int GetNumber(string value)
         {
-            int num = 0;
+            int num;
             TryParse(value, out num);
 
             return num;
@@ -174,19 +174,16 @@ namespace GraphicalEditor
             return value;
         }
 
-        public CommandType CommandType
-        {
-            get { return _commandType; }
-        }
+        public CommandType CommandType => _commandType;
 
-        public int M { get { return _m; } }
-        public int N { get { return _n; } }
-        public int X { get { return _x; } }
-        public int Y { get { return _y; } }
-        public char Colour { get { return _colour; } }
-        public int Y1 { get { return _y1; } }
-        public int Y2 { get { return _y2; } }
-        public int X1 { get { return _x1; } }
-        public int X2 { get { return _x2; } }
+        public int M => _m;
+        public int N => _n;
+        public int X => _x;
+        public int Y => _y;
+        public char Colour => _colour;
+        public int Y1 => _y1;
+        public int Y2 => _y2;
+        public int X1 => _x1;
+        public int X2 => _x2;
     }
 }

@@ -53,7 +53,7 @@ namespace GraphicalEditor.Validators
 
         private static bool IsArgumentInRange(string arg)
         {
-            int value = 0;
+            int value;
             Int32.TryParse(arg, out value);
 
             return value >= 1 && value <= 250;
@@ -61,7 +61,7 @@ namespace GraphicalEditor.Validators
 
         private static bool IsArgumentAnInt(string arg)
         {
-            int value = 0;
+            int value;
             if (!int.TryParse(arg, out value))
             {
                 return false;

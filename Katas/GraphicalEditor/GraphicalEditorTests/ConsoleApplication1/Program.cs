@@ -3,12 +3,17 @@ using GraphicalEditor;
 
 namespace ConsoleApplication1
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {
+            if (args == null)
+            {
+                throw new ArgumentNullException(nameof(args));
+            }
+
             var command = new Command();
-            string line = "";
+            string line;
 
             do
             {
@@ -23,7 +28,7 @@ namespace ConsoleApplication1
                     Console.WriteLine(ex.Message);
                 }
 
-            } while (line.ToUpper() != "X");
+            } while (line != null && line.ToUpper() != "X");
         }
     }
 }

@@ -20,10 +20,10 @@ namespace GraphicalEditorTests.Validators
             _createValidator = null;
         }
 
-        [TestCase(false, new string[] { "I"})]
-        [TestCase(false, new string[] { "I 1"})]
-        [TestCase(false, new string[] { "I 1 2 3"})]
-        [TestCase(false, new string[] { "I 1 2 3 4"})]
+        [TestCase(false, new[] { "I"})]
+        [TestCase(false, new[] { "I 1"})]
+        [TestCase(false, new[] { "I 1 2 3"})]
+        [TestCase(false, new[] { "I 1 2 3 4"})]
         public void ShouldReturnFalseIfThereAreNotExactlyThreeArguments(bool expectedResult, string[] args)
         {
             var result = _createValidator.IsValid(args);
@@ -76,7 +76,7 @@ namespace GraphicalEditorTests.Validators
 
         [TestCase("1", "1")]
         [TestCase("250", "250")]
-        public void ShouldReturnTrueIfPassedIMN(string m, string n)
+        public void ShouldReturnTrueIfPassedImn(string m, string n)
         {
             var result = _createValidator.IsValid(new[] { "I", m, n });
 

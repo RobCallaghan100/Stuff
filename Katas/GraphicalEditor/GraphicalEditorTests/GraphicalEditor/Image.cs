@@ -24,19 +24,19 @@ namespace GraphicalEditor
             _rangeValidator = new RangeValidator();
         }
 
-        public int M { get { return _m; } }
-        public int N { get { return _n; } }
+        public int M => _m;
+        public int N => _n;
 
         public void Create(int m, int n)
         {
             if (!_rangeValidator.IsInRange(1, 250, m))
             {
-                throw new ArgumentOutOfRangeException("m", "m should be between 1 to 250");
+                throw new ArgumentOutOfRangeException(nameof(m), "m should be between 1 to 250");
             }
 
             if (!_rangeValidator.IsInRange(1, 250, n))
             {
-                throw new ArgumentOutOfRangeException("n", "n should be between 1 to 250");
+                throw new ArgumentOutOfRangeException(nameof(n), "n should be between 1 to 250");
             }
 
             _m = m;
@@ -93,7 +93,7 @@ namespace GraphicalEditor
         {
             if (!_rangeValidator.IsInRange(1, N, value))
             {
-                throw new ArgumentOutOfRangeException(axis, string.Format("{0} should be between 1 and n", axis));
+                throw new ArgumentOutOfRangeException(axis, $"{axis} should be between 1 and n");
             }
         }
 
@@ -101,7 +101,7 @@ namespace GraphicalEditor
         {
             if (!_rangeValidator.IsInRange(1, M, value))
             {
-                throw new ArgumentOutOfRangeException(axis, string.Format("{0} should be between 1 and m", axis));
+                throw new ArgumentOutOfRangeException(axis, $"{axis} should be between 1 and m");
             }
         }
 
@@ -137,7 +137,7 @@ namespace GraphicalEditor
 
         private bool IsLastRow(int rowNumber)
         {
-            return rowNumber == (_n - 1);
+            return rowNumber == _n - 1;
         }
     }
 }

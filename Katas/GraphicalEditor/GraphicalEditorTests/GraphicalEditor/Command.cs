@@ -6,7 +6,7 @@
     public class Command
     {
         private IImage _image;
-        private ICommandArgumentParser _commandArgumentParser;
+        private readonly ICommandArgumentParser _commandArgumentParser;
 
         public Command(IImage image, ICommandArgumentParser commandArgumentParser)
         {
@@ -60,9 +60,6 @@
             }
         }
 
-        public IImage Image
-        {
-            get { return _image; }
-        }
+        public IImage Image => _image;
     }
 }

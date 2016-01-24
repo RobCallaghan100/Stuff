@@ -20,9 +20,9 @@
             _clearValidator = null;
         }
 
-        [TestCase(true, new string[] {"C"})]
-        [TestCase(true, new string[] {"c "})]
-        [TestCase(true, new string[] {" C"})]
+        [TestCase(true, new[] {"C"})]
+        [TestCase(true, new[] {"c "})]
+        [TestCase(true, new[] {" C"})]
         public void ShouldReturnTrueIfPassedCOnly(bool expectedResult, string[] args)
         {
             var result = _clearValidator.IsValid(args);
@@ -30,9 +30,9 @@
             Assert.That(result, Is.EqualTo(expectedResult));
         }
 
-        [TestCase(false, new string[] { "C", "1" })]
-        [TestCase(false, new string[] { "C", "1", "2" })]
-        [TestCase(false, new string[] { "C", "1", "2", "3" })]
+        [TestCase(false, new[] { "C", "1" })]
+        [TestCase(false, new[] { "C", "1", "2" })]
+        [TestCase(false, new[] { "C", "1", "2", "3" })]
         public void ShouldReturnFalseIfNumberOfArgumentsIsNotOne(bool expectedResult, string[] args)
         {
             var result = _clearValidator.IsValid(args);

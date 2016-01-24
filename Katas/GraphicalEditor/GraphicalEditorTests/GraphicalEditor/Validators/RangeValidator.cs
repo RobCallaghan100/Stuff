@@ -6,7 +6,7 @@ namespace GraphicalEditor.Validators
     {
         public bool IsInRange(int startRange, int endRange, int value)
         {
-            return (value >= startRange && value <= endRange);
+            return value >= startRange && value <= endRange;
         }
     }
 }

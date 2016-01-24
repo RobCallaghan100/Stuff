@@ -42,7 +42,7 @@ namespace GraphicalEditor.Validators
 
         private static bool IsArgumentInRange(string arg)
         {
-            int m = 0;
+            int m;
             TryParse(arg, out m);
             if (m < 1 || m > 250)
             {
@@ -59,7 +59,7 @@ namespace GraphicalEditor.Validators
 
         private static bool IsArgumentAnInt(string arg)
         {
-            int value = 0;
+            int value;
             TryParse(arg, out value);
 
             if (value == 0)

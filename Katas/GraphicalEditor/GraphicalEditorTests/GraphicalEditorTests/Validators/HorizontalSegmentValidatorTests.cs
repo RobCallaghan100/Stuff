@@ -21,11 +21,11 @@ namespace GraphicalEditorTests.Validators
         }
 
 
-        [TestCase(false, new string[] { "H" })]
-        [TestCase(false, new string[] { "H", "1" })]
-        [TestCase(false, new string[] { "H", "1", "2" })]
-        [TestCase(false, new string[] { "H", "1", "2", "3" })]
-        [TestCase(false, new string[] { "H", "1", "2", "3", "A", "A" })]
+        [TestCase(false, new[] { "H" })]
+        [TestCase(false, new[] { "H", "1" })]
+        [TestCase(false, new[] { "H", "1", "2" })]
+        [TestCase(false, new[] { "H", "1", "2", "3" })]
+        [TestCase(false, new[] { "H", "1", "2", "3", "A", "A" })]
         public void ShouldReturnFalseIfThereAreNotExactlyFiveArguments(bool expectedResult, string[] args)
         {
             var result = _horizontalSegmentValidator.IsValid(args);
@@ -36,7 +36,7 @@ namespace GraphicalEditorTests.Validators
         [Test]
         public void ShouldReturnFalseIfIfFirstParameterIsNotH()
         {
-            var result = _horizontalSegmentValidator.IsValid(new string[] { "X", "1", "2", "3", "A" });
+            var result = _horizontalSegmentValidator.IsValid(new[] { "X", "1", "2", "3", "A" });
 
             Assert.That(result, Is.EqualTo(false));
         }
@@ -44,7 +44,7 @@ namespace GraphicalEditorTests.Validators
         [Test]
         public void ShouldReturnFalseIfSecondParameterIsNotAnInt()
         {
-            var result = _horizontalSegmentValidator.IsValid(new string[] { "H", "X", "2", "3", "A" });
+            var result = _horizontalSegmentValidator.IsValid(new[] { "H", "X", "2", "3", "A" });
 
             Assert.That(result, Is.EqualTo(false));
         }
@@ -52,7 +52,7 @@ namespace GraphicalEditorTests.Validators
         [Test]
         public void ShouldReturnFalseIfThirdParameterIsNotAnInt()
         {
-            var result = _horizontalSegmentValidator.IsValid(new string[] { "H", "1", "X", "3", "A" });
+            var result = _horizontalSegmentValidator.IsValid(new[] { "H", "1", "X", "3", "A" });
 
             Assert.That(result, Is.EqualTo(false));
         }
@@ -60,7 +60,7 @@ namespace GraphicalEditorTests.Validators
         [Test]
         public void ShouldReturnFalseIfFourthParameterIsNotAnInt()
         {
-            var result = _horizontalSegmentValidator.IsValid(new string[] { "H", "1", "2", "X", "A" });
+            var result = _horizontalSegmentValidator.IsValid(new[] { "H", "1", "2", "X", "A" });
 
             Assert.That(result, Is.EqualTo(false));
         }
@@ -68,7 +68,7 @@ namespace GraphicalEditorTests.Validators
         [Test]
         public void ShouldReturnTrueIfPassedExpectedFormat()
         {
-            var result = _horizontalSegmentValidator.IsValid(new string[] { "H", "1", "2", "3", "A" });
+            var result = _horizontalSegmentValidator.IsValid(new[] { "H", "1", "2", "3", "A" });
 
             Assert.That(result, Is.EqualTo(true));
         }

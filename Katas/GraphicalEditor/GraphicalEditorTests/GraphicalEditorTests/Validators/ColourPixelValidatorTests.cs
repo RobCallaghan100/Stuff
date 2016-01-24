@@ -20,10 +20,10 @@ namespace GraphicalEditorTests.Validators
             _colourPixelValidator = null;
         }
 
-        [TestCase(false, new string[] { "L" })]
-        [TestCase(false, new string[] { "L", "1" })]
-        [TestCase(false, new string[] { "L", "1", "2" })]
-        [TestCase(false, new string[] { "L", "1", "2", "C", "A" })]
+        [TestCase(false, new[] { "L" })]
+        [TestCase(false, new[] { "L", "1" })]
+        [TestCase(false, new[] { "L", "1", "2" })]
+        [TestCase(false, new[] { "L", "1", "2", "C", "A" })]
         public void ShouldReturnFalseIfThereAreNotExactlyFourArguments(bool expectedResult, string[] args)
         {
             var result = _colourPixelValidator.IsValid(args);
@@ -34,7 +34,7 @@ namespace GraphicalEditorTests.Validators
         [Test]
         public void ShouldReturnFalseIfIfFirstParameterIsNotL()
         {
-            var result = _colourPixelValidator.IsValid(new string[] {"X", "1", "2", "A"});
+            var result = _colourPixelValidator.IsValid(new[] {"X", "1", "2", "A"});
 
             Assert.That(result, Is.EqualTo(false));
         }
@@ -42,7 +42,7 @@ namespace GraphicalEditorTests.Validators
         [Test]
         public void ShouldReturnFalseIfSecondParameterIsNotAnInt()
         {
-            var result = _colourPixelValidator.IsValid(new string[] { "L", "X", "2", "A" });
+            var result = _colourPixelValidator.IsValid(new[] { "L", "X", "2", "A" });
 
             Assert.That(result, Is.EqualTo(false));
         }
@@ -50,7 +50,7 @@ namespace GraphicalEditorTests.Validators
         [Test]
         public void ShouldReturnFalseIfThirdParameterIsNotAnInt()
         {
-            var result = _colourPixelValidator.IsValid(new string[] { "L", "1", "Y", "A" });
+            var result = _colourPixelValidator.IsValid(new[] { "L", "1", "Y", "A" });
 
             Assert.That(result, Is.EqualTo(false));
         }
@@ -58,7 +58,7 @@ namespace GraphicalEditorTests.Validators
      [Test]
         public void ShouldReturnTrueIfPassedExpectedFormat()
         {
-            var result = _colourPixelValidator.IsValid(new string[] { "L", "1", "2", "A" });
+            var result = _colourPixelValidator.IsValid(new[] { "L", "1", "2", "A" });
 
             Assert.That(result, Is.EqualTo(true));
         }

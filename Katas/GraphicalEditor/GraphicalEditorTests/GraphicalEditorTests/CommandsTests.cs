@@ -36,7 +36,7 @@
 
         [TestCase("I 1 1", 1, 1)]
         [TestCase("I 250 250", 250, 250)]
-        public void ShouldCallCreateOnImageObjectWhenPassedIMN(string input, int m, int n)
+        public void ShouldCallCreateOnImageObjectWhenPassedImn(string input, int m, int n)
         {
             _mockCommandArgumentParserMock.Setup(cap => cap.CommandType).Returns(CommandType.Create);
             _mockCommandArgumentParserMock.Setup(cap => cap.M).Returns(m);
