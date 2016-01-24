@@ -17,11 +17,11 @@ namespace GraphicalEditor.Validators
             {
                 return false;
             }
-//            
-//            if (!IsArgumentAnInt(args[1]))
-//            {
-//                return false;
-//            }
+            
+            if (!IsArgumentAnInt(args[1]))
+            {
+                return false;
+            }
 //
 //            if (!IsArgumentInRange(args[1]))
 //            {
