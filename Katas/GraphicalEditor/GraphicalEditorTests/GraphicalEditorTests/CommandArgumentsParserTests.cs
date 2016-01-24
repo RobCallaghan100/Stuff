@@ -185,6 +185,36 @@ namespace GraphicalEditorTests
             Assert.That(exception.Message, Is.EqualTo("VerticalSegment command is expecting arguments in following format eg 'V 1 2 3 A'"));
         }
 
+
+
+
+
+        [TestCase(1, 2, 4, 'C', "H 1 2 4 C")]
+        [TestCase(2, 3, 4, 'W', "H 2 3 4 W")]
+        public void ShouldSetX1_X2_Y_AndColourOnHorizontalSegmentWhenPassedHX1X2YColour(int expectedX1, int expectedX2, int expectedY, char expectedColour, string line)
+        {
+            _mockValidator.Setup(v => v.IsValid(It.IsAny<string[]>())).Returns(true);
+            var commandArgumentParser = new CommandArgumentParser(_mockValidator.Object);
+
+            commandArgumentParser.Parse(line);
+
+            Assert.That(commandArgumentParser.CommandType, Is.EqualTo(CommandType.HorizontalSegment));
+            Assert.That(commandArgumentParser.X1, Is.EqualTo(expectedX1));
+            Assert.That(commandArgumentParser.X2, Is.EqualTo(expectedX2));
+            Assert.That(commandArgumentParser.Y, Is.EqualTo(expectedY));
+            Assert.That(commandArgumentParser.Colour, Is.EqualTo(expectedColour));
+        }
+//
+//        [TestCase("V 1 2 3 A")]
+//        public void ShouldRaiseExceptionIfVerticalSegmentValidatorIsNotValid(string line)
+//        {
+//            _mockValidator.Setup(v => v.IsValid(It.IsAny<string[]>())).Returns(false);
+//            var commandArgumentParser = new CommandArgumentParser(_mockValidator.Object);
+//            var exception = Assert.Throws<ArgumentException>(() => commandArgumentParser.Parse(line));
+//
+//            Assert.That(exception.Message, Is.EqualTo("VerticalSegment command is expecting arguments in following format eg 'V 1 2 3 A'"));
+//        }
+
         // TODO: pass in rubbish that is not in our commands, such as "Q x h" etc - Check in Validator class
     }
 }

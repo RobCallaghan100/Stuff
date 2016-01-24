@@ -106,8 +106,13 @@ namespace GraphicalEditor
                         throw new ArgumentException("VerticalSegment command is expecting arguments in following format eg 'V 1 2 3 A'");
                     }
 
-                    SetSegmentArgumentValues(splitLine);
+                    SetVerticalSegmentArgumentValues(splitLine);
                     _commandType = CommandType.VerticalSegment;
+                    break;
+
+                case "H":
+                    SetHorizontalSegmentArgumentValues(splitLine);
+                    _commandType = CommandType.HorizontalSegment;
                     break;
 
                 default:
@@ -122,11 +127,19 @@ namespace GraphicalEditor
             _colour = GetColour(splitLine[3]);
         }
 
-        private void SetSegmentArgumentValues(string[] splitLine)
+        private void SetVerticalSegmentArgumentValues(string[] splitLine)
         {
             _x = GetNumber(splitLine[1]);
             _y1 = GetNumber(splitLine[2]);
             _y2 = GetNumber(splitLine[3]);
+            _colour = GetColour(splitLine[4]);
+        }
+
+        private void SetHorizontalSegmentArgumentValues(string[] splitLine)
+        {
+            _x1 = GetNumber(splitLine[1]);
+            _x2 = GetNumber(splitLine[2]);
+            _y = GetNumber(splitLine[3]);
             _colour = GetColour(splitLine[4]);
         }
 
