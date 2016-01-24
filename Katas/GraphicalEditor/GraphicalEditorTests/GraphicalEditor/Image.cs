@@ -59,25 +59,17 @@ namespace GraphicalEditor
 
         public void ColourPixel(int x, int y, char colour)
         {
-            IsXInRange(x);
-            IsYInRange(y);
+            IsBetween1AndM(x, "x");
+            IsBetween1AndN(y, "y");
 
             _image[y - 1, x - 1] = colour.ToString();
         }
 
-        private void IsYInRange(int y)
-        {
-            if (!_rangeValidator.IsInRange(1, N, y))
-            {
-                throw new ArgumentOutOfRangeException("y", "y should be between 1 and n");
-            }
-        }
-
         public void VerticalSegment(int x, int y1, int y2, char colour)
         {
-            IsXInRange(x);
-            IsY1InRange(y1);
-            IsY2InRange(y2);
+            IsBetween1AndM(x, "x");
+            IsBetween1AndN(y1, "y1");
+            IsBetween1AndN(y2, "y2");
 
             for (int i = y1; i <= y2; i++)
             {
@@ -87,33 +79,27 @@ namespace GraphicalEditor
 
         public void HorizontalSegment(int x1, int x2, int y, char colour)
         {
+            IsBetween1AndM(x1, "x1");
+
             for (int i = x1; i <= x2; i++)
             {
                 _image[y - 1, i-1] = colour.ToString();
             }
         }
 
-        private void IsY2InRange(int y2)
+        private void IsBetween1AndN(int value, string axis)
         {
-            if (!_rangeValidator.IsInRange(1, N, y2))
+            if (!_rangeValidator.IsInRange(1, N, value))
             {
-                throw new ArgumentOutOfRangeException("y2", "y2 should be between 1 and n");
+                throw new ArgumentOutOfRangeException(axis, string.Format("{0} should be between 1 and n", axis));
             }
         }
 
-        private void IsY1InRange(int y1)
+        private void IsBetween1AndM(int value, string axis)
         {
-            if (!_rangeValidator.IsInRange(1, N, y1))
+            if (!_rangeValidator.IsInRange(1, M, value))
             {
-                throw new ArgumentOutOfRangeException("y1", "y1 should be between 1 and n");
-            }
-        }
-
-        private void IsXInRange(int x)
-        {
-            if (!_rangeValidator.IsInRange(1, M, x))
-            {
-                throw new ArgumentOutOfRangeException("x", "x should be between 1 and m");
+                throw new ArgumentOutOfRangeException(axis, string.Format("{0} should be between 1 and m", axis));
             }
         }
 

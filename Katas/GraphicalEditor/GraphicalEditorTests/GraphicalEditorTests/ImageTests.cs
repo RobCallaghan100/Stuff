@@ -194,18 +194,18 @@ namespace GraphicalEditorTests
             var result = image.Show();
             Assert.That(result, Is.EqualTo(output));
         }
-//
-//        [Test()]
-//        public void ShouldRaiseExceptionWhenCallingVerticalSegmentIfIsInRangeReturnsFalseForX()
-//        {
-//            _mockRangeValidator.SetupSequence(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>()))
-//                .Returns(false);
-//            var image = new Image(_mockRangeValidator.Object);
-//            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.VerticalSegment(0, 5, 6, 'A'));
-//
-//            Assert.That(exception.Message, Is.EqualTo("x should be between 1 and m\r\nParameter name: x"));
-//        }
-//
+
+        [Test()]
+        public void ShouldRaiseExceptionWhenCallingHorizontalSegmentIfIsInRangeReturnsFalseForX1()
+        {
+            _mockRangeValidator.SetupSequence(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>()))
+                .Returns(false);
+            var image = new Image(_mockRangeValidator.Object);
+            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.HorizontalSegment(0, 5, 6, 'A'));
+
+            Assert.That(exception.Message, Is.EqualTo("x1 should be between 1 and m\r\nParameter name: x1"));
+        }
+
 //        [Test()]
 //        public void ShouldRaiseExceptionWhenCallingVerticalSegmentIfIsInRangeReturnsFalseForY1()
 //        {
