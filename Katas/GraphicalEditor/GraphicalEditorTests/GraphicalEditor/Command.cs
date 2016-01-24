@@ -52,7 +52,7 @@
                     break;
 
                 case CommandType.HorizontalSegment:
-                    _image.HorizontalSegment(_commandArgumentParser.X, _commandArgumentParser.Y1, _commandArgumentParser.Y2, _commandArgumentParser.Colour);
+                    _image.HorizontalSegment(_commandArgumentParser.X1, _commandArgumentParser.X2, _commandArgumentParser.Y, _commandArgumentParser.Colour);
                     break;
 
                 default:

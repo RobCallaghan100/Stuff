@@ -8,10 +8,12 @@ namespace GraphicalEditor
     public class CommandArgumentParser : ICommandArgumentParser
     {
         private readonly IValidator _validator;
-        private CommandType _commandType;
+        private CommandType _commandType;   
         private int _m;
         private int _n;
         private int _x;
+        private int _x1;
+        private int _x2;
         private int _y;
         private int _y1;
         private int _y2;
@@ -166,5 +168,7 @@ namespace GraphicalEditor
         public char Colour { get { return _colour; } }
         public int Y1 { get { return _y1; } }
         public int Y2 { get { return _y2; } }
+        public int X1 { get { return _x1; } }
+        public int X2 { get { return _x2; } }
     }
 }

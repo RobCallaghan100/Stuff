@@ -82,12 +82,15 @@ namespace GraphicalEditor
             for (int i = y1; i <= y2; i++)
             {
                 _image[i-1, x-1] = colour.ToString();
-            }
+            }   
         }
 
-        public void HorizontalSegment(int x, int y1, int y2, char colour)
+        public void HorizontalSegment(int x1, int x2, int y, char colour)
         {
-            throw new NotImplementedException();
+            for (int i = x1; i <= x2; i++)
+            {
+                _image[y - 1, i-1] = colour.ToString();
+            }
         }
 
         private void IsY2InRange(int y2)

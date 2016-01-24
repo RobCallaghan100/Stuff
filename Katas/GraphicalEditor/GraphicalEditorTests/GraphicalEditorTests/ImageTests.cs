@@ -181,6 +181,53 @@ namespace GraphicalEditorTests
             Assert.That(exception.Message, Is.EqualTo("y2 should be between 1 and n\r\nParameter name: y2"));
         }
 
+        [TestCase(1, 1, 6, 'A', "OOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO\r\nAOOOO")]
+        [TestCase(2, 5, 5, 'C', "OOOOO\r\nOOOOO\r\nOOOOO\r\nOOOOO\r\nOCCCC\r\nOOOOO")]
+        public void ShouldColourHorizontalSegmentWhenHorizontalSegmentCalled(int x1, int x2, int y, char colour, string output)
+        {
+            _mockRangeValidator.Setup(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+            var image = new Image(_mockRangeValidator.Object);
+            image.Create(5, 6);
+
+            image.HorizontalSegment(x1, x2, y, colour);
+
+            var result = image.Show();
+            Assert.That(result, Is.EqualTo(output));
+        }
+//
+//        [Test()]
+//        public void ShouldRaiseExceptionWhenCallingVerticalSegmentIfIsInRangeReturnsFalseForX()
+//        {
+//            _mockRangeValidator.SetupSequence(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>()))
+//                .Returns(false);
+//            var image = new Image(_mockRangeValidator.Object);
+//            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.VerticalSegment(0, 5, 6, 'A'));
+//
+//            Assert.That(exception.Message, Is.EqualTo("x should be between 1 and m\r\nParameter name: x"));
+//        }
+//
+//        [Test()]
+//        public void ShouldRaiseExceptionWhenCallingVerticalSegmentIfIsInRangeReturnsFalseForY1()
+//        {
+//            _mockRangeValidator.SetupSequence(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>()))
+//                .Returns(true).Returns(false);
+//            var image = new Image(_mockRangeValidator.Object);
+//            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.VerticalSegment(1, 0, 6, 'A'));
+//
+//            Assert.That(exception.Message, Is.EqualTo("y1 should be between 1 and n\r\nParameter name: y1"));
+//        }
+//
+//        [Test()]
+//        public void ShouldRaiseExceptionWhenCallingVerticalSegmentIfIsInRangeReturnsFalseForY2()
+//        {
+//            _mockRangeValidator.SetupSequence(v => v.IsInRange(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>()))
+//                .Returns(true).Returns(true).Returns(false);
+//            var image = new Image(_mockRangeValidator.Object);
+//            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => image.VerticalSegment(1, 1, 0, 'A'));
+//
+//            Assert.That(exception.Message, Is.EqualTo("y2 should be between 1 and n\r\nParameter name: y2"));
+//        }
+
         // TODO: check for null values??
     }
 }

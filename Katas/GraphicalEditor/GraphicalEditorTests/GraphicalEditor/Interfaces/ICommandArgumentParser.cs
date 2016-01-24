@@ -11,5 +11,7 @@ namespace GraphicalEditor.Interfaces
         char Colour { get; }
         int Y1 { get; }
         int Y2 { get; }
+        int X1 { get; }
+        int X2 { get; }
     }
 }
