@@ -56,31 +56,39 @@ namespace GraphicalEditorTests.Validators
             Assert.That(result, Is.EqualTo(false));
         }
 
-//     [Test]
-//        public void ShouldReturnTrueIfPassedExpectedFormat()
-//        {
-//            var result = _verticalSegmentValidator.IsValid(new string[] { "L", "1", "2", "A" });
-//
-//            Assert.That(result, Is.EqualTo(true));
-//        }
-//        
-//        [TestCase("0")]
-//        [TestCase("251")]
-//        public void ShouldReturnFalseIfSecondArgumentIsNotBetween1And250(string arg)
-//        {
-//            var result = _verticalSegmentValidator.IsValid(new[] { "L", arg, "1", "A" });
-//
-//            Assert.That(result, Is.False);
-//        }
-//
-//        [TestCase("0")]
-//        [TestCase("251")]
-//        public void ShouldReturnFalseIfThirdArgumentIsNotBetween1And250(string arg)
-//        {
-//            var result = _verticalSegmentValidator.IsValid(new[] { "L", "1", arg, "A" });
-//
-//            Assert.That(result, Is.False);
-//        }
+        [Test]
+        public void ShouldReturnFalseIfFourthParameterIsNotAnInt()
+        {
+            var result = _verticalSegmentValidator.IsValid(new string[] { "V", "1", "2", "X", "A" });
+
+            Assert.That(result, Is.EqualTo(false));
+        }
+
+        //     [Test]
+        //        public void ShouldReturnTrueIfPassedExpectedFormat()
+        //        {
+        //            var result = _verticalSegmentValidator.IsValid(new string[] { "L", "1", "2", "A" });
+        //
+        //            Assert.That(result, Is.EqualTo(true));
+        //        }
+        //        
+        //        [TestCase("0")]
+        //        [TestCase("251")]
+        //        public void ShouldReturnFalseIfSecondArgumentIsNotBetween1And250(string arg)
+        //        {
+        //            var result = _verticalSegmentValidator.IsValid(new[] { "L", arg, "1", "A" });
+        //
+        //            Assert.That(result, Is.False);
+        //        }
+        //
+        //        [TestCase("0")]
+        //        [TestCase("251")]
+        //        public void ShouldReturnFalseIfThirdArgumentIsNotBetween1And250(string arg)
+        //        {
+        //            var result = _verticalSegmentValidator.IsValid(new[] { "L", "1", arg, "A" });
+        //
+        //            Assert.That(result, Is.False);
+        //        }
 
     }
 }
