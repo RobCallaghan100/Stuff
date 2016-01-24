@@ -81,6 +81,7 @@ namespace GraphicalEditor
         {
             IsBetween1AndM(x1, "x1");
             IsBetween1AndM(x2, "x2");
+            IsBetween1AndN(y, "y");
 
             for (int i = x1; i <= x2; i++)
             {
