@@ -54,5 +54,13 @@
 
             Assert.IsInstanceOf<VerticalSegmentValidator>(validator);
         }
+
+        [Test]
+        public void ShouldReturnHorizontalSegmentValidatorGivenCommandTypeHorizontalSegment()
+        {
+            var validator = ValidatorFactory.GetValidator(CommandType.HorizontalSegment);
+
+            Assert.IsInstanceOf<HorizontalSegmentValidator>(validator);
+        }
     }
 }

@@ -28,6 +28,9 @@
                 case CommandType.VerticalSegment:
                     return new VerticalSegmentValidator();
 
+                case CommandType.HorizontalSegment:
+                    return new HorizontalSegmentValidator();
+
                 default:
                     throw new ArgumentException("Should have a command type");
             }
