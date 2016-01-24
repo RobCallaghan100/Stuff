@@ -99,9 +99,13 @@ namespace GraphicalEditor
                     break;
 
                 case "V":
+                    if (!IsValid(CommandType.VerticalSegment, splitLine))
+                    {
+                        throw new ArgumentException("VerticalSegment command is expecting arguments in following format eg 'V 1 2 3 A'");
+                    }
+
                     SetSegmentArgumentValues(splitLine);
-                    // check if isvalid or not - then after this do validatortests - then after that do horizontal stuff (but that's next!)
-                    _commandType = CommandType.VerticalSegment;
+                     _commandType = CommandType.VerticalSegment;
                     break;
 
                 default:

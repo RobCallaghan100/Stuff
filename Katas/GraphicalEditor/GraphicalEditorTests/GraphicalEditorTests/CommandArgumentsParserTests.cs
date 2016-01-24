@@ -175,15 +175,15 @@ namespace GraphicalEditorTests
             Assert.That(commandArgumentParser.Colour, Is.EqualTo(expectedColour));
         }
 
-//        [TestCase("L 1 2 C")]
-//        public void ShouldRaiseExceptionIfColourPixelValidatorIsNotValid(string line)
-//        {
-//            _mockValidator.Setup(v => v.IsValid(It.IsAny<string[]>())).Returns(false);
-//            var commandArgumentParser = new CommandArgumentParser(_mockValidator.Object);
-//            var exception = Assert.Throws<ArgumentException>(() => commandArgumentParser.Parse(line));
-//
-//            Assert.That(exception.Message, Is.EqualTo("ColourPixel command is expecting arguments in following format eg 'L 1 2 C'"));
-//        }
+        [TestCase("V 1 2 3 A")]
+        public void ShouldRaiseExceptionIfVerticalSegmentValidatorIsNotValid(string line)
+        {
+            _mockValidator.Setup(v => v.IsValid(It.IsAny<string[]>())).Returns(false);
+            var commandArgumentParser = new CommandArgumentParser(_mockValidator.Object);
+            var exception = Assert.Throws<ArgumentException>(() => commandArgumentParser.Parse(line));
+
+            Assert.That(exception.Message, Is.EqualTo("VerticalSegment command is expecting arguments in following format eg 'V 1 2 3 A'"));
+        }
 
         // TODO: pass in rubbish that is not in our commands, such as "Q x h" etc - Check in Validator class
     }
