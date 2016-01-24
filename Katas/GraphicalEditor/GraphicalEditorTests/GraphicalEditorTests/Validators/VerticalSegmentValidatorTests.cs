@@ -8,7 +8,7 @@ namespace GraphicalEditorTests.Validators
     {
         private VerticalSegmentValidator _verticalSegmentValidator;
 
-        [SetUp] 
+        [SetUp]
         public void Setup()
         {
             _verticalSegmentValidator = new VerticalSegmentValidator();
@@ -35,7 +35,7 @@ namespace GraphicalEditorTests.Validators
         [Test]
         public void ShouldReturnFalseIfIfFirstParameterIsNotV()
         {
-            var result = _verticalSegmentValidator.IsValid(new string[] {"X", "1", "2", "3", "A"});
+            var result = _verticalSegmentValidator.IsValid(new string[] { "X", "1", "2", "3", "A" });
 
             Assert.That(result, Is.EqualTo(false));
         }
@@ -64,22 +64,22 @@ namespace GraphicalEditorTests.Validators
             Assert.That(result, Is.EqualTo(false));
         }
 
-        //     [Test]
-        //        public void ShouldReturnTrueIfPassedExpectedFormat()
-        //        {
-        //            var result = _verticalSegmentValidator.IsValid(new string[] { "L", "1", "2", "A" });
-        //
-        //            Assert.That(result, Is.EqualTo(true));
-        //        }
-        //        
-        //        [TestCase("0")]
-        //        [TestCase("251")]
-        //        public void ShouldReturnFalseIfSecondArgumentIsNotBetween1And250(string arg)
-        //        {
-        //            var result = _verticalSegmentValidator.IsValid(new[] { "L", arg, "1", "A" });
-        //
-        //            Assert.That(result, Is.False);
-        //        }
+        [Test]
+        public void ShouldReturnTrueIfPassedExpectedFormat()
+        {
+            var result = _verticalSegmentValidator.IsValid(new string[] { "V", "1", "2", "3", "A" });
+
+            Assert.That(result, Is.EqualTo(true));
+        }
+
+        [TestCase("0")]
+        [TestCase("251")]
+        public void ShouldReturnFalseIfSecondArgumentIsNotBetween1And250(string arg)
+        {
+            var result = _verticalSegmentValidator.IsValid(new[] { "V", arg, "2", "3", "A" });
+
+            Assert.That(result, Is.False);
+        }
         //
         //        [TestCase("0")]
         //        [TestCase("251")]
