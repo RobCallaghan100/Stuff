@@ -20,8 +20,6 @@ namespace GraphicalEditorTests.Validators
             _colourPixelValidator = null;
         }
 
-        // TODO: remove this line! L X Y C
-
         [TestCase(false, new string[] { "L" })]
         [TestCase(false, new string[] { "L", "1" })]
         [TestCase(false, new string[] { "L", "1", "2" })]

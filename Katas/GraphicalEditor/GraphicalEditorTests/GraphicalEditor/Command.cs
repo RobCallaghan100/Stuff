@@ -36,7 +36,7 @@
                     break;
 
                 case CommandType.Show:
-                    Console.WriteLine(_image.Show()); // TODO: Should Console object be injected in???
+                    Console.WriteLine(_image.Show());
                     break;
 
                 case CommandType.Clear:

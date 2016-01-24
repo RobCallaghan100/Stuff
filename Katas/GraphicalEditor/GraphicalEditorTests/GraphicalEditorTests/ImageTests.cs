@@ -227,7 +227,5 @@ namespace GraphicalEditorTests
 
             Assert.That(exception.Message, Is.EqualTo("y should be between 1 and n\r\nParameter name: y"));
         }
-
-        // TODO: check for null values??
     }
 }

@@ -214,7 +214,5 @@ namespace GraphicalEditorTests
 
             Assert.That(exception.Message, Is.EqualTo("HorizontalSegment command is expecting arguments in following format eg 'H 1 2 3 A'"));
         }
-
-        // TODO: pass in rubbish that is not in our commands, such as "Q x h" etc - Check in Validator class
     }
 }
