@@ -80,6 +80,7 @@ namespace GraphicalEditor
         public void HorizontalSegment(int x1, int x2, int y, char colour)
         {
             IsBetween1AndM(x1, "x1");
+            IsBetween1AndM(x2, "x2");
 
             for (int i = x1; i <= x2; i++)
             {
