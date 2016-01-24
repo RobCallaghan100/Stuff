@@ -160,6 +160,7 @@ namespace GraphicalEditorTests
         }
 
         [TestCase(1, 2, 4, 'C', "V 1 2 4 C")]
+        [TestCase(2, 3, 4, 'W', "V 2 3 4 W")]
         public void ShouldSetX_Y1_Y2_AndColourOnVerticalSegmentWhenPassedVXY1Y2Colour(int expectedX, int expectedY1, int expectedY2, char expectedColour, string line)
         {
             _mockValidator.Setup(v => v.IsValid(It.IsAny<string[]>())).Returns(true);
