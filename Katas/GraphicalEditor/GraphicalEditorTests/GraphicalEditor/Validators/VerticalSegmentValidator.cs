@@ -28,10 +28,10 @@ namespace GraphicalEditor.Validators
 //                return false;
 //            }
 //
-//            if (!IsArgumentAnInt(args[2]))
-//            {
-//                return false;
-//            }
+            if (!IsArgumentAnInt(args[2]))
+            {
+                return false;
+            }
 //
 //            if (!IsArgumentInRange(args[2]))    
 //            {
