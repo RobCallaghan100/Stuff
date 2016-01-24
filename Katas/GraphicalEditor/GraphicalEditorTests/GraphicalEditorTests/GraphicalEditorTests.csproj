@@ -51,6 +51,7 @@
     <Compile Include="CommandArgumentsParserTests.cs" />
     <Compile Include="CommandsTests.cs" />
     <Compile Include="Validators\ClearValidatorTests.cs" />
+    <Compile Include="Validators\VerticalSegmentValidatorTests.cs" />
     <Compile Include="Validators\ColourPixelValidatorTests.cs" />
     <Compile Include="Validators\RangeValidatorTests.cs" />
     <Compile Include="Validators\ShowValidatorTests.cs" />

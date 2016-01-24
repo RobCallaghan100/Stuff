@@ -4,41 +4,43 @@ namespace GraphicalEditor.Validators
 {
     using System;
 
-    public class ColourPixelValidator : IValidator
+    public class VerticalSegmentValidator : IValidator
     {
         public bool IsValid(string[] args)
         {
-            if (!IsExactlyFourArguments(args))
-            {
-                return false;
-            }
-
-            if (!IsFirstArgumentAnL(args))
-            {
-                return false;
-            }
-            
-            if (!IsArgumentAnInt(args[1]))
-            {
-                return false;
-            }
-
-            if (!IsArgumentInRange(args[1]))
-            {
-                return false;
-            }
-
-            if (!IsArgumentAnInt(args[2]))
-            {
-                return false;
-            }
-
-            if (!IsArgumentInRange(args[2]))    
+            if (!IsExactlyFiveArguments(args))
             {
                 return false;
             }
 
             return true;
+//
+//            if (!IsFirstArgumentAnL(args))
+//            {
+//                return false;
+//            }
+//            
+//            if (!IsArgumentAnInt(args[1]))
+//            {
+//                return false;
+//            }
+//
+//            if (!IsArgumentInRange(args[1]))
+//            {
+//                return false;
+//            }
+//
+//            if (!IsArgumentAnInt(args[2]))
+//            {
+//                return false;
+//            }
+//
+//            if (!IsArgumentInRange(args[2]))    
+//            {
+//                return false;
+//            }
+//
+//            return true;
         }
 
         private static bool IsArgumentInRange(string arg)
@@ -65,9 +67,9 @@ namespace GraphicalEditor.Validators
             return args[0].ToUpper().Trim() == "L";
         }
 
-        private static bool IsExactlyFourArguments(string[] args)
+        private static bool IsExactlyFiveArguments(string[] args)
         {
-            return args.Length == 4;
+            return args.Length == 5;
         }
     }
 }
