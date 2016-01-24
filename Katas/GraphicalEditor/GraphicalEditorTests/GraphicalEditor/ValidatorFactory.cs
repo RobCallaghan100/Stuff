@@ -25,6 +25,9 @@
                 case CommandType.Clear:
                     return new ClearValidator();
 
+                case CommandType.VerticalSegment:
+                    return new VerticalSegmentValidator();
+
                 default:
                     throw new ArgumentException("Should have a command type");
             }
