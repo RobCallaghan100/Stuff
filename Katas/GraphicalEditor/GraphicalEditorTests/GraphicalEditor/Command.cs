@@ -23,7 +23,7 @@
 
         public void Input(string line)
         {
-            _commandArgumentParser.Parse(line); // TODO: put try catch around this bit ***************
+            _commandArgumentParser.Parse(line);
 
             switch (_commandArgumentParser.CommandType)
             {
@@ -49,6 +49,10 @@
 
                 case CommandType.VerticalSegment:
                     _image.VerticalSegment(_commandArgumentParser.X, _commandArgumentParser.Y1, _commandArgumentParser.Y2, _commandArgumentParser.Colour);
+                    break;
+
+                case CommandType.HorizontalSegment:
+                    _image.HorizontalSegment(_commandArgumentParser.X, _commandArgumentParser.Y1, _commandArgumentParser.Y2, _commandArgumentParser.Colour);
                     break;
 
                 default:

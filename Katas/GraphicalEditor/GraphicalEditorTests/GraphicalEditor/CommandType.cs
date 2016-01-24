@@ -8,6 +8,7 @@
         Show,
         Clear,
         ColourPixel,
-        VerticalSegment
+        VerticalSegment,
+        HorizontalSegment
     }
 }

@@ -91,9 +91,18 @@
             _mockImage.Verify(i => i.VerticalSegment(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<char>()), Times.Once);
         }
 
+        [Test]
+        public void ShouldCallHorizontalSegmentOnImageObjectWhenPassedH()
+        {
+            _mockCommandArgumentParserMock.Setup(cap => cap.CommandType).Returns(CommandType.HorizontalSegment);
+            var command = new Command(_mockImage.Object, _mockCommandArgumentParserMock.Object);
+
+            command.Input("H 1 2 3 A");
+                
+            _mockImage.Verify(i => i.HorizontalSegment(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<char>()), Times.Once);
+        }
+
         // TODO: pass in empty string and  string with only spaces
         // TODO: add validator class to check that inputs are in correct format
-
-
     }
 }

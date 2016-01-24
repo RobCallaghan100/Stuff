@@ -12,7 +12,7 @@ namespace GraphicalEditor
         private int _m;
         private int _n;
         private int _x;
-        private int _y; 
+        private int _y;
         private int _y1;
         private int _y2;
         private char _colour;
@@ -77,7 +77,7 @@ namespace GraphicalEditor
 
                     _commandType = CommandType.Show;
                     break;
-                        
+
                 case "L":
                     if (!IsValid(CommandType.ColourPixel, splitLine))
                     {
@@ -105,7 +105,7 @@ namespace GraphicalEditor
                     }
 
                     SetSegmentArgumentValues(splitLine);
-                     _commandType = CommandType.VerticalSegment;
+                    _commandType = CommandType.VerticalSegment;
                     break;
 
                 default:
@@ -159,8 +159,8 @@ namespace GraphicalEditor
             get { return _commandType; }
         }
 
-        public int M { get { return _m;  } }
-        public int N { get { return _n;  } }
+        public int M { get { return _m; } }
+        public int N { get { return _n; } }
         public int X { get { return _x; } }
         public int Y { get { return _y; } }
         public char Colour { get { return _colour; } }

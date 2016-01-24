@@ -85,6 +85,11 @@ namespace GraphicalEditor
             }
         }
 
+        public void HorizontalSegment(int x, int y1, int y2, char colour)
+        {
+            throw new NotImplementedException();
+        }
+
         private void IsY2InRange(int y2)
         {
             if (!_rangeValidator.IsInRange(1, N, y2))
