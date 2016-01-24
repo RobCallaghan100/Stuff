@@ -17,16 +17,13 @@ namespace GraphicalEditor.Validators
             {
                 return false;
             }
-            
+
             if (!IsArgumentAnInt(args[1]))
             {
                 return false;
             }
 
-            if (!IsArgumentInRange(args[1]))
-            {
-                return false;
-            }
+           
 
             if (!IsArgumentAnInt(args[2]))
             {
@@ -37,12 +34,22 @@ namespace GraphicalEditor.Validators
             {
                 return false;
             }
-            //
-            //            if (!IsArgumentInRange(args[2]))    
-            //            {
-            //                return false;
-            //            }
-            //
+
+            if (!IsArgumentInRange(args[1]))
+            {
+                return false;
+            }
+
+            if (!IsArgumentInRange(args[2]))
+            {
+                return false;
+            }
+
+            if (!IsArgumentInRange(args[3]))
+            {
+                return false;
+            }
+
             return true;
         }
 

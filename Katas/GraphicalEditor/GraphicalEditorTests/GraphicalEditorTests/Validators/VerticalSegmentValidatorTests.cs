@@ -80,15 +80,24 @@ namespace GraphicalEditorTests.Validators
 
             Assert.That(result, Is.False);
         }
-        //
-        //        [TestCase("0")]
-        //        [TestCase("251")]
-        //        public void ShouldReturnFalseIfThirdArgumentIsNotBetween1And250(string arg)
-        //        {
-        //            var result = _verticalSegmentValidator.IsValid(new[] { "L", "1", arg, "A" });
-        //
-        //            Assert.That(result, Is.False);
-        //        }
+
+        [TestCase("0")]
+        [TestCase("251")]
+        public void ShouldReturnFalseIfThirdArgumentIsNotBetween1And250(string arg)
+        {
+            var result = _verticalSegmentValidator.IsValid(new[] { "V", "1", arg, "3", "A" });
+
+            Assert.That(result, Is.False);
+        }
+
+        [TestCase("0")]
+        [TestCase("251")]
+        public void ShouldReturnFalseIfFourthArgumentIsNotBetween1And250(string arg)
+        {
+            var result = _verticalSegmentValidator.IsValid(new[] { "V", "1", "2", arg, "A" });
+
+            Assert.That(result, Is.False);
+        }
 
     }
 }
