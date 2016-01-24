@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command.cs" />
+    <Compile Include="ImageDimension.cs" />
     <Compile Include="Interfaces\IRangeValidator.cs" />
     <Compile Include="ValidatorFactory.cs" />
     <Compile Include="Validators\ClearValidator.cs" />

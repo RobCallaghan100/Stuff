@@ -44,7 +44,7 @@ namespace GraphicalEditor.Validators
         {
             int m;
             TryParse(arg, out m);
-            if (m < 1 || m > 250)
+            if (m < ImageDimension.Low || m > ImageDimension.High)
             {
                 return false;
             }

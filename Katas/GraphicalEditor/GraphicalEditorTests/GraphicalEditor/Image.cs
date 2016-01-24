@@ -29,14 +29,14 @@ namespace GraphicalEditor
 
         public void Create(int m, int n)
         {
-            if (!_rangeValidator.IsInRange(1, 250, m))
+            if (!_rangeValidator.IsInRange(ImageDimension.Low, ImageDimension.High, m))
             {
-                throw new ArgumentOutOfRangeException(nameof(m), "m should be between 1 to 250");
+                throw new ArgumentOutOfRangeException(nameof(m), $"m should be between {ImageDimension.Low} to {ImageDimension.High}");
             }
 
-            if (!_rangeValidator.IsInRange(1, 250, n))
+            if (!_rangeValidator.IsInRange(ImageDimension.Low, ImageDimension.High, n))
             {
-                throw new ArgumentOutOfRangeException(nameof(n), "n should be between 1 to 250");
+                throw new ArgumentOutOfRangeException(nameof(n), $"n should be between {ImageDimension.Low} to {ImageDimension.High}");
             }
 
             _m = m;

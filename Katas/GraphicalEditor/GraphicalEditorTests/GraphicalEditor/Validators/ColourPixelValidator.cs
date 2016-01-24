@@ -46,7 +46,7 @@ namespace GraphicalEditor.Validators
             int value;
             Int32.TryParse(arg, out value);
 
-            return value >= 1 && value <= 250;
+            return value >= ImageDimension.Low && value <= ImageDimension.High;
         }
 
         private static bool IsArgumentAnInt(string arg)
