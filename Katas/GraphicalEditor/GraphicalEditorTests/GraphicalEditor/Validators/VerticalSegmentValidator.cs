@@ -13,12 +13,10 @@ namespace GraphicalEditor.Validators
                 return false;
             }
 
-            return true;
-//
-//            if (!IsFirstArgumentAnL(args))
-//            {
-//                return false;
-//            }
+            if (!IsFirstArgumentA_V(args))
+            {
+                return false;
+            }
 //            
 //            if (!IsArgumentAnInt(args[1]))
 //            {
@@ -40,7 +38,7 @@ namespace GraphicalEditor.Validators
 //                return false;
 //            }
 //
-//            return true;
+            return true;
         }
 
         private static bool IsArgumentInRange(string arg)
@@ -62,9 +60,9 @@ namespace GraphicalEditor.Validators
             return true;
         }
 
-        private static bool IsFirstArgumentAnL(string[] args)
+        private static bool IsFirstArgumentA_V(string[] args)
         {
-            return args[0].ToUpper().Trim() == "L";
+            return args[0].ToUpper().Trim() == "V";
         }
 
         private static bool IsExactlyFiveArguments(string[] args)

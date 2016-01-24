@@ -32,14 +32,14 @@ namespace GraphicalEditorTests.Validators
             Assert.That(result, Is.EqualTo(expectedResult));
         }
 
-//        [Test]
-//        public void ShouldReturnFalseIfIfFirstParameterIsNotL()
-//        {
-//            var result = _verticalSegmentValidator.IsValid(new string[] {"X", "1", "2", "A"});
-//
-//            Assert.That(result, Is.EqualTo(false));
-//        }
-//
+        [Test]
+        public void ShouldReturnFalseIfIfFirstParameterIsNotV()
+        {
+            var result = _verticalSegmentValidator.IsValid(new string[] {"X", "1", "2", "3", "A"});
+
+            Assert.That(result, Is.EqualTo(false));
+        }
+
 //        [Test]
 //        public void ShouldReturnFalseIfSecondParameterIsNotAnInt()
 //        {
