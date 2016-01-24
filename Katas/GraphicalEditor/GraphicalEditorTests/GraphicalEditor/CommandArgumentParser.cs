@@ -84,9 +84,7 @@ namespace GraphicalEditor
                         throw new ArgumentException("ColourPixel command is expecting arguments in following format eg 'L 1 2 C'");
                     }
 
-                    SetX(splitLine[1]);
-                    SetY(splitLine[2]);
-                    SetColour(splitLine[3]);
+                    SetColourPixelArgumentValues(splitLine);
 
                     _commandType = CommandType.ColourPixel;
                     break;
@@ -101,7 +99,7 @@ namespace GraphicalEditor
                     break;
 
                 case "V":
-                    // TODO: add in x,y1,y2 and colour
+                    SetSegmentArgumentValues(splitLine);
                     // check if isvalid or not - then after this do validatortests - then after that do horizontal stuff (but that's next!)
                     _commandType = CommandType.VerticalSegment;
                     break;
@@ -111,24 +109,32 @@ namespace GraphicalEditor
             }
         }
 
-        private void SetX(string value)
+        private void SetColourPixelArgumentValues(string[] splitLine)
         {
-            int x = 0;
-            TryParse(value, out x);
-
-            _x = x;
-        }
-        private void SetY(string value)
-        {
-            int y = 0;
-            TryParse(value, out y);
-
-            _y = y;
+            _x = GetNumber(splitLine[1]);
+            _y = GetNumber(splitLine[2]);
+            _colour = GetColour(splitLine[3]);
         }
 
-        private void SetColour(string colour)
+        private void SetSegmentArgumentValues(string[] splitLine)
         {
-            _colour = char.Parse(colour);
+            _x = GetNumber(splitLine[1]);
+            _y1 = GetNumber(splitLine[2]);
+            _y2 = GetNumber(splitLine[3]);
+            _colour = GetColour(splitLine[4]);
+        }
+
+        private int GetNumber(string value)
+        {
+            int num = 0;
+            TryParse(value, out num);
+
+            return num;
+        }
+
+        private char GetColour(string colour)
+        {
+            return char.Parse(colour);
         }
 
         private bool IsValid(CommandType commandType, string[] splitLine)

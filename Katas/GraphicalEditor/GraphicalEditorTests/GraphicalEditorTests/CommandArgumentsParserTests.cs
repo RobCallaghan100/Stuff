@@ -159,10 +159,7 @@ namespace GraphicalEditorTests
             Assert.That(exception.Message, Is.EqualTo("Clear command is expecting arguments in following format eg 'C'"));
         }
 
-
-
-        [TestCase(1, 2, 4, 'A', "V 1 2 4 C")]
-//        [TestCase(5, 6, 'A', "L 5 6 A")]
+        [TestCase(1, 2, 4, 'C', "V 1 2 4 C")]
         public void ShouldSetX_Y1_Y2_AndColourOnVerticalSegmentWhenPassedVXY1Y2Colour(int expectedX, int expectedY1, int expectedY2, char expectedColour, string line)
         {
             _mockValidator.Setup(v => v.IsValid(It.IsAny<string[]>())).Returns(true);
@@ -170,7 +167,7 @@ namespace GraphicalEditorTests
 
             commandArgumentParser.Parse(line);
 
-            Assert.That(commandArgumentParser.CommandType, Is.EqualTo(CommandType.ColourPixel));
+            Assert.That(commandArgumentParser.CommandType, Is.EqualTo(CommandType.VerticalSegment));
             Assert.That(commandArgumentParser.X, Is.EqualTo(expectedX));
             Assert.That(commandArgumentParser.Y1, Is.EqualTo(expectedY1));
             Assert.That(commandArgumentParser.Y2, Is.EqualTo(expectedY2));
@@ -186,6 +183,7 @@ namespace GraphicalEditorTests
 //
 //            Assert.That(exception.Message, Is.EqualTo("ColourPixel command is expecting arguments in following format eg 'L 1 2 C'"));
 //        }
+
         // TODO: pass in rubbish that is not in our commands, such as "Q x h" etc - Check in Validator class
     }
 }
