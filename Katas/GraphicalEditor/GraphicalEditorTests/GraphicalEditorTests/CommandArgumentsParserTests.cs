@@ -204,16 +204,16 @@ namespace GraphicalEditorTests
             Assert.That(commandArgumentParser.Y, Is.EqualTo(expectedY));
             Assert.That(commandArgumentParser.Colour, Is.EqualTo(expectedColour));
         }
-//
-//        [TestCase("V 1 2 3 A")]
-//        public void ShouldRaiseExceptionIfVerticalSegmentValidatorIsNotValid(string line)
-//        {
-//            _mockValidator.Setup(v => v.IsValid(It.IsAny<string[]>())).Returns(false);
-//            var commandArgumentParser = new CommandArgumentParser(_mockValidator.Object);
-//            var exception = Assert.Throws<ArgumentException>(() => commandArgumentParser.Parse(line));
-//
-//            Assert.That(exception.Message, Is.EqualTo("VerticalSegment command is expecting arguments in following format eg 'V 1 2 3 A'"));
-//        }
+
+        [TestCase("H 1 2 3 A")]
+        public void ShouldRaiseExceptionIfHorizontalSegmentValidatorIsNotValid(string line)
+        {   
+            _mockValidator.Setup(v => v.IsValid(It.IsAny<string[]>())).Returns(false);
+            var commandArgumentParser = new CommandArgumentParser(_mockValidator.Object);
+            var exception = Assert.Throws<ArgumentException>(() => commandArgumentParser.Parse(line));
+
+            Assert.That(exception.Message, Is.EqualTo("HorizontalSegment command is expecting arguments in following format eg 'H 1 2 3 A'"));
+        }
 
         // TODO: pass in rubbish that is not in our commands, such as "Q x h" etc - Check in Validator class
     }

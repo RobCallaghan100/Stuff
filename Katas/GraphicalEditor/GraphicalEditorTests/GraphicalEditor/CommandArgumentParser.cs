@@ -111,6 +111,11 @@ namespace GraphicalEditor
                     break;
 
                 case "H":
+                    if (!IsValid(CommandType.HorizontalSegment, splitLine))
+                    {
+                        throw new ArgumentException("HorizontalSegment command is expecting arguments in following format eg 'H 1 2 3 A'");
+                    }
+
                     SetHorizontalSegmentArgumentValues(splitLine);
                     _commandType = CommandType.HorizontalSegment;
                     break;
