@@ -133,6 +133,7 @@
         "z": 1,
         "parent": "567ec29f-51d9-408f-bda0-a68780e7b793",
         "embeds": [
+          "68cdcaa9-632d-44f8-8cd1-d686d7d27de0",
           "12a59dae-3403-4ce6-8c56-0a1829a43cb4",
           "d0999e79-b2c4-4407-a414-253b54f230ac",
           "2d30409a-b87a-4a62-8208-c12c4c3ea45d",
@@ -526,6 +527,19 @@
           "id": "1b505abc-e6a8-4f01-8234-07d34a18335d"
         },
         "z": 3
+      },
+      "68cdcaa9-632d-44f8-8cd1-d686d7d27de0": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": -1500,
+          "y": 80
+        },
+        "z": 2,
+        "parent": "c1ff2851-f6eb-4b4f-a7d7-a8bcb33141ef",
+        "embeds": []
       }
     }
   },
@@ -1184,6 +1198,28 @@
         "IGW1CM8C",
         "SUB2MF4M"
       ]
+    },
+    "1LVVX": {
+      "Type": "AWS::EC2::NetworkAclEntry",
+      "Properties": {
+        "NetworkAclId": {
+          "Ref": "NACL4A36G"
+        },
+        "RuleNumber": "400",
+        "Egress": "true",
+        "Protocol": 6,
+        "PortRange": {
+          "From": "49152",
+          "To": "65535"
+        },
+        "CidrBlock": "0.0.0.0/0",
+        "RuleAction": "allow"
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "68cdcaa9-632d-44f8-8cd1-d686d7d27de0"
+        }
+      }
     }
   }
 }
