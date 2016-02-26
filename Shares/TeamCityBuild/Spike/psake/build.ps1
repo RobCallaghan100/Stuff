@@ -8,7 +8,7 @@ $psakeModule = (Get-ChildItem (".\packages\psake*\tools\psake.psm1")).FullNam
  
 Import-Module $psakeModule
 
-Invoke-psake -buildFile .\build\default.ps1 ` 
+Invoke-psake -buildFile .\builds\default.ps1 ` 
 	-taskList Test `
 	-framework 4.5.2 `
 	-properties @{ 
@@ -21,5 +21,3 @@ Write-Host "Build exit code:" $LASTEXITCODE
 # propogates exit code so that build fails when there is a problem
 exit $LASTEXITCODE
 
-
-Write-Host "dsdsds"
