@@ -1,6 +1,7 @@
 namespace WebApiMVCTDD.Interfaces
 {
     using System.Collections.Generic;
+    using global::Models;
     using Models;
 
     public interface IBooksRepository

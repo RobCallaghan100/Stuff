@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Http.Results;
+    using Models;
     using Moq;
     using NUnit.Framework;
     using WebApiMVCTDD.Controllers;

@@ -3,6 +3,7 @@ using System.Web.Http;
 
 namespace WebApiMVCTDD.Controllers
 {
+    using global::Models;
     using Interfaces;
     using Models;
 

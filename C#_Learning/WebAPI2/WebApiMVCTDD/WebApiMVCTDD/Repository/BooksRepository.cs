@@ -2,6 +2,7 @@ namespace WebApiMVCTDD.Repository
 {
     using System.Collections.Generic;
     using System.Linq;
+    using global::Models;
     using Interfaces;
     using Models;
 
