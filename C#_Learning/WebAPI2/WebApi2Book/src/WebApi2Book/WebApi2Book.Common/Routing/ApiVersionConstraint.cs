@@ -6,11 +6,11 @@
 
     public class ApiVersionConstraint : IHttpRouteConstraint
     {
-        private readonly string _allowedVersion;
+        public string AllowedVersion { get; private set; }
 
         public ApiVersionConstraint(string allowedVersion)
         {
-            _allowedVersion = allowedVersion.ToLowerInvariant();
+            AllowedVersion = allowedVersion.ToLowerInvariant();
         }
 
         public bool Match(HttpRequestMessage request, IHttpRoute route, string parameterName, IDictionary<string, object> values,
@@ -20,7 +20,7 @@
 
             if (values.TryGetValue(parameterName, out value) && value != null)
             {
-                return _allowedVersion.Equals(value.ToString().ToLowerInvariant());
+                return AllowedVersion.Equals(value.ToString().ToLowerInvariant());
             }
 
             return false;
