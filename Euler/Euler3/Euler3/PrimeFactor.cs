@@ -6,6 +6,7 @@
 
     public class PrimeFactor
     {
+
         public async Task<IEnumerable<long>> GetPrimeFactors(long number)
         {
             var tasks = new List<Task<IEnumerable<long>>>
@@ -22,14 +23,14 @@
             return factors.Intersect(primes);
         }
 
-        private static async Task<IEnumerable<long>> GetFactors(long number)
+        private async Task<IEnumerable<long>> GetFactors(long number)
         {
             return GetFactor(number);
         }
 
-        private static IEnumerable<long> GetFactor(long number)
+        public static IEnumerable<long> GetFactor(long number)
         {
-            for (long i = 2; i < (number/2); i++)
+            for (long i = 2; i <= (number/2); i++)
             {
                 if ((number % i) == 0)
                 {
@@ -43,7 +44,7 @@
             return GetPrime(number);
         }
 
-        private static IEnumerable<long> GetPrime(long number)
+        public static IEnumerable<long> GetPrime(long number)
         {
             yield return 2;
 
@@ -64,6 +65,19 @@
                     yield return i;
                 }
             }
+        }
+
+        public static bool IsPrimeNumber(long number)
+        {
+            for (var i = 2; i <= (number + 1)/2; i++)
+            {
+                if ((number%i) == 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
