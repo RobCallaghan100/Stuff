@@ -10,10 +10,26 @@ namespace Euler3
     {
         static void Main(string[] args)
         {
-            // 13195 are 5, 7, 13 and 29
-            long number = 300000;
+            long[] arrResult;
+            Console.Write("Enter a number to find prime factor: ");
+            long n = Convert.ToInt64(Console.ReadLine());
 
-            GetPrimeFactors(number);
+            Console.WriteLine(DateTime.UtcNow + "\n");
+
+            long count = Maths.GetPrimeFactors(n, out arrResult);
+            for (long i = 0; i < count; i++)
+            {
+                Console.Write("{0,4:n}", arrResult[i]);
+                if (i != count - 1)
+                    Console.Write(" * ");
+            }
+            Console.WriteLine();
+            Console.ReadLine();
+
+            //            // 13195 are 5, 7, 13 and 29
+            //            long number = 300000;
+            //
+            //            GetPrimeFactors(number);
         }
 
         private static async void GetPrimeFactors(long number)
