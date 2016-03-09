@@ -10,19 +10,44 @@ namespace Euler3
     {
         static void Main(string[] args)
         {
-            // 13195 are 5, 7, 13 and 29
-            long number = 600851475143;// 300000 600851475143
+            const long numm = 600851475143;
+            long newnumm = numm;
+            long largestFact = 0;
 
-            Console.WriteLine(DateTime.UtcNow);
-
-            foreach (var pf in GetPrimeFactors2(number).AsParallel())
+            int counter = 2;
+            while (counter * counter <= newnumm)
             {
-                Console.WriteLine(pf);
+                if (newnumm % counter == 0)
+                {
+                    newnumm = newnumm / counter;
+                    largestFact = counter;
+                }
+                else
+                {
+                    counter = (counter == 2) ? 3 : counter + 2;
+                }
+            }
+            if (newnumm > largestFact)
+            { // the remainder is a prime number
+                largestFact = newnumm;
             }
 
-            Console.WriteLine(DateTime.UtcNow);
+            Console.WriteLine(largestFact);
             Console.ReadLine();
-            //GetPrimeFactors(number);
+
+            //            // 13195 are 5, 7, 13 and 29
+            //            long number = 600851475143;// 300000 600851475143
+            //
+            //            Console.WriteLine(DateTime.UtcNow);
+            //
+            //            foreach (var pf in GetPrimeFactors2(number).AsParallel())
+            //            {
+            //                Console.WriteLine(pf);
+            //            }
+            //
+            //            Console.WriteLine(DateTime.UtcNow);
+            //            Console.ReadLine();
+            //            //GetPrimeFactors(number);
         }
 
         private static IEnumerable<long> GetPrimeFactors2(long number)
