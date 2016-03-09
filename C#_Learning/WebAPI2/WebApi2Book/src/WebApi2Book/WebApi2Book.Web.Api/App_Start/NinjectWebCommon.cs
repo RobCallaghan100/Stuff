@@ -61,8 +61,6 @@ namespace WebApi2Book.Web.Api.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            // TODO: Should it be here?
-           // container.Bind<IDateTime>().To<DateTimeAdapter>().InSingletonScope();
         }        
     }
 }
