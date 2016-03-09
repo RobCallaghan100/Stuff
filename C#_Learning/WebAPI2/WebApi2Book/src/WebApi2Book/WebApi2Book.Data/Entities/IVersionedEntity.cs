@@ -1,6 +1,6 @@
 ﻿namespace WebApi2Book.Data.Entities
 {
-    interface IVersionedEntity
+    public interface IVersionedEntity
     {
         byte[] Version { get; set; }
     }
