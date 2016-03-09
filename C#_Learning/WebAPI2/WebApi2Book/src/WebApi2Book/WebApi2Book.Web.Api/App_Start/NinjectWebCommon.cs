@@ -1,15 +1,16 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WebApi2Book.Web.Api.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(WebApi2Book.Web.Api.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WebApi2Book.Web.Api.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(WebApi2Book.Web.Api.NinjectWebCommon), "Stop")]
 
-namespace WebApi2Book.Web.Api.App_Start
+namespace WebApi2Book.Web.Api
 {
     using System;
     using System.Web;
-
+    using System.Web.Http;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
     using Ninject.Web.Common;
+    using WebApi2Book.Common;
 
     public static class NinjectWebCommon 
     {
@@ -22,8 +23,19 @@ namespace WebApi2Book.Web.Api.App_Start
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+
+            IKernel container = null;
+            bootstrapper.Initialize(() =>
+            {
+                container = CreateKernel();
+
+                return container;
+            });
+
+            var resolver = new NinjectDependencyResolver(container); // our IDependencyResolver
+            GlobalConfiguration.Configuration.DependencyResolver = resolver;
         }
+        
         
         /// <summary>
         /// Stops the application.
@@ -61,6 +73,8 @@ namespace WebApi2Book.Web.Api.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            var containerConfigurator = new NinjectConfigurator(); // our bindings
+            containerConfigurator.Configure(kernel);
         }        
     }
 }
