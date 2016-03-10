@@ -46,6 +46,7 @@
 
             container.Bind<ISessionFactory>().ToConstant(sessionFactory); // single ISessionFactory per application
             container.Bind<ISession>().ToMethod(CreateSession).InRequestScope();
+            container.Bind<IActionTransactionHelper>().To<ActionTransactionHelper>().InRequestScope();
         }
 
         private ISession CreateSession(IContext context)

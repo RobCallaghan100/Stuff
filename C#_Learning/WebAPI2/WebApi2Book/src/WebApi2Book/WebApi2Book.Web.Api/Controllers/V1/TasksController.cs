@@ -5,7 +5,10 @@ using WebApi2Book.Web.Api.Models;
 
 namespace WebApi2Book.Web.Api.Controllers.V1
 {
-    [ApiVersion1RoutePrefix("tasks")]
+    using Common;
+
+    [ApiVersion1RoutePrefix("tasks")]   
+    [UnitOfWorkActionFilter]
     public class TasksController : ApiController
     {
         [Route("", Name = "AddTaskRoute")]
