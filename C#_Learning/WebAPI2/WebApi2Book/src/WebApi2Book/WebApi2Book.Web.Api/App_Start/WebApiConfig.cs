@@ -15,6 +15,8 @@ namespace WebApi2Book.Web.Api
             config.MapHttpAttributeRoutes(constraintsResolver);
 
             config.Services.Replace(typeof(IHttpControllerSelector), new NamespaceHttpControllerSelector(config));
+
+            config.EnableSystemDiagnosticsTracing();
         }
     }
 }
