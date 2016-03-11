@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="NamespaceHttpControllerSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleExceptionLogger.cs" />
     <Compile Include="UnitOfWorkActionFilterAttribute.cs" />
   </ItemGroup>
   <ItemGroup>

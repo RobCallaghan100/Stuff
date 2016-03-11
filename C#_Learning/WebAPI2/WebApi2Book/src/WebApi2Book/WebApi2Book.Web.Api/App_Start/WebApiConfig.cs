@@ -6,6 +6,7 @@ using WebApi2Book.Web.Common;
 
 namespace WebApi2Book.Web.Api
 {
+    using System.Web.Http.ExceptionHandling;
     using System.Web.Http.Tracing;
     using WebApi2Book.Common;
     using WebApi2Book.Common.Logging;
@@ -23,6 +24,8 @@ namespace WebApi2Book.Web.Api
             config.EnableSystemDiagnosticsTracing();
             config.Services.Replace(typeof(ITraceWriter), 
                 new SimpleTraceWriter(WebContainerManager.Get<ILogManager>()));
+            config.Services.Add(typeof(IExceptionLogger), 
+                new SimpleExceptionLogger(WebContainerManager.Get<ILogManager>()));
         }
     }
 }

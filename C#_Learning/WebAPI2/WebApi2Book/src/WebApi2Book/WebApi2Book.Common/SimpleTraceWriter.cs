@@ -1,7 +1,6 @@
 ﻿namespace WebApi2Book.Common
 {
     using System;
-    using System.Diagnostics;
     using System.Net.Http;
     using System.Web.Http.Tracing;
     using log4net;
