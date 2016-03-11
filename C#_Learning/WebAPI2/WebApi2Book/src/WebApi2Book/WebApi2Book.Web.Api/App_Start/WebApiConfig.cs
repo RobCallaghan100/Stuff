@@ -9,6 +9,7 @@ namespace WebApi2Book.Web.Api
     using System.Web.Http.ExceptionHandling;
     using System.Web.Http.Tracing;
     using WebApi2Book.Common;
+    using WebApi2Book.Common.ErrorHandling;
     using WebApi2Book.Common.Logging;
 
     public static class WebApiConfig
@@ -26,6 +27,7 @@ namespace WebApi2Book.Web.Api
                 new SimpleTraceWriter(WebContainerManager.Get<ILogManager>()));
             config.Services.Add(typeof(IExceptionLogger), 
                 new SimpleExceptionLogger(WebContainerManager.Get<ILogManager>()));
+            config.Services.Replace(typeof (IExceptionHandler), new GlobalExceptionHandler());
         }
     }
 }
