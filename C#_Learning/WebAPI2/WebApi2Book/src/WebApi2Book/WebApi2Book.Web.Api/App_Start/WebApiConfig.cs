@@ -6,6 +6,10 @@ using WebApi2Book.Web.Common;
 
 namespace WebApi2Book.Web.Api
 {
+    using System.Web.Http.Tracing;
+    using WebApi2Book.Common;
+    using WebApi2Book.Common.Logging;
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
@@ -17,6 +21,8 @@ namespace WebApi2Book.Web.Api
             config.Services.Replace(typeof(IHttpControllerSelector), new NamespaceHttpControllerSelector(config));
 
             config.EnableSystemDiagnosticsTracing();
+            config.Services.Replace(typeof(ITraceWriter), 
+                new SimpleTraceWriter(WebContainerManager.Get<ILogManager>()));
         }
     }
 }
