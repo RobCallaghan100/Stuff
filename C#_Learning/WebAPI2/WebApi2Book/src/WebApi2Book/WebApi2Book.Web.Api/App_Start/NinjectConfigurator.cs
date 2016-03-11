@@ -11,7 +11,8 @@
     using Ninject.Web.Common;
     using WebApi2Book.Common;
     using WebApi2Book.Common.Logging;
-    
+    using WebApi2Book.Common.Security;
+
     public class NinjectConfigurator
     {
         public void Configure(IKernel container)
@@ -22,9 +23,17 @@
         private void AddBindings(IKernel container)
         {
             Configurelog4net(container);
+            ConfigureUserSession(container);
             ConfigureNHibernate(container);
 
             container.Bind<IDateTime>().To<DateTimeAdapter>().InSingletonScope();
+        }
+
+        private void ConfigureUserSession(IKernel container)
+        {
+            var userSession = new UserSession();
+            container.Bind<IUserSession>().ToConstant(userSession).InSingletonScope();
+            container.Bind<IWebUserSession>().ToConstant(userSession).InSingletonScope();
         }
 
         private void Configurelog4net(IKernel container)
