@@ -25,8 +25,10 @@
         {
             task.CreatedDate = _dateTime.UtcNow;
             task.Status = _session.QueryOver<Status>().Where(x => x.Name == "Not Started").SingleOrDefault();
-            task.CreatedBy =
-                _session.QueryOver<User>().Where(x => x.Username == _userSession.UserName).SingleOrDefault();
+//            task.CreatedBy =
+//                _session.QueryOver<User>().Where(x => x.Username == _userSession.UserName).SingleOrDefault();
+
+            task.CreatedBy = _session.Get<User>(4L);
 
             if (task.Users != null && task.Users.Any())
             {

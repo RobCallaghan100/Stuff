@@ -7,9 +7,9 @@
         public UserMap()
         {
             Id(x => x.UserId);
-            Map(x => x.Firstname);
-            Map(x => x.Lastname);
-            Map(x => x.Username);
+            Map(x => x.Firstname).Not.Nullable();
+            Map(x => x.Lastname).Not.Nullable();
+            Map(x => x.Username).Not.Nullable();
         }
     }
 }
