@@ -1,6 +1,8 @@
 ﻿namespace WebApi2Book.Web.Api
 {
+    using Data.QueryProcessors;
     using Data.SqlServer.Mapping;
+    using Data.SqlServer.QueryProcessors;
     using FluentNHibernate.Cfg;
     using FluentNHibernate.Cfg.Db;
     using log4net.Config;
@@ -27,6 +29,7 @@
             ConfigureNHibernate(container);
 
             container.Bind<IDateTime>().To<DateTimeAdapter>().InSingletonScope();
+            container.Bind<IAddTaskQueryProcessor>().To<AddTaskQueryProcessor>().InRequestScope();
         }
 
         private void ConfigureUserSession(IKernel container)
