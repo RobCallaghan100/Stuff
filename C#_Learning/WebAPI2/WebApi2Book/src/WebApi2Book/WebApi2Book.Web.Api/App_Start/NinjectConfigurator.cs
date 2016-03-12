@@ -1,4 +1,5 @@
 ﻿using WebApi2Book.Web.Api.AutoMappingConfiguration;
+using WebApi2Book.Web.Api.MaintenanceProcessing;
 
 namespace WebApi2Book.Web.Api
 {
@@ -46,6 +47,8 @@ namespace WebApi2Book.Web.Api
             container.Bind<IAutoMapperTypeConfigurator>().To<UserToUserEntityAutoMapperTypeConfigurator>().InSingletonScope();
             container.Bind<IAutoMapperTypeConfigurator>().To<NewTaskToTaskEntityAutoMapperConfigurator>().InSingletonScope();
             container.Bind<IAutoMapperTypeConfigurator>().To<TaskEntityToTaskAutoMapperTypeConfigurator>().InSingletonScope();
+
+            container.Bind<IAddTaskMaintenanceProcessor>().To<AddTaskMaintenanceProcessor>().InRequestScope();
         }
 
         private void ConfigureUserSession(IKernel container)
