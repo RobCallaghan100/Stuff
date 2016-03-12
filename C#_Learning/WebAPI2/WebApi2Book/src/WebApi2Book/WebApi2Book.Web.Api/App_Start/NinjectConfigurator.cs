@@ -14,6 +14,7 @@
     using WebApi2Book.Common;
     using WebApi2Book.Common.Logging;
     using WebApi2Book.Common.Security;
+    using WebApi2Book.Common.TypeMapping;
 
     public class NinjectConfigurator
     {
@@ -27,9 +28,15 @@
             Configurelog4net(container);
             ConfigureUserSession(container);
             ConfigureNHibernate(container);
+            ConfigureAutoMapper(container);
 
             container.Bind<IDateTime>().To<DateTimeAdapter>().InSingletonScope();
             container.Bind<IAddTaskQueryProcessor>().To<AddTaskQueryProcessor>().InRequestScope();
+        }
+
+        private void ConfigureAutoMapper(IKernel container)
+        {
+            container.Bind<IAutoMapper>().To<AutoMapperAdapter>().InSingletonScope();
         }
 
         private void ConfigureUserSession(IKernel container)
