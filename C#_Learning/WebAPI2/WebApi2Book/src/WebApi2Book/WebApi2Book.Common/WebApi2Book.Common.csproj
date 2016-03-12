@@ -94,6 +94,9 @@
     <Compile Include="Security\IWebUserSession.cs" />
     <Compile Include="Security\UserSession.cs" />
     <Compile Include="SimpleTraceWriter.cs" />
+    <Compile Include="TypeMapping\AutoMapperAdapter.cs" />
+    <Compile Include="TypeMapping\IAutoMapper.cs" />
+    <Compile Include="TypeMapping\IAutoMapperTypeConfigurator.cs" />
     <Compile Include="WebContainerManager.cs" />
   </ItemGroup>
   <ItemGroup>
