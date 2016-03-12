@@ -1,4 +1,6 @@
-﻿namespace WebApi2Book.Web.Api
+﻿using WebApi2Book.Web.Api.AutoMappingConfiguration;
+
+namespace WebApi2Book.Web.Api
 {
     using Data.QueryProcessors;
     using Data.SqlServer.Mapping;
@@ -37,6 +39,13 @@
         private void ConfigureAutoMapper(IKernel container)
         {
             container.Bind<IAutoMapper>().To<AutoMapperAdapter>().InSingletonScope();
+
+            container.Bind<IAutoMapperTypeConfigurator>().To<StatusEntityToStatusAutoMapperTypeConfigurator>().InSingletonScope();
+            container.Bind<IAutoMapperTypeConfigurator>().To<StatusToStatusEntityAutoMapperTypeConfigurator>().InSingletonScope();
+            container.Bind<IAutoMapperTypeConfigurator>().To<UserEntityToUserAutoMapperTypeConfigurator>().InSingletonScope();
+            container.Bind<IAutoMapperTypeConfigurator>().To<UserToUserEntityAutoMapperTypeConfigurator>().InSingletonScope();
+            container.Bind<IAutoMapperTypeConfigurator>().To<NewTaskToTaskEntityAutoMapperConfigurator>().InSingletonScope();
+            container.Bind<IAutoMapperTypeConfigurator>().To<TaskEntityToTaskAutoMapperTypeConfigurator>().InSingletonScope();
         }
 
         private void ConfigureUserSession(IKernel container)

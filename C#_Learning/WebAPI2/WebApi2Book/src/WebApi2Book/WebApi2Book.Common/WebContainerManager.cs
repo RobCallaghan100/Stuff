@@ -8,7 +8,7 @@
 
     public static class WebContainerManager
     {
-        public static IDependencyResolver GetDependencyResolver()
+        private static IDependencyResolver GetDependencyResolver()
         {
             var dependencyResolver = GlobalConfiguration.Configuration.DependencyResolver;
 
