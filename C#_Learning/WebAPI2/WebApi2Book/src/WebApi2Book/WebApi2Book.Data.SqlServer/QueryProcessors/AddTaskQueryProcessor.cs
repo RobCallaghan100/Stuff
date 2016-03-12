@@ -28,7 +28,7 @@
 //            task.CreatedBy =
 //                _session.QueryOver<User>().Where(x => x.Username == _userSession.UserName).SingleOrDefault();
 
-            task.CreatedBy = _session.Get<User>(4L);
+            task.CreatedBy = _session.Get<User>(4L); // HACK
 
             if (task.Users != null && task.Users.Any())
             {
