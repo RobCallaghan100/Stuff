@@ -1,9 +1,11 @@
 namespace SchedulerServices
 {
+    using System;
+    using System.Threading.Tasks;
     using Models;
 
     public interface IFinanceClient
     {
-        Price Get(string epicCode);
+        Task<Price> Get(string epicCode, DateTime dateTime);
     }
 }

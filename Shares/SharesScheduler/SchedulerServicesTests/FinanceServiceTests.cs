@@ -1,5 +1,7 @@
 ﻿namespace SchedulerServicesTests
 {
+    using System;
+    using System.Threading.Tasks;
     using Models;
     using Moq;
     using NUnit.Framework;
@@ -9,13 +11,13 @@
     public class FinanceServiceTests
     {
         [Test]
-        public void ShouldGetLatestPrice()
+        public async void ShouldGetLatestPrice()
         {
             var mockYahooClient = new Mock<IFinanceClient>();
-            mockYahooClient.Setup(yc => yc.Get(It.IsAny<string>())).Returns(GetPrice());
+            mockYahooClient.Setup(yc => yc.Get(It.IsAny<string>(), It.IsAny<DateTime>())).ReturnsAsync(GetPrice());
             var financeService = new FinanceService(mockYahooClient.Object);
 
-            var price = financeService.Get("VOD");
+            var price = await financeService.Get("VOD", new DateTime(2016, 01, 04));
 
             Assert.That(price, Is.Not.Null);
             Assert.That(price.Epic, Is.EqualTo("VOD"));
@@ -27,7 +29,7 @@
             Assert.That(price.Volume, Is.EqualTo(36236732M));
         }
 
-        private static Price GetPrice()
+        private Price GetPrice()
         {
             return new Price
             {

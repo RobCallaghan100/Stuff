@@ -1,5 +1,7 @@
 namespace SchedulerServices
 {
+    using System;
+    using System.Threading.Tasks;
     using Models;
 
     public class FinanceService
@@ -13,9 +15,9 @@ namespace SchedulerServices
             _financeClient = financeClient;
         }
 
-        public Price Get(string epicCode)
+        public Task<Price> Get(string epicCode, DateTime dateTime)
         {
-            return _financeClient.Get(epicCode);
+            return _financeClient.Get(epicCode, dateTime);
         }
     }
 }
