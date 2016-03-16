@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\YahooQueryStringBuilderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FinanceServiceTests.cs" />
     <Compile Include="YahooFinanceClientTests.cs" />

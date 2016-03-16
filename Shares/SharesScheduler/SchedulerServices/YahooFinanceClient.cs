@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using Models;
+using SchedulerServices.Builders;
 using static System.Decimal;
 
 namespace SchedulerServices
@@ -11,6 +12,7 @@ namespace SchedulerServices
 
     public class YahooFinanceClient : IFinanceClient, IDisposable
     {
+        private readonly IQueryStringBuilder _queryStringBuilder;
         private readonly HttpClient _httpClient;
         private Uri _baseAddress;
 
@@ -20,9 +22,10 @@ namespace SchedulerServices
             set { _baseAddress = value;  }
         }
             
-        public YahooFinanceClient()
+        public YahooFinanceClient(IQueryStringBuilder queryStringBuilder)
         {
-            _baseAddress = new Uri("http://real-chart.finance.yahoo.com");
+            _queryStringBuilder = queryStringBuilder;
+            _baseAddress = new Uri("http://real-chart.finance.yahoo.com"); // TODO: get from config
             _httpClient = new HttpClient();
         }
 
@@ -39,7 +42,8 @@ namespace SchedulerServices
 
             try
             {
-                var queryString = $"table.csv?s={epicCode}&a={dateTime.Month - 1}&b={dateTime.Day}&c={dateTime.Year}&d={dateTime.Month - 1}&e={dateTime.Day}&f={dateTime.Year}&g=d";
+                // var queryString = $"table.csv?s={epicCode}&a={dateTime.Month - 1}&b={dateTime.Day}&c={dateTime.Year}&d={dateTime.Month - 1}&e={dateTime.Day}&f={dateTime.Year}&g=d";
+                var queryString = _queryStringBuilder.BuildQueryString(epicCode, dateTime);
                 using (var response = await GetHttpClient().GetAsync(queryString))
                 using (var content = response.Content)
                 {
@@ -54,6 +58,7 @@ namespace SchedulerServices
 
                             if (lineNumber > 0)
                             {
+                                // TODO: another reason to change, imagine if new columns or the order of column changed - put in new class (PriceParser)
                                 var splitLine = line.Split(',');
                                 var splitEpicCode = epicCode.Split('.');
 

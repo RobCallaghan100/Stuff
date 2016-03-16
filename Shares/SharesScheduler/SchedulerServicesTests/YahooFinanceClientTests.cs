@@ -1,5 +1,7 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 using Models;
+using Moq;
+using SchedulerServices.Builders;
 
 namespace SchedulerServicesTests
 {
@@ -14,8 +16,11 @@ namespace SchedulerServicesTests
         [Test]
         public async Task ShouldReturnPriceFromGet()
         {
+            TODO: use ninject to do parameters??
+
             string epicCode = "VOD.L";
-            var yahooFinanceClient = new YahooFinanceClient();
+            var mockQueryStringBuilder = new Mock<IQueryStringBuilder>();
+            var yahooFinanceClient = new YahooFinanceClient(mockQueryStringBuilder.Object);
 
             var dateTime = new DateTime(2016, 1, 4);
             var price = await yahooFinanceClient.Get(epicCode, dateTime);
@@ -35,7 +40,8 @@ namespace SchedulerServicesTests
         public async Task ShouldRaiseExceptionFromGetIfCannotRespondFromEndpoint()
         {
             string epicCode = "VOD.L";
-            var yahooFinanceClient = new YahooFinanceClient
+            var mockQueryStringBuilder = new Mock<IQueryStringBuilder>();
+            var yahooFinanceClient = new YahooFinanceClient(mockQueryStringBuilder.Object)
             {
                 BaseAddress = new Uri("http://real-chart.finance.yyahoo.com")
             };
