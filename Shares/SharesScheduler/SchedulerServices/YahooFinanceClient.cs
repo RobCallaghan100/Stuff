@@ -12,13 +12,25 @@ namespace SchedulerServices
     public class YahooFinanceClient : IFinanceClient, IDisposable
     {
         private readonly HttpClient _httpClient;
+        private Uri _baseAddress;
 
+        public Uri BaseAddress  
+        {
+            get { return _baseAddress; }
+            set { _baseAddress = value;  }
+        }
+            
         public YahooFinanceClient()
         {
-            _httpClient = new HttpClient
-            {
-                BaseAddress = new Uri("http://real-chart.finance.yahoo.com")
-            };
+            _baseAddress = new Uri("http://real-chart.finance.yahoo.com");
+            _httpClient = new HttpClient();
+        }
+
+        private HttpClient GetHttpClient()
+        {
+            _httpClient.BaseAddress = _baseAddress;
+
+            return _httpClient;
         }
 
         public async Task<Price> Get(string epicCode, DateTime dateTime)
@@ -28,7 +40,7 @@ namespace SchedulerServices
             try
             {
                 var queryString = $"table.csv?s={epicCode}&a={dateTime.Month - 1}&b={dateTime.Day}&c={dateTime.Year}&d={dateTime.Month - 1}&e={dateTime.Day}&f={dateTime.Year}&g=d";
-                using (var response = await _httpClient.GetAsync(queryString))
+                using (var response = await GetHttpClient().GetAsync(queryString))
                 using (var content = response.Content)
                 {
                     var stream = await content.ReadAsStreamAsync();
@@ -68,7 +80,7 @@ namespace SchedulerServices
             catch (Exception ex)
             {
                 // TODO: logging  
-                throw;
+                throw new ApplicationException("Problem calling yahoo finance", ex);
             }
 
             return price;
