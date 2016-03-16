@@ -7,6 +7,7 @@ using WebApi2Book.Web.Api.Models;
 namespace WebApi2Book.Web.Api.Controllers.V1
 {
     using Common;
+    using WebApi2Book.Common;
 
     [ApiVersion1RoutePrefix("tasks")]   
     [UnitOfWorkActionFilter]
@@ -21,6 +22,7 @@ namespace WebApi2Book.Web.Api.Controllers.V1
 
         [Route("", Name = "AddTaskRoute")]
         [HttpPost]
+        [Authorize(Roles = Constants.RoleNames.Manager)]
         public IHttpActionResult AddTask(HttpRequestMessage requestMessage, NewTask newTask)
         {
             var task = _addTaskMaintenanceProcessor.AddTask(newTask);
