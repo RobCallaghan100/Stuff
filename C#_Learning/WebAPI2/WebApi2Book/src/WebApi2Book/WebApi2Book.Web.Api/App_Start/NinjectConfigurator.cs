@@ -14,6 +14,7 @@ namespace WebApi2Book.Web.Api
     using Ninject;
     using Ninject.Activation;
     using Ninject.Web.Common;
+    using Security;
     using WebApi2Book.Common;
     using WebApi2Book.Common.Logging;
     using WebApi2Book.Common.Security;
@@ -49,6 +50,8 @@ namespace WebApi2Book.Web.Api
             container.Bind<IAutoMapperTypeConfigurator>().To<TaskEntityToTaskAutoMapperTypeConfigurator>().InSingletonScope();
 
             container.Bind<IAddTaskMaintenanceProcessor>().To<AddTaskMaintenanceProcessor>().InRequestScope();
+
+            container.Bind<IBasicSecurityService>().To<BasicSecurityService>().InSingletonScope();
         }
 
         private void ConfigureUserSession(IKernel container)
