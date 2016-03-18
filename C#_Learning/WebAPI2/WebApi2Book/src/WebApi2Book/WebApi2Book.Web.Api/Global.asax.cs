@@ -1,5 +1,6 @@
 ﻿using System.Web.Http;
 using WebApi2Book.Common.TypeMapping;
+using WebApi2Book.Web.Api.Security;
 
 namespace WebApi2Book.Web.Api
 {
@@ -12,7 +13,17 @@ namespace WebApi2Book.Web.Api
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
+            RegisterHandlers();
+
             new AutoMapperConfigurator().Configure(WebContainerManager.GetAll<IAutoMapperTypeConfigurator>());
+        }
+
+        private void RegisterHandlers()
+        {
+            var logManager = WebContainerManager.Get<ILogManager>();
+
+            GlobalConfiguration.Configuration.MessageHandlers.Add(
+                new BasicAuthenticationMessageHandler(logManager, WebContainerManager.Get<IBasicSecurityService>()));
         }
 
         protected void Application_Error()
