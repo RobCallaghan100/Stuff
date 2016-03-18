@@ -19,14 +19,12 @@ namespace TipCalculator
             Assert.That(result, Is.EqualTo(expectedTotalAmount));
         }
 
-        [Test]
+        [TestCase(100, -1, 0)]
         public void ShouldThrowExceptionIfTipBelowZero(decimal billAmount, decimal tip, decimal expectedTotalAmount)
         {
             var tipCalculator = new TipCalculator();
 
-            var result = tipCalculator.Calculate(billAmount, tip);
-
-            Assert.Throws(typeof(Exception), ))
+            Assert.That(() => tipCalculator.Calculate(billAmount, tip), Throws.TypeOf<Exception>());
         }
     }
 }
