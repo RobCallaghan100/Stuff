@@ -2,6 +2,6 @@
 {
     public interface IWeapon
     {
-        void Hit(string target);
+        string Hit(string target);
     }
 }
