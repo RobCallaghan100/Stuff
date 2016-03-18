@@ -1,4 +1,5 @@
-﻿using WebApi2Book.Data.Entities;
+﻿
+using WebApi2Book.Web.Api.Models;
 
 namespace WebApi2Book.Data.QueryProcessors
 {
