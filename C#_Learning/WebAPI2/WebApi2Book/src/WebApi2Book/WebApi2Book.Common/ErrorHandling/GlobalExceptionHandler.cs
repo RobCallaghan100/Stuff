@@ -31,6 +31,12 @@
                 return;
             }
 
+            if (exception is BusinessRuleViolationException)
+            {
+                context.Result = new SimpleErrorResult(context.Request, HttpStatusCode.PaymentRequired, exception.Message);
+                return;
+            }
+
             context.Result = new SimpleErrorResult(context.Request, HttpStatusCode.InternalServerError, exception.Message);
         }
     }
