@@ -35,7 +35,9 @@ namespace WebApi2Book.Web.Api
             ConfigureAutoMapper(container);
 
             container.Bind<IDateTime>().To<DateTimeAdapter>().InSingletonScope();
+
             container.Bind<IAddTaskQueryProcessor>().To<AddTaskQueryProcessor>().InRequestScope();
+            container.Bind<ITaskByIdQueryProcessor>().To<TaskByIdQueryProcessor>().InRequestScope();
         }
 
         private void ConfigureAutoMapper(IKernel container)
