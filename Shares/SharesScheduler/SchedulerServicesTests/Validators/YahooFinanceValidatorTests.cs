@@ -34,5 +34,8 @@ namespace SchedulerServicesTests.Validators
             Assert.That(result.IsValid, Is.EqualTo(expectedValid));
             Assert.That(result.Message, Is.EqualTo(expectedMessage));
         }
+
+         todo: add test with wrong number of columns, should be 7
+         todo: then do parser in YahooFinanceClient and their associated tests
     }
 }
