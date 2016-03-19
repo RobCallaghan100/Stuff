@@ -2,6 +2,7 @@
 using System.IO;
 using Models;
 using SchedulerServices.Builders;
+using SchedulerServices.Validators;
 using static System.Decimal;
 
 namespace SchedulerServices
@@ -13,6 +14,7 @@ namespace SchedulerServices
     public class YahooFinanceClient : IFinanceClient, IDisposable
     {
         private readonly IQueryStringBuilder _queryStringBuilder;
+        private readonly IValidator _validator;
         private readonly HttpClient _httpClient;
         private Uri _baseAddress;
 
@@ -22,9 +24,10 @@ namespace SchedulerServices
             set { _baseAddress = value;  }
         }
             
-        public YahooFinanceClient(IQueryStringBuilder queryStringBuilder)
+        public YahooFinanceClient(IQueryStringBuilder queryStringBuilder, IValidator validator)
         {
             _queryStringBuilder = queryStringBuilder;
+            _validator = validator;
 
             _baseAddress = new Uri("http://real-chart.finance.yahoo.com"); // TODO: get from config
             _httpClient = new HttpClient();
@@ -56,12 +59,13 @@ namespace SchedulerServices
                         {
                             // TODO: validate that column headers are correct
 
+                            // TODO: another reason to change, imagine if new columns or the order of column changed - put in new class (PriceParser)
+
+                            var splitLine = line.Split(',');
+                                
                             if (lineNumber > 0)
                             {
-                                // TODO: another reason to change, imagine if new columns or the order of column changed - put in new class (PriceParser)
-                                var splitLine = line.Split(',');
                                 var splitEpicCode = epicCode.Split('.');
-
                                 price.Epic = epicCode;
                                 price.Date = DateTime.Parse(splitLine[0]);
                                 price.Open = Parse(splitLine[1]);
@@ -75,6 +79,14 @@ namespace SchedulerServices
                                 {
                                     price.Market = splitEpicCode[1];
                                 }
+                            }
+                            else
+                            {
+                                if (!_validator.CheckHeaders(splitLine).IsValid)
+                                {
+                                    throw new ApplicationException("Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close");
+                                }
+
                             }
 
                             lineNumber++;

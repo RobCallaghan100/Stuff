@@ -1,5 +1,7 @@
 ﻿using Moq;
 using SchedulerServices.Builders;
+using SchedulerServices.Messages;
+using SchedulerServices.Validators;
 
 namespace SchedulerServicesTests
 {
@@ -12,13 +14,16 @@ namespace SchedulerServicesTests
     public class YahooFinanceClientTests
     {
         private Mock<IQueryStringBuilder> _mockQueryStringBuilder;
+        private Mock<IValidator> _mockYahooFinanceValidator;
         private YahooFinanceClient _yahooFinanceClient;
 
         [SetUp]
         public void Setup()
         {
             _mockQueryStringBuilder = new Mock<IQueryStringBuilder>();
-            _yahooFinanceClient = new YahooFinanceClient(_mockQueryStringBuilder.Object);
+            _mockYahooFinanceValidator = new Mock<IValidator>();
+
+            _yahooFinanceClient = new YahooFinanceClient(_mockQueryStringBuilder.Object, _mockYahooFinanceValidator.Object);
         }
 
         [TearDown]
@@ -59,6 +64,23 @@ namespace SchedulerServicesTests
             var dateTime = new DateTime(2016, 1, 4);
 
             Assert.That(async () => await _yahooFinanceClient.Get(epicCode, dateTime), Throws.TypeOf<ApplicationException>());
+        }
+
+        [Test]
+        public async Task ShouldThrowExceptionIfHeadersNotValid()
+        {
+            string epicCode = "VOD.L";
+            _yahooFinanceClient.BaseAddress = new Uri("http://real-chart.finance.yahoo.com");
+            var validation = new Validation {IsValid = false};
+            _mockQueryStringBuilder.Setup(qsb => qsb.BuildQueryString(It.IsAny<string>(), It.IsAny<DateTime>()))
+                .Returns(GetQueryStringValue());
+            _mockYahooFinanceValidator.Setup(yfv => yfv.CheckHeaders(It.IsAny<string[]>())).Returns(validation);
+            var dateTime = new DateTime(2016, 1, 4);
+
+            var ex = Assert.ThrowsAsync<ApplicationException>(async () => await _yahooFinanceClient.Get(epicCode, dateTime));
+
+            Assert.That(ex.Message, Is.EqualTo("Problem calling yahoo finance"));
+            Assert.That(ex.InnerException.Message, Is.EqualTo("Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close"));
         }
 
         // TODO: get back range of dates
