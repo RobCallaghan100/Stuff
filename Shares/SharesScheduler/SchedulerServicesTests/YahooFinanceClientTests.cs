@@ -16,10 +16,10 @@ namespace SchedulerServicesTests
         [Test]
         public async Task ShouldReturnPriceFromGet()
         {
-            TODO: use ninject to do parameters??
-
             string epicCode = "VOD.L";
             var mockQueryStringBuilder = new Mock<IQueryStringBuilder>();
+            mockQueryStringBuilder.Setup(qsb => qsb.BuildQueryString(It.IsAny<string>(), It.IsAny<DateTime>()))
+                .Returns("table.csv?s=VOD.L&a=0&b=4&c=2016&d=0&e=4&f=2016&g=d");
             var yahooFinanceClient = new YahooFinanceClient(mockQueryStringBuilder.Object);
 
             var dateTime = new DateTime(2016, 1, 4);

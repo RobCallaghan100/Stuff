@@ -11,7 +11,7 @@
     public class FinanceServiceTests
     {
         [Test]
-        public async void ShouldGetLatestPrice()
+        public async Task ShouldGetLatestPrice()
         {
             var mockYahooClient = new Mock<IFinanceClient>();
             mockYahooClient.Setup(yc => yc.Get(It.IsAny<string>(), It.IsAny<DateTime>())).ReturnsAsync(GetPrice());
