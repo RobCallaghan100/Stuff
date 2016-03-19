@@ -25,6 +25,7 @@ namespace SchedulerServices
         public YahooFinanceClient(IQueryStringBuilder queryStringBuilder)
         {
             _queryStringBuilder = queryStringBuilder;
+
             _baseAddress = new Uri("http://real-chart.finance.yahoo.com"); // TODO: get from config
             _httpClient = new HttpClient();
         }
@@ -42,7 +43,6 @@ namespace SchedulerServices
 
             try
             {
-                //var queryString = $"table.csv?s={epicCode}&a={dateTime.Month - 1}&b={dateTime.Day}&c={dateTime.Year}&d={dateTime.Month - 1}&e={dateTime.Day}&f={dateTime.Year}&g=d";
                 var queryString = _queryStringBuilder.BuildQueryString(epicCode, dateTime);
                 using (var response = await GetHttpClient().GetAsync(queryString))
                 using (var content = response.Content)

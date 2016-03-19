@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using Models;
-using Moq;
+﻿using Moq;
 using SchedulerServices.Builders;
 
 namespace SchedulerServicesTests
@@ -13,17 +11,34 @@ namespace SchedulerServicesTests
     [TestFixture]
     public class YahooFinanceClientTests
     {
+        private Mock<IQueryStringBuilder> _mockQueryStringBuilder;
+        private YahooFinanceClient _yahooFinanceClient;
+
+        [SetUp]
+        public void Setup()
+        {
+            _mockQueryStringBuilder = new Mock<IQueryStringBuilder>();
+            _yahooFinanceClient = new YahooFinanceClient(_mockQueryStringBuilder.Object);
+        }
+
+        [TearDown]
+        public void Teardown()
+        {
+            _mockQueryStringBuilder = null;
+
+            _yahooFinanceClient.Dispose();
+            _yahooFinanceClient = null;
+        }
+
         [Test]
         public async Task ShouldReturnPriceFromGet()
         {
             string epicCode = "VOD.L";
-            var mockQueryStringBuilder = new Mock<IQueryStringBuilder>();
-            mockQueryStringBuilder.Setup(qsb => qsb.BuildQueryString(It.IsAny<string>(), It.IsAny<DateTime>()))
-                .Returns("table.csv?s=VOD.L&a=0&b=4&c=2016&d=0&e=4&f=2016&g=d");
-            var yahooFinanceClient = new YahooFinanceClient(mockQueryStringBuilder.Object);
+            _mockQueryStringBuilder.Setup(qsb => qsb.BuildQueryString(It.IsAny<string>(), It.IsAny<DateTime>()))
+                .Returns(GetQueryStringValue());
 
             var dateTime = new DateTime(2016, 1, 4);
-            var price = await yahooFinanceClient.Get(epicCode, dateTime);
+            var price = await _yahooFinanceClient.Get(epicCode, dateTime);
 
             Assert.That(price, Is.Not.Null);
             Assert.That(price.Epic, Is.EqualTo("VOD.L"));
@@ -40,17 +55,17 @@ namespace SchedulerServicesTests
         public async Task ShouldRaiseExceptionFromGetIfCannotRespondFromEndpoint()
         {
             string epicCode = "VOD.L";
-            var mockQueryStringBuilder = new Mock<IQueryStringBuilder>();
-            var yahooFinanceClient = new YahooFinanceClient(mockQueryStringBuilder.Object)
-            {
-                BaseAddress = new Uri("http://real-chart.finance.yyahoo.com")
-            };
-
+            _yahooFinanceClient.BaseAddress = new Uri("http://real-chart.finance.yyahoo.com");
             var dateTime = new DateTime(2016, 1, 4);
 
-            Assert.That(async () => await yahooFinanceClient.Get(epicCode, dateTime), Throws.TypeOf<ApplicationException>());
+            Assert.That(async () => await _yahooFinanceClient.Get(epicCode, dateTime), Throws.TypeOf<ApplicationException>());
         }
 
         // TODO: get back range of dates
+
+        private static string GetQueryStringValue()
+        {
+            return "table.csv?s=VOD.L&a=0&b=4&c=2016&d=0&e=4&f=2016&g=d";
+        }
     }
 }
