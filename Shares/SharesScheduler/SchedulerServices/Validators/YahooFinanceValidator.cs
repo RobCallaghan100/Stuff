@@ -2,7 +2,7 @@
 
 namespace SchedulerServices.Validators
 {
-    class YahooFinanceValidator : IValidator
+    public class YahooFinanceValidator : IValidator
     {
         public Validation CheckHeaders(string[] line)
         {
