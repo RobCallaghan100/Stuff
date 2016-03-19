@@ -45,11 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Angel.cs" />
+    <Compile Include="Dagger.cs" />
     <Compile Include="IWeapon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samurai.cs" />
     <Compile Include="Shuriken.cs" />
     <Compile Include="Sword.cs" />
+    <Compile Include="Warrior.cs" />
+    <Compile Include="WeakAttack.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
