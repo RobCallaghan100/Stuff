@@ -1,0 +1,22 @@
+﻿namespace ClassLibrary1
+{
+    using System;
+
+    public class Samurai
+    {
+        private readonly IWeapon[] _weapons;
+
+        public Samurai(IWeapon[] weapons)
+        {
+            _weapons = weapons;
+        }
+
+        public void Attack(string target)
+        {
+            foreach (var weapon in _weapons)
+            {
+                Console.WriteLine(weapon.Hit(target));
+            }
+        }
+    }
+}
