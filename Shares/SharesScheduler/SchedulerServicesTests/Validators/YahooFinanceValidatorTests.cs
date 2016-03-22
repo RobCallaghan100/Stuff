@@ -46,10 +46,14 @@ namespace SchedulerServicesTests.Validators
             Assert.That(result.Message, Is.EqualTo(expectedMessage));
         }
 
-        [Test]
-        public void ShouldReturnValidAsFalseIfNot7Columns()
+        [TestCase(false, "Expecting 7 columns", new[] { "Date", "Open", "High", "Low", "Close", "Volume", "Adj Close", "Extra Column" })]
+        [TestCase(false, "Expecting 7 columns", new[] { "Date", "Open", "High", "Low", "Close", "Volume" })]
+        public void ShouldReturnValidAsFalseIfNot7Columns(bool expectedValid, string expectedMessage, string[] line)
         {
-            Assert.IsFalse(true);
+            var result = _yahooFinanceValidator.CheckHeaders(line);
+
+            Assert.That(result.IsValid, Is.EqualTo(expectedValid));
+            Assert.That(result.Message, Is.EqualTo("Expecting 7 columns"));
         }
     }
 }
