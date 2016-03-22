@@ -30,7 +30,7 @@ angular.module('stockDogApp')
         // Helper: use lodash to find a watchlist with give Id
         var findById = function(listId){
           return _.find(Model.watchlists, function(watchlist){
-            return watchlist.id == parseInt(listId);
+            return watchlist.id === parseInt(listId);
           });
         };
 
