@@ -6,13 +6,26 @@ namespace SchedulerServicesTests.Validators
     [TestFixture]
     public class YahooFinanceValidatorTests
     {
+        private YahooFinanceValidator _yahooFinanceValidator;
+
+        [SetUp]
+        public void Setup()
+        {
+            _yahooFinanceValidator = new YahooFinanceValidator();
+        }
+
+        [TearDown]
+        public void Teardown()
+        {
+            _yahooFinanceValidator = null;
+        }
+
         [Test]
         public void ShouldCheckHeadersReturnValidIfHeadersAreAsExpected()
         {
             var line = new[] {"Date", "Open", "High", "Low", "Close", "Volume", "Adj Close"};
-            var yahooFinanceValidator = new YahooFinanceValidator();
 
-            var result = yahooFinanceValidator.CheckHeaders(line);
+            var result = _yahooFinanceValidator.CheckHeaders(line);
 
             Assert.That(result.IsValid, Is.True);
             Assert.That(string.IsNullOrEmpty(result.Message), Is.True);
@@ -27,15 +40,16 @@ namespace SchedulerServicesTests.Validators
         [TestCase(false, "Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close", new[] { "Date", "Open", "High", "Low", "Close", "Volume", "Adj CloseX" })]
         public void ShouldCheckHeadersReturnValidIsFalseIfHeadersAreNotAsExpected(bool expectedValid, string expectedMessage, string[] line)
         {
-            var yahooFinanceValidator = new YahooFinanceValidator();
-
-            var result = yahooFinanceValidator.CheckHeaders(line);
+            var result = _yahooFinanceValidator.CheckHeaders(line);
 
             Assert.That(result.IsValid, Is.EqualTo(expectedValid));
             Assert.That(result.Message, Is.EqualTo(expectedMessage));
         }
 
-         todo: add test with wrong number of columns, should be 7
-         todo: then do parser in YahooFinanceClient and their associated tests
+        [Test]
+        public void ShouldReturnValidAsFalseIfNot7Columns()
+        {
+            Assert.IsFalse(true);
+        }
     }
 }

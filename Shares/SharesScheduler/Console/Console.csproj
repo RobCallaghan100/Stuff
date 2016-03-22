@@ -49,6 +49,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{e3b60d4e-c39d-4fc8-b477-4e12c1de3651}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SchedulerServices\SchedulerServices.csproj">
+      <Project>{b79b0915-fa67-4fc9-b686-0f6041788b15}</Project>
+      <Name>SchedulerServices</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,6 @@
-﻿namespace Console
+﻿using SchedulerServices;
+
+namespace Console
 {
     class Program
     {
