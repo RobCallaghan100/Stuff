@@ -56,9 +56,9 @@ namespace SchedulerServices
                         string line = "";
                         while ((line = streamReader.ReadLine()) != null)
                         {
-                            // TODO: validate that column headers are correct
-
                             // TODO: another reason to change, imagine if new columns or the order of column changed - put in new class (PriceParser)
+                           // var yahooFinanceParser = new YahooFinanceParser();
+
 
                             var splitLine = line.Split(',');
                                 

@@ -44,6 +44,8 @@
     <Compile Include="FinanceService.cs" />
     <Compile Include="IFinanceClient.cs" />
     <Compile Include="Messages\Validation.cs" />
+    <Compile Include="Parsers\IYahooFinanceParser.cs" />
+    <Compile Include="Parsers\YahooFinanceParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Builders\YahooQueryStringBuilder.cs" />
     <Compile Include="Validators\IValidator.cs" />
