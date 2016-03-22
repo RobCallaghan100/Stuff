@@ -3,13 +3,18 @@ using Models;
 
 namespace SchedulerServices.Parsers
 {
-    public class YahooFinanceParser : IYahooFinanceParser
+    public class YahooFinanceParser : IFinanceParser
     {
-        public Price Parse(string line)
+        public Price Parse(string epicCode, string line)
         {
             Price price = null;
             try
             {
+//                if (splitEpicCode.Length >= 1)
+//                {
+//                    price.Market = splitEpicCode[1];
+//                }
+
                 var splitLine = line.Split(',');
 
                 price = new Price
@@ -26,7 +31,7 @@ namespace SchedulerServices.Parsers
             catch (Exception ex)
             {
                 // TODO: log
-                throw new ApplicationException("Error parsing values", ex);
+                    throw new ApplicationException("Error parsing values", ex);
             }
 
             return price;

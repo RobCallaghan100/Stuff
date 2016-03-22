@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Models;
 using SchedulerServices.Builders;
+using SchedulerServices.Parsers;
 using SchedulerServices.Validators;
 using static System.Decimal;
 
@@ -14,6 +15,7 @@ namespace SchedulerServices
     {
         private readonly IQueryStringBuilder _queryStringBuilder;
         private readonly IValidator _validator;
+        private readonly IFinanceParser _financeParser;
         private readonly HttpClient _httpClient;
         private Uri _baseAddress;
 
@@ -23,10 +25,11 @@ namespace SchedulerServices
             set { _baseAddress = value;  }
         }
             
-        public YahooFinanceClient(IQueryStringBuilder queryStringBuilder, IValidator validator)
+        public YahooFinanceClient(IQueryStringBuilder queryStringBuilder, IValidator validator, IFinanceParser financeParser)
         {
             _queryStringBuilder = queryStringBuilder;
             _validator = validator;
+            _financeParser = financeParser;
 
             _baseAddress = new Uri("http://real-chart.finance.yahoo.com"); // TODO: get from config
             _httpClient = new HttpClient();
@@ -56,28 +59,11 @@ namespace SchedulerServices
                         string line = "";
                         while ((line = streamReader.ReadLine()) != null)
                         {
-                            // TODO: another reason to change, imagine if new columns or the order of column changed - put in new class (PriceParser)
-                           // var yahooFinanceParser = new YahooFinanceParser();
-
-
                             var splitLine = line.Split(',');
                                 
                             if (lineNumber > 0)
                             {
-                                var splitEpicCode = epicCode.Split('.');
-                                price.Epic = epicCode;
-                                price.Date = DateTime.Parse(splitLine[0]);
-                                price.Open = Parse(splitLine[1]);
-                                price.High = Parse(splitLine[2]);
-                                price.Low = Parse(splitLine[3]);
-                                price.Close = Parse(splitLine[4]);
-                                price.Volume = Parse(splitLine[5]);
-                                price.AdjustedClose = Parse(splitLine[6]);
-
-                                if (splitEpicCode.Length >= 1)
-                                {
-                                    price.Market = splitEpicCode[1];
-                                }
+                                price = _financeParser.Parse(line, epicCode);
                             }
                             else
                             {
@@ -85,7 +71,6 @@ namespace SchedulerServices
                                 {
                                     throw new ApplicationException("Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close");
                                 }
-
                             }
 
                             lineNumber++;

@@ -1,5 +1,4 @@
 ﻿using System;
-using Models;
 using NUnit.Framework;
 using SchedulerServices.Parsers;
 
@@ -8,15 +7,28 @@ namespace SchedulerServicesTests.Parsers
     [TestFixture]
     public class YahooFinanceParserTests
     {
+        private YahooFinanceParser _yahooFinanceParser;
+
+        [SetUp]
+        public void Setup()
+        {
+            _yahooFinanceParser = new YahooFinanceParser();
+        }
+
+        [TearDown]
+        public void Teardown()
+        {
+            _yahooFinanceParser = null;
+        }
+
         [Test]
         public void ShouldPopulatePriceObject()
         {
             //  Date,Open,High,Low,Close,Volume,Adj Close
-            string line = "2016-01-04,219.50,220.074,215.375,216.00,73377400,216.00"; 
+            string line = "2016-01-04,219.50,220.074,215.375,216.00,73377400,216.00";
+            string epic = "VOD.L";
 
-            var yahooFinanceParser = new YahooFinanceParser();
-
-            var price = yahooFinanceParser.Parse(line);
+            var price = _yahooFinanceParser.Parse(epic, line);
 
             Assert.That(price, Is.Not.Null);
             Assert.That(price.Date, Is.EqualTo(new DateTime(2016, 01, 04)));
@@ -37,9 +49,9 @@ namespace SchedulerServicesTests.Parsers
         [TestCase("2016-01-04,201.54,220.074,215.375,216.00,73377400,wrongformat")]
         public void ShouldRaiseExceptionIfValuesCannotBeConverted(string line)
         {
-            var yahooFinanceParser = new YahooFinanceParser();
+            string epic = "VOD.L";
 
-            Assert.Throws<ApplicationException>(() => yahooFinanceParser.Parse(line));
+            Assert.Throws<ApplicationException>(() => _yahooFinanceParser.Parse(epic, line));
         }
     }
 }

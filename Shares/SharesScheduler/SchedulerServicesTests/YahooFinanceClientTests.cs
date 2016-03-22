@@ -1,6 +1,8 @@
-﻿using Moq;
+﻿using Models;
+using Moq;
 using SchedulerServices.Builders;
 using SchedulerServices.Messages;
+using SchedulerServices.Parsers;
 using SchedulerServices.Validators;
 
 namespace SchedulerServicesTests
@@ -16,20 +18,24 @@ namespace SchedulerServicesTests
         private Mock<IQueryStringBuilder> _mockQueryStringBuilder;
         private Mock<IValidator> _mockYahooFinanceValidator;
         private YahooFinanceClient _yahooFinanceClient;
+        private Mock<IFinanceParser> _mockYahooFinanceParser;
 
         [SetUp]
         public void Setup()
         {
             _mockQueryStringBuilder = new Mock<IQueryStringBuilder>();
             _mockYahooFinanceValidator = new Mock<IValidator>();
+            _mockYahooFinanceParser = new Mock<IFinanceParser>();
 
-            _yahooFinanceClient = new YahooFinanceClient(_mockQueryStringBuilder.Object, _mockYahooFinanceValidator.Object);
+            _yahooFinanceClient = new YahooFinanceClient(_mockQueryStringBuilder.Object, _mockYahooFinanceValidator.Object, _mockYahooFinanceParser.Object);
         }
 
         [TearDown]
         public void Teardown()
         {
             _mockQueryStringBuilder = null;
+            _mockYahooFinanceValidator = null;
+            _mockYahooFinanceParser = null;
 
             _yahooFinanceClient.Dispose();
             _yahooFinanceClient = null;
@@ -43,19 +49,12 @@ namespace SchedulerServicesTests
                 .Returns(GetQueryStringValue());
             _mockYahooFinanceValidator.Setup(yfv => yfv.CheckHeaders(It.IsAny<string[]>()))
                 .Returns(new Validation {IsValid = true});
+            _mockYahooFinanceParser.Setup(yfp => yfp.Parse(It.IsAny<string>(), It.IsAny<string>())).Returns(new Price());
 
             var dateTime = new DateTime(2016, 1, 4);
             var price = await _yahooFinanceClient.Get(epicCode, dateTime);
 
             Assert.That(price, Is.Not.Null);
-            Assert.That(price.Epic, Is.EqualTo("VOD.L"));
-            Assert.That(price.Date, Is.EqualTo(new DateTime(2016, 1, 4)));
-            Assert.That(price.Open, Is.GreaterThan(0M));
-            Assert.That(price.High, Is.GreaterThan(0M));
-            Assert.That(price.Low, Is.GreaterThan(0M));
-            Assert.That(price.Close, Is.GreaterThan(0M));
-            Assert.That(price.Volume, Is.GreaterThan(0M));
-            Assert.That(price.Market, Is.EqualTo("L")); 
         }
 
         [Test]
