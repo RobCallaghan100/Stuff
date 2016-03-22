@@ -7,18 +7,27 @@ namespace SchedulerServices.Parsers
     {
         public Price Parse(string line)
         {
-            var splitLine = line.Split(',');
-
-            var price = new Price
+            Price price = null;
+            try
             {
-                Date = DateTime.Parse(splitLine[0]),
-                Open = Decimal.Parse(splitLine[1]),
-                High = Decimal.Parse(splitLine[2]),
-                Low = Decimal.Parse(splitLine[3]),
-                Close = Decimal.Parse(splitLine[4]),
-                Volume = Decimal.Parse(splitLine[5]),
-                AdjustedClose = Decimal.Parse(splitLine[6])
-            };
+                var splitLine = line.Split(',');
+
+                price = new Price
+                {
+                    Date = DateTime.Parse(splitLine[0]),
+                    Open = Decimal.Parse(splitLine[1]),
+                    High = Decimal.Parse(splitLine[2]),
+                    Low = Decimal.Parse(splitLine[3]),
+                    Close = Decimal.Parse(splitLine[4]),
+                    Volume = Decimal.Parse(splitLine[5]),
+                    AdjustedClose = Decimal.Parse(splitLine[6])
+                };
+            }
+            catch (Exception ex)
+            {
+                // TODO: log
+                throw new ApplicationException("Error parsing values", ex);
+            }
 
             return price;
         }

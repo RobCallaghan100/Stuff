@@ -1,4 +1,5 @@
 ﻿using System;
+using Models;
 using NUnit.Framework;
 using SchedulerServices.Parsers;
 
@@ -25,6 +26,20 @@ namespace SchedulerServicesTests.Parsers
             Assert.That(price.Close, Is.EqualTo(216.00));
             Assert.That(price.Volume, Is.EqualTo(73377400));
             Assert.That(price.AdjustedClose, Is.EqualTo(216.00));
+        }
+
+        [TestCase("wrongformat,201.54,220.074,215.375,216.00,73377400,216.00")]
+        [TestCase("2016-01-04,wrongformat,220.074,215.375,216.00,73377400,216.00")]
+        [TestCase("2016-01-04,201.54,wrongformat,215.375,216.00,73377400,216.00")]
+        [TestCase("2016-01-04,201.54,220.074,wrongformat,216.00,73377400,216.00")]
+        [TestCase("2016-01-04,201.54,220.074,215.375,wrongformat,73377400,216.00")]
+        [TestCase("2016-01-04,201.54,220.074,215.375,216.00,wrongformat,216.00")]
+        [TestCase("2016-01-04,201.54,220.074,215.375,216.00,73377400,wrongformat")]
+        public void ShouldRaiseExceptionIfValuesCannotBeConverted(string line)
+        {
+            var yahooFinanceParser = new YahooFinanceParser();
+
+            Assert.Throws<ApplicationException>(() => yahooFinanceParser.Parse(line));
         }
     }
 }
