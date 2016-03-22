@@ -23,7 +23,7 @@ namespace SchedulerServicesTests.Validators
         [Test]
         public void ShouldCheckHeadersReturnValidIfHeadersAreAsExpected()
         {
-            var line = new[] {"Date", "Open", "High", "Low", "Close", "Volume", "Adj Close"};
+            var line = "Date,Open,High,Low,Close,Volume,Adj Close";
 
             var result = _yahooFinanceValidator.CheckHeaders(line);
 
@@ -31,14 +31,14 @@ namespace SchedulerServicesTests.Validators
             Assert.That(string.IsNullOrEmpty(result.Message), Is.True);
         }
 
-        [TestCase(false, "Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close", new[] { "DateX", "Open", "High", "Low", "Close", "Volume", "Adj Close" })]
-        [TestCase(false, "Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close", new[] { "Date", "OpenX", "High", "Low", "Close", "Volume", "Adj Close" })]
-        [TestCase(false, "Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close", new[] { "Date", "Open", "HighX", "Low", "Close", "Volume", "Adj Close" })]
-        [TestCase(false, "Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close", new[] { "Date", "Open", "High", "LowX", "Close", "Volume", "Adj Close" })]
-        [TestCase(false, "Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close", new[] { "Date", "Open", "High", "Low", "CloseX", "Volume", "Adj Close" })]
-        [TestCase(false, "Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close", new[] { "Date", "Open", "High", "Low", "Close", "VolumeX", "Adj Close" })]
-        [TestCase(false, "Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close", new[] { "Date", "Open", "High", "Low", "Close", "Volume", "Adj CloseX" })]
-        public void ShouldCheckHeadersReturnValidIsFalseIfHeadersAreNotAsExpected(bool expectedValid, string expectedMessage, string[] line)
+        [TestCase(false, "Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close", "DateX,Open,High,Low,Close,Volume,Adj Close" )]
+        [TestCase(false, "Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close", "Date,OpenX,High,Low,Close,Volume,Adj Close" )]
+        [TestCase(false, "Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close", "Date,Open,HighX,Low,Close,Volume,Adj Close" )]
+        [TestCase(false, "Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close", "Date,Open,High,LowX,Close,Volume,Adj Close" )]
+        [TestCase(false, "Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close", "Date,Open,High,Low,CloseX,Volume,Adj Close" )]
+        [TestCase(false, "Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close", "Date,Open,High,Low,Close,VolumeX,Adj Close" )]
+        [TestCase(false, "Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close", "Date,Open,High,Low,Close,Volume,Adj CloseX" )]
+        public void ShouldCheckHeadersReturnValidIsFalseIfHeadersAreNotAsExpected(bool expectedValid, string expectedMessage, string line)
         {
             var result = _yahooFinanceValidator.CheckHeaders(line);
 
@@ -46,9 +46,9 @@ namespace SchedulerServicesTests.Validators
             Assert.That(result.Message, Is.EqualTo(expectedMessage));
         }
 
-        [TestCase(false, "Expecting 7 columns", new[] { "Date", "Open", "High", "Low", "Close", "Volume", "Adj Close", "Extra Column" })]
-        [TestCase(false, "Expecting 7 columns", new[] { "Date", "Open", "High", "Low", "Close", "Volume" })]
-        public void ShouldReturnValidAsFalseIfNot7Columns(bool expectedValid, string expectedMessage, string[] line)
+        [TestCase(false, "Expecting 7 columns", "Date,Open,High,Low,Close,Volume,Adj Close,Extra Column" )]
+        [TestCase(false, "Expecting 7 columns", "Date,Open,High,Low,Close,Volume" )]
+        public void ShouldReturnValidAsFalseIfNot7Columns(bool expectedValid, string expectedMessage, string line)
         {
             var result = _yahooFinanceValidator.CheckHeaders(line);
 

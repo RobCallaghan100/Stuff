@@ -21,14 +21,14 @@ namespace SchedulerServicesTests.Parsers
             _yahooFinanceParser = null;
         }
 
-        [Test]
-        public void ShouldPopulatePriceObject()
+        [TestCase("VOD", "VOD", "NY")]
+        [TestCase("VOD.L", "VOD", "L")]
+        public void ShouldPopulatePriceObject(string epicCode, string expectedEpicCode, string expectedMarket)
         {
             //  Date,Open,High,Low,Close,Volume,Adj Close
             string line = "2016-01-04,219.50,220.074,215.375,216.00,73377400,216.00";
-            string epic = "VOD.L";
 
-            var price = _yahooFinanceParser.Parse(epic, line);
+            var price = _yahooFinanceParser.Parse(epicCode, line);
 
             Assert.That(price, Is.Not.Null);
             Assert.That(price.Date, Is.EqualTo(new DateTime(2016, 01, 04)));
@@ -38,6 +38,8 @@ namespace SchedulerServicesTests.Parsers
             Assert.That(price.Close, Is.EqualTo(216.00));
             Assert.That(price.Volume, Is.EqualTo(73377400));
             Assert.That(price.AdjustedClose, Is.EqualTo(216.00));
+            Assert.That(price.Epic, Is.EqualTo(expectedEpicCode));
+            Assert.That(price.Market, Is.EqualTo(expectedMarket));
         }
 
         [TestCase("wrongformat,201.54,220.074,215.375,216.00,73377400,216.00")]

@@ -47,7 +47,7 @@ namespace SchedulerServicesTests
             string epicCode = "VOD.L";
             _mockQueryStringBuilder.Setup(qsb => qsb.BuildQueryString(It.IsAny<string>(), It.IsAny<DateTime>()))
                 .Returns(GetQueryStringValue());
-            _mockYahooFinanceValidator.Setup(yfv => yfv.CheckHeaders(It.IsAny<string[]>()))
+            _mockYahooFinanceValidator.Setup(yfv => yfv.CheckHeaders(It.IsAny<string>()))
                 .Returns(new Validation {IsValid = true});
             _mockYahooFinanceParser.Setup(yfp => yfp.Parse(It.IsAny<string>(), It.IsAny<string>())).Returns(new Price());
 
@@ -75,7 +75,7 @@ namespace SchedulerServicesTests
             var validation = new Validation {IsValid = false};
             _mockQueryStringBuilder.Setup(qsb => qsb.BuildQueryString(It.IsAny<string>(), It.IsAny<DateTime>()))
                 .Returns(GetQueryStringValue());
-            _mockYahooFinanceValidator.Setup(yfv => yfv.CheckHeaders(It.IsAny<string[]>())).Returns(validation);
+            _mockYahooFinanceValidator.Setup(yfv => yfv.CheckHeaders(It.IsAny<string>())).Returns(validation);
             var dateTime = new DateTime(2016, 1, 4);
 
             var ex = Assert.ThrowsAsync<ApplicationException>(async () => await _yahooFinanceClient.Get(epicCode, dateTime));

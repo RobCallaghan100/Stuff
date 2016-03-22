@@ -4,9 +4,11 @@ namespace SchedulerServices.Validators
 {
     public class YahooFinanceValidator : IValidator
     {
-        public Validation CheckHeaders(string[] line)
+        public Validation CheckHeaders(string line)
         {
-            if (line.Length != 7)
+            var splitLine = line.Split(',');
+
+            if (splitLine.Length != 7)
             {
                 return new Validation
                 {
@@ -15,13 +17,13 @@ namespace SchedulerServices.Validators
                 };
             }
 
-            if (line[0] != "Date" ||
-                line[1] != "Open" ||
-                line[2] != "High" ||
-                line[3] != "Low" ||
-                line[4] != "Close" ||
-                line[5] != "Volume" ||
-                line[6] != "Adj Close")
+            if (splitLine[0] != "Date" ||
+                splitLine[1] != "Open" ||
+                splitLine[2] != "High" ||
+                splitLine[3] != "Low" ||
+                splitLine[4] != "Close" ||
+                splitLine[5] != "Volume" ||
+                splitLine[6] != "Adj Close")
             {
                 return new Validation
                 {

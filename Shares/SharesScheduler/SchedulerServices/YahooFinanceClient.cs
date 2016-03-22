@@ -59,7 +59,7 @@ namespace SchedulerServices
                         string line = "";
                         while ((line = streamReader.ReadLine()) != null)
                         {
-                            var splitLine = line.Split(',');
+                            //var splitLine = line.Split(',');
                                 
                             if (lineNumber > 0)
                             {
@@ -67,7 +67,7 @@ namespace SchedulerServices
                             }
                             else
                             {
-                                if (!_validator.CheckHeaders(splitLine).IsValid)
+                                if (!_validator.CheckHeaders(line).IsValid)
                                 {
                                     throw new ApplicationException("Expecting columns in the following order: Date,Open,High,Low,Close,Volume,Adj Close");
                                 }

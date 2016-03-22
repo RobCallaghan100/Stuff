@@ -1,5 +1,6 @@
 ﻿using System;
 using Models;
+using static System.Decimal;
 
 namespace SchedulerServices.Parsers
 {
@@ -10,11 +11,6 @@ namespace SchedulerServices.Parsers
             Price price = null;
             try
             {
-//                if (splitEpicCode.Length >= 1)
-//                {
-//                    price.Market = splitEpicCode[1];
-//                }
-
                 var splitLine = line.Split(',');
 
                 price = new Price
@@ -27,6 +23,9 @@ namespace SchedulerServices.Parsers
                     Volume = Decimal.Parse(splitLine[5]),
                     AdjustedClose = Decimal.Parse(splitLine[6])
                 };
+
+                price.Market = GetMarket(epicCode);
+                price.Epic = GetEpicCode(epicCode);
             }
             catch (Exception ex)
             {
@@ -35,6 +34,22 @@ namespace SchedulerServices.Parsers
             }
 
             return price;
+        }
+
+        private static string GetEpicCode(string epicCode)
+        {
+            return epicCode.Split('.')[0];
+        }
+
+        private string GetMarket(string epicCode)
+        {
+            var splitEpicCode = epicCode.Split('.');
+            if (splitEpicCode.Length > 1)
+            {
+                return splitEpicCode[1];
+            }
+
+            return "NY";
         }
     }
 }

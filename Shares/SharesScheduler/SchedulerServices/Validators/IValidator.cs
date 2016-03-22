@@ -4,6 +4,6 @@ namespace SchedulerServices.Validators
 {
     public interface IValidator
     {
-        Validation CheckHeaders(string[] line);
+        Validation CheckHeaders(string line);
     }   
 }
