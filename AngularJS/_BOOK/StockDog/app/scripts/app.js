@@ -29,7 +29,6 @@ angular
         controller: 'WatchlistCtrl'
       })
       .otherwise({
-        redirectTo: '/dashboard'
+        redirectTo: '/'
       });
   });
-
