@@ -16,7 +16,7 @@ angular.module('stockDogApp')
     
     var addStockModal = $modal({
         scope: $scope,
-        template: 'views/templates/add-stock-modal.html',
+        template: 'views/templates/addstock-modal.html',
         show:false
     });
     
