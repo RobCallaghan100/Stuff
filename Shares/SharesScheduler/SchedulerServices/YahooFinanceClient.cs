@@ -59,11 +59,9 @@ namespace SchedulerServices
                         string line = "";
                         while ((line = streamReader.ReadLine()) != null)
                         {
-                            //var splitLine = line.Split(',');
-                                
                             if (lineNumber > 0)
                             {
-                                price = _financeParser.Parse(line, epicCode);
+                                price = _financeParser.Parse(epicCode, line);
                             }
                             else
                             {

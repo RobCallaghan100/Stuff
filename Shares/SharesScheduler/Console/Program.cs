@@ -1,15 +1,28 @@
-﻿using SchedulerServices;
+﻿using System;
+using Ninject;
+using SchedulerServices;
 
 namespace Console
 {
     class Program
     {
+        private static IKernel _kernel;
+
         static void Main(string[] args)
         {
-            // TODO: Put Ninject in!
-            // TODO: create library for ElasticSearch. STart with tests first - Implement from IRepository<T> (ie ElasticSearchRepository<T> : IRepository<T> (where T is Price in this case)
-            // TODO: Use builder pattern to create query (do I need this yet?)
-            var x = new YahooFinanceClient();
+            _kernel = new StandardKernel(new SchedulerModule());
+
+            Extract();
+
+            System.Console.ReadLine();
+        }
+
+        private static async void Extract()
+        {
+            var yahooFinanceClient = _kernel.Get<YahooFinanceClient>();
+
+            var price = await yahooFinanceClient.Get("VOD.L", DateTime.Today.AddDays(-1));
         }
     }
 }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
