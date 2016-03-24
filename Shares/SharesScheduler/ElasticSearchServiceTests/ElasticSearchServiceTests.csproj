@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{122CA934-8706-46FF-8E3A-43707AB30A06}</ProjectGuid>
+    <ProjectGuid>{6DCA4FEF-9949-4A71-B3F5-B9DB9B2F2DB3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SchedulerServicesTests</RootNamespace>
-    <AssemblyName>SchedulerServicesTests</AssemblyName>
+    <RootNamespace>ElasticSearchServiceTests</RootNamespace>
+    <AssemblyName>ElasticSearchServiceTests</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,7 +41,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,27 +49,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\YahooQueryStringBuilderTests.cs" />
-    <Compile Include="Parsers\YahooFinanceParserTests.cs" />
+    <Compile Include="Converters\PriceToDocumentConverterTest.cs" />
+    <Compile Include="Gateway\ElasticSearchGatewayTests.cs" />
+    <Compile Include="IndexerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FinanceServiceTests.cs" />
-    <Compile Include="YahooFinanceClientTests.cs" />
-    <Compile Include="Validators\YahooFinanceValidatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\ElasticSearchService\ElasticSearchService.csproj">
+      <Project>{E2740B40-CA17-435C-B296-03B15E0B093B}</Project>
+      <Name>ElasticSearchService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{e3b60d4e-c39d-4fc8-b477-4e12c1de3651}</Project>
       <Name>Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SchedulerServices\SchedulerServices.csproj">
-      <Project>{b79b0915-fa67-4fc9-b686-0f6041788b15}</Project>
-      <Name>SchedulerServices</Name>
-    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

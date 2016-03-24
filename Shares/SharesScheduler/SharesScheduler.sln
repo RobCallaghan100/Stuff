@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedulerServicesTests", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{E3B60D4E-C39D-4FC8-B477-4E12C1DE3651}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearchService", "ElasticSearchService\ElasticSearchService.csproj", "{E2740B40-CA17-435C-B296-03B15E0B093B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearchServiceTests", "ElasticSearchServiceTests\ElasticSearchServiceTests.csproj", "{6DCA4FEF-9949-4A71-B3F5-B9DB9B2F2DB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{E3B60D4E-C39D-4FC8-B477-4E12C1DE3651}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3B60D4E-C39D-4FC8-B477-4E12C1DE3651}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3B60D4E-C39D-4FC8-B477-4E12C1DE3651}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2740B40-CA17-435C-B296-03B15E0B093B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2740B40-CA17-435C-B296-03B15E0B093B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2740B40-CA17-435C-B296-03B15E0B093B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2740B40-CA17-435C-B296-03B15E0B093B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DCA4FEF-9949-4A71-B3F5-B9DB9B2F2DB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DCA4FEF-9949-4A71-B3F5-B9DB9B2F2DB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DCA4FEF-9949-4A71-B3F5-B9DB9B2F2DB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DCA4FEF-9949-4A71-B3F5-B9DB9B2F2DB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

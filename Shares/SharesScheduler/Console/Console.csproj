@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SchedulerModule.cs" />
+    <Compile Include="BindingModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -57,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ElasticSearchService\ElasticSearchService.csproj">
+      <Project>{e2740b40-ca17-435c-b296-03b15e0b093b}</Project>
+      <Name>ElasticSearchService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{e3b60d4e-c39d-4fc8-b477-4e12c1de3651}</Project>
       <Name>Models</Name>
