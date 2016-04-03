@@ -25,6 +25,7 @@ namespace ElasticSearchServiceTests.Gateway
 
             var elasticSearchGateway = new ElasticSearchGateway();
 
+            TODO: carry on getting the test to save to elastic search
 
             //            get json document
             // elasticSearchGateway.Save(IndexName, TypeName, document);
