@@ -8,6 +8,7 @@ namespace EssentialTools.Controllers
     public class HomeController : Controller
     {
         private readonly IValueCalculator _calculator;
+        private readonly IValueCalculator _calc2;
 
         private Product[] _products =
         {
@@ -17,9 +18,10 @@ namespace EssentialTools.Controllers
             new Product { Name = "Corner flag", Category = "Soccer", Price = 34.95M }
         };
 
-        public HomeController(IValueCalculator calculator)
+        public HomeController(IValueCalculator calculator, IValueCalculator calc2)
         {
             _calculator = calculator;
+            _calc2 = calc2;
         }
 
         // GET: Home
