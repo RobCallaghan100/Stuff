@@ -19,6 +19,8 @@
         private void AddBindings()
         {
             _kernel.Bind<IValueCalculator>().To<LinqValueCalculator>();
+//            _kernel.Bind<IDiscountHelper>().To<DefaultDiscountHelper>().WithPropertyValue("DiscountSize", 50M);
+            _kernel.Bind<IDiscountHelper>().To<DefaultDiscountHelper>().WithConstructorArgument("discountParam", 20M);
         }
 
         public object GetService(Type serviceType)

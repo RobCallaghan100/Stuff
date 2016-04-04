@@ -5,9 +5,16 @@
 
     public class LinqValueCalculator : IValueCalculator
     {
-        public decimal ValueProducts(IEnumerable<Product> products )
+        private readonly IDiscountHelper _discountHelper;
+
+        public LinqValueCalculator(IDiscountHelper discountHelper)
         {
-            return products.Sum(prod => prod.Price);
+            _discountHelper = discountHelper;
+        }
+
+        public decimal ValueProducts(IEnumerable<Product> products)
+        {
+            return _discountHelper.ApplyDiscount(products.Sum(p => p.Price));
         }
     }
 }
