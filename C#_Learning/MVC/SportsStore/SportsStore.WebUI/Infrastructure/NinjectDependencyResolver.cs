@@ -22,7 +22,7 @@ namespace SportsStore.WebUI.Infrastructure
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            throw new NotImplementedException();
+            return _kernel.GetAll(serviceType);
         }
     }
 }
