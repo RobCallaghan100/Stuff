@@ -6,29 +6,30 @@
 
 <h2>Bee Game</h2>
 
-Queen Bee
-<ul>
-    <li>@Model.QueenBee.LifeSpan</li>
-</ul>
-
-Worker Bees
-<ul>
-    @foreach (var workerBee in Model.WorkerBees)
-    {
-        <li>@workerBee.LifeSpan</li>
-    }
-</ul>
-
-Drone Bees
-<ul>
-    @foreach (var droneBee in Model.DroneBees)
-    {
-        <li>@droneBee.LifeSpan</li>
-    }
-</ul>
-
 @using (Html.BeginForm("Index", "Home", FormMethod.Post))
 {
+    @:Queen Bee
+    <ul>
+        <li>@Html.TextBoxFor(x => x.QueenBee.LifeSpan)</li>
+    </ul>
+
+    @:Worker Bees
+    <ul>
+        @foreach (var workerBee in Model.WorkerBees)
+        {
+            <li>@workerBee.LifeSpan</li>
+        }
+    </ul>
+
+    @:Drone Bees
+    <ul>
+        @foreach (var droneBee in Model.DroneBees)
+        {
+            <li>@droneBee.LifeSpan</li>
+        }
+    </ul>
+
+
     <input type="submit" value="Hit" />
 }
 

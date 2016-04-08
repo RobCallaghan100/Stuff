@@ -9,7 +9,7 @@
             LifeSpan = lifeSpan;
         }
 
-        public int LifeSpan {  get; protected set; }
+        public int LifeSpan {  get; protected internal set; }
 
         public virtual void Hit()
         {

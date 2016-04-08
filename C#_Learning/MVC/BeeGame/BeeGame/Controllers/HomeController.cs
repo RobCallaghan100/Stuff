@@ -23,6 +23,11 @@ namespace BeeGame.Controllers
         public ActionResult Index(BeeGame beeGame)
         {
             beeGame.Hit();
+
+            var temp = beeGame;
+            ModelState.Clear();
+            beeGame.QueenBee.LifeSpan -= 1;
+
             return View(beeGame);
         }
     }

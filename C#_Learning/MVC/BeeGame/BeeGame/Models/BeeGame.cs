@@ -66,6 +66,8 @@
 
             var beeType = random.Next(1, 3);
 
+            beeType = 1;//TODO: remove
+
             switch (beeType)
             {
                 case 1:

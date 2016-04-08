@@ -1,0 +1,24 @@
+﻿@model BeeGame.Models.Test
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<div>
+    @using (Html.BeginForm("Index", "Test", FormMethod.Post))
+    {
+        @Model.X
+        @Html.TextBoxFor(x => x.X)
+        <input type="submit" value="Reset" />
+    }
+</div>
+</body>
+</html>
