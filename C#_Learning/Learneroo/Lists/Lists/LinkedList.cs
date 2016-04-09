@@ -1,40 +1,23 @@
 ﻿namespace Lists
 {
-    public class LinkedList
+    public class LinkedList<T>
     {
-        public Node Head { get; private set; }
-        public Node Tail { get; private set; }
+        public Node<T> Head { get; private set; }
+        public Node<T> Tail { get; private set; }
         public int Size { get; private set; }
 
-        public Node Add(int num)
+        public Node<T> Add(T num)
         {
-//            var node = new Node(num);
-//
-//            if (Head == null)
-//            {
-//                Head = node;
-//                Tail = Head;
-//            }
-//            else
-//            {
-//                Tail.Next = node;
-//                Tail = node;
-//            }
-//
-//            Size += 1;
-//
-//            return node;
-
             return Add(Size, num);
         }
 
-        public Node Add(int index, int value)
+        public Node<T> Add(int index, T value)
         {
             /*
             check for negative index or index out of bounds - TODO
             */
 
-            var newNode = new Node(value);
+            var newNode = new Node<T>(value);
             var previousNode = GetNode(index - 1);
 
             if (IsNodeBeforeHead(previousNode))
@@ -61,10 +44,10 @@
             return index == Size;
         }
 
-        public int Get(int num)
+        public T Get(int index)
         {
             var node = Head;
-            for (int i = 0; i < num; i++)
+            for (int i = 0; i < index; i++)
             {
                 node = node.Next;
             }
@@ -72,26 +55,26 @@
             return node.Value;
         }
 
-        private static void InsertNode(Node previousNode, Node newNode)
+        private static void InsertNode(Node<T> previousNode, Node<T> newNode)
         {
             var previousNext = previousNode.Next;
             newNode.Next = previousNext;
             previousNode.Next = newNode;
         }
 
-        private void CreateNewHead(Node newNode)
+        private void CreateNewHead(Node<T> newNode)
         {
             var oldHead = Head;
             Head = newNode;
             Head.Next = oldHead;
         }
 
-        private static bool IsNodeBeforeHead(Node previousNode)
+        private static bool IsNodeBeforeHead(Node<T> previousNode)
         {
             return previousNode == null;
         }
 
-        private Node GetNode(int index)
+        private Node<T> GetNode(int index)
         {
             if (index < 0)
             {
@@ -107,7 +90,7 @@
             return node;
         }
 
-        public int Remove(int index)
+        public T Remove(int index)
         {
             // TODO: check that index is in bounds
 

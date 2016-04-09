@@ -5,12 +5,12 @@ namespace Lists
     [TestFixture]
     public class StackTest
     {
-        private Stack _stack;
+        private Stack<int> _stack;
 
         [SetUp]
         public void Setup()
         {
-            _stack = new Stack();
+            _stack = new Stack<int>();
         }
 
         [TearDown]

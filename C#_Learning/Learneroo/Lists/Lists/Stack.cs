@@ -2,16 +2,16 @@ using NUnit.Framework.Constraints;
 
 namespace Lists
 {
-    public class Stack
+    public class Stack<T>
     {
-        private LinkedList _linkedList;
+        private LinkedList<T> _linkedList;
 
         public Stack()
         {
-            _linkedList = new LinkedList();
+            _linkedList = new LinkedList<T>();
         }
 
-        public void Push(int value)
+        public void Push(T value)
         {
             _linkedList.Add(value);
         }
@@ -21,12 +21,12 @@ namespace Lists
             return _linkedList.Size;
         }
 
-        public int Peek()
+        public T Peek()
         {
             return _linkedList.Tail.Value;
         }
 
-        public int Pop()
+        public T Pop()
         {
             return _linkedList.Remove(_linkedList.Size - 1);
         }

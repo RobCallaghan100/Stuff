@@ -1,14 +1,14 @@
 namespace Lists
 {
-    public class Node
+    public class Node<T>
     {
-        public int Value { get; private set; }
+        public T Value { get; private set; }
 
-        public Node(int value)
+        public Node(T value)
         {
             Value = value;
         }
 
-        public Node Next { get; set; }
+        public Node<T> Next { get; set; }
     }
 }

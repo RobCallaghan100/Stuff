@@ -16,7 +16,7 @@ namespace Lists
 
         private static void CreateLists()
         {
-            var linkedList = new LinkedList();
+            var linkedList = new LinkedList<int>();
             linkedList.Add(3);
             Console.WriteLine(linkedList.Get(0));
             linkedList.Add(5);
@@ -33,7 +33,7 @@ namespace Lists
 
         private static void CreateAndRemoveNodesFromLinkedList()
         {
-            var _linkedList = new LinkedList();
+            var _linkedList = new LinkedList<int>();
 
             _linkedList.Add(3);
             Console.WriteLine(_linkedList.Get(0));

@@ -5,12 +5,12 @@
     [TestFixture]
     public class LinkedListTests
     {
-        private LinkedList _linkedList;
+        private LinkedList<int> _linkedList;
 
         [SetUp]
         public void Setup()
         {
-            _linkedList = new LinkedList();
+            _linkedList = new LinkedList<int>();
         }
 
         [TearDown]
