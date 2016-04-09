@@ -40,22 +40,48 @@ namespace Lists
         {
             /*
             check for negative index or index out of bounds - TODO
-
-            create new node
-            get node at index-1 (or head if index=0)
-            copy next from index-1(or head) to temp variable
-            add temp to Next of new node
-            add new node to node at index-1(or head)
             */
 
             var newNode = new Node(value);
 
             var previousNode = GetNode(index-1);
 
-        }   
+            if (IsBeforeHead(previousNode))
+            {
+                CreateNewHead(newNode);
+            }
+            else
+            {
+                InsertNode(previousNode, newNode);
+            }
+        }
+
+        private static void InsertNode(Node previousNode, Node newNode)
+        {
+            var previousNext = previousNode.Next;
+            newNode.Next = previousNext;
+            previousNode.Next = newNode;
+        }
+
+        private void CreateNewHead(Node newNode)
+        {
+            var oldHead = Head;
+            Head = newNode;
+            Head.Next = oldHead;
+        }
+
+        private static bool IsBeforeHead(Node previousNode)
+        {
+            return previousNode == null;
+        }
 
         private Node GetNode(int index)
-        {   
+        {
+            if (index < 0)
+            {
+                return null;
+            }
+
             var node = Head;
             for (int i = 0; i < index; i++)
             {
@@ -63,6 +89,11 @@ namespace Lists
             }
 
             return node;
+        }
+
+        public void Remove(int index)
+        {
+            throw new NotImplementedException();
         }
     }
 }
