@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Lists
+﻿namespace Lists
 {
     public class LinkedList
     {
@@ -91,9 +89,23 @@ namespace Lists
             return node;
         }
 
-        public void Remove(int index)
+        public int Remove(int index)
         {
-            throw new NotImplementedException();
+            // TODO: check that index is in bounds
+
+            var currentNode = GetNode(index);
+            var previousNode = GetNode(index-1);
+            
+            if (IsBeforeHead(previousNode))
+            {
+                Head = Head.Next;
+            }
+            else
+            {
+                previousNode.Next = currentNode.Next;
+            }
+
+            return currentNode.Value;
         }
     }
 }

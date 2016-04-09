@@ -43,6 +43,23 @@
         }
 
         [Test]
+        public void ShouldPassAcceptanceTestForAdding()
+        {
+            _linkedList.Add(3);
+            Assert.That(_linkedList.Get(0), Is.EqualTo(3));
+            _linkedList.Add(5);
+            _linkedList.Add(7);
+            Assert.That(_linkedList.Get(1), Is.EqualTo(5));
+            _linkedList.Add(4);
+            Assert.That(_linkedList.Get(3), Is.EqualTo(4));
+            Assert.That(_linkedList.Get(0), Is.EqualTo(3));
+            _linkedList.Add(12);
+            _linkedList.Add(14);
+            Assert.That(_linkedList.Get(2), Is.EqualTo(7));
+            Assert.That(_linkedList.Get(5), Is.EqualTo(14));
+        }
+
+        [Test]
         public void ShouldAddAtSpecificIndex()
         {
             _linkedList.Add(1);
@@ -102,6 +119,74 @@
             Assert.That(_linkedList.Get(1), Is.EqualTo(3));
         }
 
+        [Test]
+        public void ShouldRemoveNodeAtHead()
+        {
+            _linkedList.Add(1);
+            _linkedList.Add(2);
+            _linkedList.Add(3);
+
+            _linkedList.Remove(0);
+
+            Assert.That(_linkedList.Get(0), Is.EqualTo(2));
+            Assert.That(_linkedList.Get(1), Is.EqualTo(3));
+        }
+
+        [Test]
+        public void ShouldRemoveNodeAtTail()
+        {
+            _linkedList.Add(1);
+            _linkedList.Add(2);
+            _linkedList.Add(3);
+
+            _linkedList.Remove(2);
+
+            Assert.That(_linkedList.Get(0), Is.EqualTo(1));
+            Assert.That(_linkedList.Get(1), Is.EqualTo(2));
+        }
+
         // TODO: check that index is in bounds
+
+        [Test]
+        public void ShouldPassAddAtSpecificIndexAndRemoveAcceptanceTest()
+        {
+            /*
+
+            -9 = add(num)
+            -6 = get(index)
+            a b = add(index, item)
+            -1 = remove(index) 
+            /////
+
+            */
+
+            _linkedList.Add(3);
+            Assert.That(_linkedList.Get(0), Is.EqualTo(3));
+            _linkedList.Add(5);
+            _linkedList.Add(1, 11);
+            _linkedList.Add(7);
+            _linkedList.Add(3, 13);
+            _linkedList.Add(3, 14);
+            Assert.That(_linkedList.Get(1), Is.EqualTo(11));
+            Assert.That(_linkedList.Get(3), Is.EqualTo(14));
+            Assert.That(_linkedList.Remove(2), Is.EqualTo(5));
+            Assert.That(_linkedList.Remove(0), Is.EqualTo(3));
+            Assert.That(_linkedList.Get(3), Is.EqualTo(7));
+            _linkedList.Add(2, 10);
+            _linkedList.Add(1, 9);
+            Assert.That(_linkedList.Get(5), Is.EqualTo(7));
+            Assert.That(_linkedList.Get(3), Is.EqualTo(10));
+            Assert.That(_linkedList.Remove(0), Is.EqualTo(11));
+            Assert.That(_linkedList.Remove(0), Is.EqualTo(9));
+            Assert.That(_linkedList.Remove(0), Is.EqualTo(14));
+            Assert.That(_linkedList.Remove(0), Is.EqualTo(10));
+            Assert.That(_linkedList.Remove(0), Is.EqualTo(13));
+            _linkedList.Add(2);
+            _linkedList.Add(3);
+            _linkedList.Add(1, 1);
+            _linkedList.Add(3, 5);
+            Assert.That(_linkedList.Get(4), Is.EqualTo(3));
+            Assert.That(_linkedList.Get(2), Is.EqualTo(2));
+        }
     }
 }
