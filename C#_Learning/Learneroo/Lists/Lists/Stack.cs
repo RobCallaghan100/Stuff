@@ -25,5 +25,10 @@ namespace Lists
         {
             return _linkedList.Tail.Value;
         }
+
+        public int Pop()
+        {
+            return _linkedList.Remove(_linkedList.Size - 1);
+        }
     }
 }

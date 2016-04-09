@@ -130,6 +130,8 @@
 
             Assert.That(_linkedList.Get(0), Is.EqualTo(2));
             Assert.That(_linkedList.Get(1), Is.EqualTo(3));
+            Assert.That(_linkedList.Head.Value, Is.EqualTo(2));
+            Assert.That(_linkedList.Tail.Value, Is.EqualTo(3));
         }
 
         [Test]
@@ -143,6 +145,8 @@
 
             Assert.That(_linkedList.Get(0), Is.EqualTo(1));
             Assert.That(_linkedList.Get(1), Is.EqualTo(2));
+            Assert.That(_linkedList.Head.Value, Is.EqualTo(1));
+            Assert.That(_linkedList.Tail.Value, Is.EqualTo(2));
         }
 
         // TODO: check that index is in bounds

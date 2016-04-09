@@ -37,7 +37,7 @@
             var newNode = new Node(value);
             var previousNode = GetNode(index - 1);
 
-            if (IsBeforeHead(previousNode))
+            if (IsNodeBeforeHead(previousNode))
             {
                 CreateNewHead(newNode);
             }
@@ -86,7 +86,7 @@
             Head.Next = oldHead;
         }
 
-        private static bool IsBeforeHead(Node previousNode)
+        private static bool IsNodeBeforeHead(Node previousNode)
         {
             return previousNode == null;
         }
@@ -114,9 +114,13 @@
             var currentNode = GetNode(index);
             var previousNode = GetNode(index - 1);
 
-            if (IsBeforeHead(previousNode))
+            if (IndexAtHead(index))
             {
                 Head = Head.Next;
+            }
+            else if (IndexAtTail(index))
+            {
+                Tail = previousNode;
             }
             else
             {
@@ -126,6 +130,16 @@
             Size -= 1;
 
             return currentNode.Value;
+        }
+
+        private bool IndexAtTail(int index)
+        {
+            return index+1 == Size;
+        }
+
+        private static bool IndexAtHead(int index)
+        {
+            return index == 0;
         }
     }
 }
