@@ -4,6 +4,7 @@
     {
         public Node Head { get; private set; }
         public Node Tail { get; private set; }
+        public int Size { get; private set; }
 
         public Node Add(int num)
         {
@@ -20,7 +21,31 @@
                 Tail = node;
             }
 
+            Size += 1;
+
             return node;
+        }
+
+        public void Add(int index, int value)
+        {
+            /*
+            check for negative index or index out of bounds - TODO
+            */
+
+            var newNode = new Node(value);
+
+            var previousNode = GetNode(index - 1);
+
+            if (IsBeforeHead(previousNode))
+            {
+                CreateNewHead(newNode);
+            }
+            else
+            {
+                InsertNode(previousNode, newNode);
+            }
+
+            Size += 1;
         }
 
         public int Get(int num)
@@ -32,26 +57,6 @@
             }
 
             return node.Value;
-        }
-
-        public void Add(int index, int value)
-        {
-            /*
-            check for negative index or index out of bounds - TODO
-            */
-
-            var newNode = new Node(value);
-
-            var previousNode = GetNode(index-1);
-
-            if (IsBeforeHead(previousNode))
-            {
-                CreateNewHead(newNode);
-            }
-            else
-            {
-                InsertNode(previousNode, newNode);
-            }
         }
 
         private static void InsertNode(Node previousNode, Node newNode)
@@ -94,8 +99,8 @@
             // TODO: check that index is in bounds
 
             var currentNode = GetNode(index);
-            var previousNode = GetNode(index-1);
-            
+            var previousNode = GetNode(index - 1);
+
             if (IsBeforeHead(previousNode))
             {
                 Head = Head.Next;
@@ -104,6 +109,8 @@
             {
                 previousNode.Next = currentNode.Next;
             }
+
+            Size -= 1;
 
             return currentNode.Value;
         }

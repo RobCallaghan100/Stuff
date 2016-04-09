@@ -150,16 +150,6 @@
         [Test]
         public void ShouldPassAddAtSpecificIndexAndRemoveAcceptanceTest()
         {
-            /*
-
-            -9 = add(num)
-            -6 = get(index)
-            a b = add(index, item)
-            -1 = remove(index) 
-            /////
-
-            */
-
             _linkedList.Add(3);
             Assert.That(_linkedList.Get(0), Is.EqualTo(3));
             _linkedList.Add(5);
@@ -187,6 +177,40 @@
             _linkedList.Add(3, 5);
             Assert.That(_linkedList.Get(4), Is.EqualTo(3));
             Assert.That(_linkedList.Get(2), Is.EqualTo(2));
+        }
+
+        [Test]
+        public void ShouldReturnCorrectSize()
+        {
+            _linkedList.Add(3);
+            _linkedList.Get(0);
+            _linkedList.Add(5);
+            _linkedList.Add(1, 11);
+            _linkedList.Add(7);
+            _linkedList.Add(3, 13);
+            _linkedList.Add(3, 14);
+            _linkedList.Get(1);
+            _linkedList.Get(3);
+            _linkedList.Remove(2);
+            _linkedList.Remove(0);
+            _linkedList.Get(3);
+            _linkedList.Add(2, 10);
+            _linkedList.Add(1, 9);
+            _linkedList.Get(5);
+            _linkedList.Get(3);
+            _linkedList.Remove(0);
+            _linkedList.Remove(0);
+            _linkedList.Remove(0);
+            _linkedList.Remove(0);
+            _linkedList.Remove(0);
+            _linkedList.Add(2);
+            _linkedList.Add(3);
+            _linkedList.Add(1, 1);
+            _linkedList.Add(3, 5);
+            _linkedList.Get(4);
+            _linkedList.Get(2);
+
+            Assert.That(_linkedList.Size, Is.EqualTo(5));
         }
     }
 }
