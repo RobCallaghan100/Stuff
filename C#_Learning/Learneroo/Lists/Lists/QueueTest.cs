@@ -31,6 +31,22 @@ namespace Lists
             Assert.That(queue.Count(), Is.EqualTo(1));
         }
 
+        [Test]
+        public void ShouldDeQueueUntilEmpty()
+        {
+            var queue = new Queue<int>();
+
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+            queue.Dequeue();
+            queue.Dequeue();
+            var result = queue.Dequeue();
+
+            Assert.That(queue.Peek(), Is.EqualTo(0));
+            Assert.That(result, Is.EqualTo(0));
+            Assert.That(queue.Count(), Is.EqualTo(0));
+        }
+
         // TODO: check we can not dequeue too many
     }
 }

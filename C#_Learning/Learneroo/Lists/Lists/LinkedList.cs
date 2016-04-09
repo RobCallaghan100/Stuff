@@ -99,6 +99,11 @@
 
             if (IndexAtHead(index))
             {
+                if (Head == null)
+                {
+                    return default(T);
+                }
+
                 Head = Head.Next;
             }
             else if (IndexAtTail(index))

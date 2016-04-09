@@ -21,6 +21,11 @@
 
         public T Peek()
         {
+            if (_linkedList.Head == null)
+            {
+                return default(T);
+            }
+
             return _linkedList.Head.Value;
         }
 
