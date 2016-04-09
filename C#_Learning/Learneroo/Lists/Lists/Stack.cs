@@ -23,7 +23,7 @@ namespace Lists
 
         public int Peek()
         {
-            throw new System.NotImplementedException();
+            return _linkedList.Tail.Value;
         }
     }
 }

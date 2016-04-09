@@ -8,32 +8,33 @@
 
         public Node Add(int num)
         {
-            var node = new Node(num);
+//            var node = new Node(num);
+//
+//            if (Head == null)
+//            {
+//                Head = node;
+//                Tail = Head;
+//            }
+//            else
+//            {
+//                Tail.Next = node;
+//                Tail = node;
+//            }
+//
+//            Size += 1;
+//
+//            return node;
 
-            if (Head == null)
-            {
-                Head = node;
-                Tail = Head;
-            }
-            else
-            {
-                Tail.Next = node;
-                Tail = node;
-            }
-
-            Size += 1;
-
-            return node;
+            return Add(Size, num);
         }
 
-        public void Add(int index, int value)
+        public Node Add(int index, int value)
         {
             /*
             check for negative index or index out of bounds - TODO
             */
 
             var newNode = new Node(value);
-
             var previousNode = GetNode(index - 1);
 
             if (IsBeforeHead(previousNode))
@@ -45,7 +46,19 @@
                 InsertNode(previousNode, newNode);
             }
 
+            if (IsIndexAtTail(index))
+            {
+                Tail = newNode;
+            }
+
             Size += 1;
+
+            return newNode;
+        }
+
+        private bool IsIndexAtTail(int index)
+        {
+            return index == Size;
         }
 
         public int Get(int num)
