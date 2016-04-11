@@ -13,14 +13,36 @@ namespace Recursion
             //            Recurse(0);
 
             //var result = Factorial(3);
-            //var result = DoStuff(4);
+           // var result = DoStuff(4);
 
-            int[] arr = {1, 5, 8, 12, 17, 19};
-            var result = BinarySearch(arr, 16, 0, arr.Length - 1);
+//            int[] arr = {1, 5, 8, 12, 17, 19};
+//            var result = BinarySearch(arr, 16, 0, arr.Length - 1);
+
+            var x = 144;
+            var result = FindSquareRoot(x, 1, x);
+
 
             Console.WriteLine(result);
             Console.ReadLine();
         }
+
+        private static int FindSquareRoot(int square, int min, int max)
+        {
+            var mid = ((max - min)/2) + (min);
+            var midSquare = mid*mid;
+            
+            if (midSquare > square)
+            {
+                return FindSquareRoot(square, min, mid);
+            }
+            else if (midSquare < square)
+            {
+                return FindSquareRoot(square, mid, max);
+            }
+
+            return mid;
+        }
+
 
         private static int BinarySearch(int[] array, int n, int startIndex, int endIndex)
         {
