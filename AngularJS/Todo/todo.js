@@ -2,10 +2,10 @@
     
     "use strict";
     
-    var app = angular.module('todoApp', []);
+    var app = angular.module('todoApp', ['lodash']);
     
     
-    app.controller('todoCtrl', function($scope){
+    app.controller('todoCtrl', [ '$scope', '_', function($scope, _){
         
         $scope.todos = [];
         
@@ -18,11 +18,12 @@
             }
         };
 
+        //http://stackoverflow.com/questions/29768009/how-to-install-underscore-js-in-my-angular-application
         
         
         $scope.$watch('todos', function(){
            // alert('watch');
         });
-    });
+    }]);
     
 })();
