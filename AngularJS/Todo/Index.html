@@ -1,12 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Todo</title>
-</head>
-<body>
-    <div>
-        <input id="NewTodo" type="text">
-    </div>
-</body>
+<html>
+    <head>
+    <title>Todo App</title>
+        <script src="angular.js" type="application/javascript"></script>
+        <script src="todo.js" type="application/javascript"></script>
+    </head>
+    <body ng-app="todoApp" ng-controller="todoCtrl">
+        Todo!
+        <div>
+            <form ng-submit="AddTodo(newTodo)">
+                <input type="text" ng-model="newTodo"/>
+            </form>
+            <div ng-repeat="todo in todos">
+                <input type="checkbox" ng-model="todo.completed" />
+                <input type="text" value="{{todo.description}}"/>
+                <input type="button" ng-click="removeTodo(todo)"/>
+            </div>
+        </div>
+    </body>
+    
 </html>
