@@ -1,5 +1,0 @@
-C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\Extractor\bin\Debug\Extractor.dll
-C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\Extractor\bin\Debug\Extractor.pdb
-C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\Extractor\obj\Debug\Extractor.csprojResolveAssemblyReference.cache
-C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\Extractor\obj\Debug\Extractor.dll
-C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\Extractor\obj\Debug\Extractor.pdb

@@ -1,9 +1,0 @@
-C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\ExtractorTests\bin\Debug\ExtractorTests.dll
-C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\ExtractorTests\bin\Debug\ExtractorTests.pdb
-C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\ExtractorTests\bin\Debug\Extractor.dll
-C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\ExtractorTests\bin\Debug\nunit.framework.dll
-C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\ExtractorTests\bin\Debug\Extractor.pdb
-C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\ExtractorTests\bin\Debug\nunit.framework.xml
-C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\ExtractorTests\obj\Debug\ExtractorTests.csprojResolveAssemblyReference.cache
-C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\ExtractorTests\obj\Debug\ExtractorTests.dll
-C:\PlayingAround\Github\Stuff\Scrapers\Scrapers\ExtractorTests\obj\Debug\ExtractorTests.pdb
